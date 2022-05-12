@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <title>Bruin Buuz</title>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,35 +11,34 @@
 <body>
     <div class="top-bar">
         <section class="top">
-            <header>
+            <header data-inline="true">
                 <a href="#">
-                    <img src="logo.png" alt="Bruin Buuz">
+                    <img class="logo" src="../Pictures/logo.png" alt="Bruin Buuz">
                 </a>
 
-                <div class="form-container">
-                    <form action="">
-                        <input type="text" name="keyword" id="keyword" placeholder="Search Keywords">
-                        <input type="button" value="Apply Filter">
-                    </form>
+                <form action="">
+                    <input type="text" class="form" name="keyword" id="keyword" placeholder="Search Keywords">
+                    <input type="button" class="button" value="Apply Filter">
+                </form>
+
+                <div class="account">
+                    <a href="#">
+                        <img class="bruin" src="../Pictures/bruin-paw.png" alt="Account Info">
+                    </a>
+                    <a href="#">More</a>
+                    <a href="#">Likes</a>
+                    <a href="#">Create</a>
                 </div>
 
-                <ul>
-                    <li><a href="#">Account Info</a></li>
-                    <li>
-                        <a href="#">...</a>
-                        <a href="#">Likes</a>
-                        <a href="#">Create</a>
-                    </li>
-                </ul>
-
             </header>
-
-            <h1>GO BRUINS!!!!!</h1>
-            <a href="#">Post</a>
-
         </section>
     </div>
 
-    <section class="Feed"></section>
+    <div class="slogan">
+        <h1>
+            "EXPLORE BRUINS!!!!!"
+        </h1>
+        <a href="#">Post</a>
+    </div>
 </body>
 </html>
