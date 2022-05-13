@@ -1,7 +1,7 @@
 //responsible to handle requests come to the server
 const express = require('express')
 const router = express.Router()
-const signUpTemplateCopy = require('../models/models')//import schema in models.js
+const signUpTemplateCopy = require('../models/usrmodels')//import schema in usrmodels.js
 
 //handle post request from user on /signup page
 router.post('/signup', (request, response)=>{

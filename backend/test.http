@@ -1,9 +1,3 @@
-POST http://localhost:4000/app/signup
+GET http://localhost:4000/app/all-blog
 Content-Type: application/json
 
-{
-    "fullName":"testusr1",
-    "username": "usr1",
-    "email":"usr1.gmail.com",
-    "password":"usr1passwd"
-}
