@@ -25,4 +25,4 @@ const signUpTemplate = new mongoose.Schema({
 
 //export the schema
 //model takes 2 argument: first is name of table, second is name of schema we created
-module.exports = mongoose.model('mytable', signUpTemplate)
+module.exports = mongoose.model('usrtable', signUpTemplate)
