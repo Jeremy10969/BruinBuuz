@@ -14,6 +14,10 @@ dotenv.config()
 //use dotenv instead of directly type in url above
 mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database connected"))
 
+// register view engine
+app.set('view engine', 'ejs');
+app.set('views', '../src');
+
 //activate body passer as middleware in application
 app.use(express.json())
 app.use(cors())//another middleware
@@ -24,6 +28,6 @@ app.use('/app', usrUrls)//first argument is base path, second argument will be a
 //then the total url will be www.mywebsite.com/app/signin
 app.use('/app', blogUrls)
 
-app.listen(4000, () => console.log("server is up and running"))//listen on port 4000
+app.listen(3000, () => console.log("server is up and running"))//listen on port 4000
 //react app by default run on port 3000
 //() is a call back function

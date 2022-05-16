@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')//import mongoose
+
 const blogTemplate = new mongoose.Schema({
     title:{
         type: String,
@@ -8,7 +9,7 @@ const blogTemplate = new mongoose.Schema({
         type:String,
         required:false
     },
-    bodyGraph:{
+    body:{
         type:String,
         required:true
     },
@@ -16,6 +17,6 @@ const blogTemplate = new mongoose.Schema({
         type:Date,
         default:Date.now
     }
-})
+}, {  timestamps: true  });
 
-module.exports = mongoose.model('blogtable', blogTemplate)
+module.exports = mongoose.model('Blogtable', blogTemplate);
