@@ -3,6 +3,11 @@ import React from 'react'
 const Home = ()=>{
     return(
         <div className="home">
+            <div class="slogan">
+                <h1>
+                    "EXPLORE BRUINS!!!!!"
+                </h1>
+            </div>
             <div className="feed">
                 <h5>A Smol Bruin</h5>
                 <div className="feed-image">

@@ -6,6 +6,8 @@
   font-size:3rem;
   padding-left:1em;
   padding-right:1em;
+  position:fixed;
+  width:100% !important;
 }
 
 a{
@@ -24,6 +26,18 @@ a:hover{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.slogan {
+  background-color:#FFB81C;
+  color:#172342;
+  text-align:left;
+  font-size:large;
+  font-family: 'Gochi Hand', cursive;
+  margin-top: -2.5rem;
+  padding-left:1em;
+  display:flex;
+  max-height: 100px;
 }
 
 .post{

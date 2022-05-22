@@ -16,7 +16,7 @@ const Profile = ()=>{
                 <div style={{textAlign:"center"}}>
                     <h4>A Smol Bruin</h4>
                     <div style={{display:"flex", justifyContent:"space-between", width:"110%"}}>
-                        <h6>6 Posts</h6>
+                        <h6>3 Posts</h6>
                         <h6>0 Followers</h6>
                         <h6>0 Following</h6>
                     </div>
