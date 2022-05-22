@@ -32,19 +32,24 @@ body {
 .form {
   font-family: 'Montserrat', sans-serif;
   vertical-align:300%;
-  border-radius:20px;
+  border-radius:0.5em;
   border:steelblue;
   height:2em;
-  width:15em;
+  width:30%;
   padding-left:1em;
 }
 
 .button {
+  background-color: #FFB81C;
   font-family: 'Montserrat', sans-serif;
   vertical-align:300%;
-  border-radius:20px;
+  border-radius:0.5em;
   border:steelblue;
   height:2em;
+}
+
+.button:hover {
+  background-color: #ffb71cd6;
 }
 
 .account {

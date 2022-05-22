@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat&family=Shrikhand&display=swap');
+
+.nav-topbar{
+  background-color: steelblue;
+  font-family: 'Shrikhand', cursive;
+  font-size:3rem;
+  padding-left:1em;
+  padding-right:1em;
+}
+
+a{
+  color:#172342 !important;
+}
+
+a:hover{
+  color:white !important
+}
+
+.userinfo{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.post{
+  width:30%;
+}
+
+.feed{
+  max-width: 500px;
+  height: max-content;
+  margin: 26px auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.post input{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn{
+  background-color: #ffb71cd6;
+  color:#172342
+}
+
+.btn:hover{
+  background-color: #ffb71c90;
+}
+
+.submit-post{
+  background-color: #ffb71cd6;
+  color:#172342;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0.5em;
+  border:white;
+  height:3rem;
+  width:7rem;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+}
+
+.submit-post:hover{
+  background-color: #ffb71c90;
+}
