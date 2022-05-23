@@ -31,7 +31,7 @@ const Home = ()=>{
                 <div className="feed-content">
                     <i className="material-icons">favorite_border</i>
                     <h6>#UCLAbound</h6>
-                    <p>I am officially one of the className of 2024!!!</p>
+                    <p>I am officially one of the class of 2024!!!</p>
                     <input type="text" placeholder="Add your comment" />
                 </div>
             </div>
