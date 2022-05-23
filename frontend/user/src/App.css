@@ -23,9 +23,15 @@ a:hover{
 }
 
 .gallery{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 1rem;
+    justify-content: space-around;
+    
+}
+
+.gallery > img{
+    width: 100%;
 }
 
 .slogan {
