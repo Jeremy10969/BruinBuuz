@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Create = ()=>{
-    return(
+const Create = () => {
+    return (
         <div className="post input"
-        style={{paddingLeft:"3rem", paddingTop:"2rem"}}>
+            style={{ paddingLeft: "3rem", paddingTop: "2rem" }}>
             <input type="text" placeholder="Title" />
-            <input style={{height:"300px", width:"800px",}}
-            type="text" placeholder="Thoughts?" />
+            <input style={{ height: "300px", width: "800px", }}
+                type="text" placeholder="Thoughts?" />
             <div className="file-field input-field">
                 <div className="btn">
                     <span>Upload Image</span>

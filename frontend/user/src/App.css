@@ -15,23 +15,42 @@ a{
 }
 
 a:hover{
-  color:white !important
+  color:white !important;
 }
 
+.profile-bar{
+    display:"flex";
+    justify-content:"space-between";
+    width:"110%";
+}
+
+a.profile-bar-button:hover{
+    color: steelblue !important
+}
 .userinfo{
   font-family: 'Montserrat', sans-serif;
 }
 
 .gallery{
+  text-align:center;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
     justify-content: space-around;
-    
+    padding-bottom: 2rem;
 }
 
 .gallery > img{
     width: 100%;
+}
+
+
+img.profile-name {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  margin-right: 10px;
 }
 
 .slogan {
