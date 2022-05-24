@@ -18,15 +18,17 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database connec
 app.set('view engine', 'ejs');
 app.set('views', '../src');
 
+app.use(express.static('public'));
+
 //activate body passer as middleware in application
 app.use(express.json())
 app.use(cors())//another middleware
 //use routes.js as a middleware
-app.use('/app', usrUrls)//first argument is base path, second argument will be appended
+app.use('/', usrUrls)//first argument is base path, second argument will be appended
 //this case www.mywebsite.com/app/signup
 // eg in routers.js if exist router.get('/signin', ...)
 //then the total url will be www.mywebsite.com/app/signin
-app.use('/app', blogUrls)
+app.use('/', blogUrls)
 
 app.listen(3000, () => console.log("server is up and running"))//listen on port 4000
 //react app by default run on port 3000
