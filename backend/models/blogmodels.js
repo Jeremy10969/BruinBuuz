@@ -9,7 +9,7 @@ const blogTemplate = new mongoose.Schema({
         type:String,
         required:false
     },
-    body:{
+    bodyGraph:{
         type:String,
         required:true
     },

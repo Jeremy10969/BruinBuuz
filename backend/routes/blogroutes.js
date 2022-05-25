@@ -3,6 +3,9 @@ const router = express.Router()
 const Blog = require('../models/blogmodels')//import schema in blogmodels.js
 
 
+router.get('/test',(req,res)=>{res.send("success!")})
+router.get('/all', (req,res)=>{res.send("get all blogs")})
+
 router.get('/', (req, res) => {
     const blogs = [
       {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
@@ -13,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/post-blog', (request,response)=> {
-    const toBePostBlog = new blogTemplateCopy ({
+    const toBePostBlog = new Blog ({
         title:request.body.title,
         tags:request.body.tags,//TODO: be modified later
         bodyGraph:request.body.bodyGraph
@@ -30,5 +33,7 @@ router.get('/all-blog', (req, res)=>{
         })
         .catch(err => { console.log(err); });
 });
+//change body to bodyGraph
+
 
 module.exports = router
