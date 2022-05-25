@@ -11,6 +11,7 @@ const blogTemplate = new mongoose.Schema({
         required: false,
         default: "no tag",
     },
+<<<<<<< HEAD
     body:{
         type: String,
         required: true,
@@ -23,6 +24,11 @@ const blogTemplate = new mongoose.Schema({
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
         required: false,
+=======
+    bodyGraph:{
+        type:String,
+        required:true
+>>>>>>> 5e115c38427dd1f0fab9897bfe0715df866a894e
     },
     date:{
         type: Date,

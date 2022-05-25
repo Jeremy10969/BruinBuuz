@@ -1,3 +1,7 @@
-GET http://localhost:4000/app/all-blog
+GET http://localhost:4000/app/signin
 Content-Type: application/json
 
+{
+    "email":"@126!",
+    "password":"1234"
+}

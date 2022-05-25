@@ -7,7 +7,7 @@ const dotenv = require('dotenv')//import dotenv to pass in url safely
 const usrUrls = require('./routes/usrroutes')// import usrroutes.js
 const blogUrls = require('./routes/blogroutes')//import blogroutes.js
 const cors = require('cors')//import cors
-
+const PORT=4000
 
 //activate dotenv
 dotenv.config()
@@ -30,6 +30,6 @@ app.use('/', usrUrls)//first argument is base path, second argument will be appe
 //then the total url will be www.mywebsite.com/app/signin
 app.use('/', blogUrls)
 
-app.listen(4000, () => console.log("server is up and running"))//listen on port 4000
+app.listen(PORT, () => console.log("server is up and running on", PORT))//listen on port 4000
 //react app by default run on port 3000
 //() is a call back function
