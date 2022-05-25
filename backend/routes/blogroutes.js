@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
     res.render('home', { title: 'Home', blogs });
 });
 
-<<<<<<< HEAD
 router.post('/Create', (req, res) => {
     const {title, body, picture} = req.body;
     console.log(title, body, picture);
@@ -32,13 +31,6 @@ router.post('/Create', (req, res) => {
         body,
         picture,
         //author: req.user,
-=======
-router.post('/post-blog', (request,response)=> {
-    const toBePostBlog = new Blog ({
-        title:request.body.title,
-        tags:request.body.tags,//TODO: be modified later
-        bodyGraph:request.body.bodyGraph
->>>>>>> 5e115c38427dd1f0fab9897bfe0715df866a894e
     })
     newBlog.save()
     .then(data =>{

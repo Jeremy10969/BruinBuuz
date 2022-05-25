@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import { AlertTitle } from '@mui/material';
@@ -8,43 +8,16 @@ const Create = () => {
     const [body, setBody] = useState("");
     const [picture, setPicture] = useState("");  // default, no pic
     const [url, setUrl] = useState("");
+    const [but, setBut] = useState(0);
     
     const navigate = useNavigate();
 
 
-
-    const postDetails = async () => {
-        const formData = new FormData();
-        formData.append("file", picture);
-        formData.append("upload_preset", "bruinbuuz");
-        formData.append("cloud_name", "dxhk2spfw");
-
-
-        if (picture) {
-
-                // image is asset type, upload is delivery type
-            await fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(res => {
-                setUrl(res.secure_url);
-                console.log('Success:', res);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-        }
-        else {
-            setUrl(picture);
-            console.log("you clicked without pic")
-        }
-        
-        
-
-        await fetch("http://localhost:4000/Create", {
+    useEffect(() => {
+        // it must have a url present, so initialization will not render
+        if (url) {
+            console.log(title, body, url, but);
+            fetch("http://localhost:4000/Create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -54,10 +27,10 @@ const Create = () => {
                 body,
                 picture:url
             })
-        }).then (res => res.json())
-        .then (data => {
+            }).then (res => res.json())
+            .then (data => {
             
-            if (data.error) {
+                if (data.error) {
                 
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
@@ -65,19 +38,58 @@ const Create = () => {
                 </Alert>
                 console.log("Problem...")
                 return;
-            }
-            else {
+                }
+                else {
                 console.log("Sucess!!");
                 <Alert severity="success">
                     <AlertTitle>Success</AlertTitle>
                         Succesfully Created A Buuz Post! — <strong>check it out!</strong>
                 </Alert>
                 navigate('/');
-            }
-        }).catch(err => {
+                }
+            }).catch(err => {
             console.log(err)
-        })
+            })
 
+        }
+        
+    }, [but])
+
+
+
+    const postDetails = () => {
+        const formData = new FormData();
+        formData.append("file", picture);
+        formData.append("upload_preset", "bruinbuuz");
+        formData.append("cloud_name", "dxhk2spfw");
+
+        
+        if (picture) {
+
+                // image is asset type, upload is delivery type
+            
+            fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(res => {
+                setUrl(res.url);
+                setBut(but + 1);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+
+        }
+        else {
+
+            console.log("You are not uploading pic.");
+            setUrl("no pic");
+            setBut(but + 1);
+        }
+        
         
         
     }
