@@ -9,6 +9,7 @@ const blogTemplate = new mongoose.Schema({
     tags:{
         type: String,
         required: false,
+        default: "no tag",
     },
     body:{
         type: String,
@@ -21,7 +22,7 @@ const blogTemplate = new mongoose.Schema({
     author:{
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
-        required: true,
+        required: false,
     },
     date:{
         type: Date,

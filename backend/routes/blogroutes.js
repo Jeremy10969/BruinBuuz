@@ -13,26 +13,30 @@ router.get('/', (req, res) => {
     res.render('home', { title: 'Home', blogs });
 });
 
-router.post('/create-blog', (req, res) => {
-    const {title, body} = req.body;
+router.post('/Create', (req, res) => {
+    const {title, body, picture} = req.body;
+    console.log(title, body, picture);
+    
     if (!title || !body) {
         return res.status(422).json({error: "Please add all the fields"})
     }
 
-    req.user.password = undefined; // to hide the passwd
+    // req.user.password = undefined; // to hide the passwd
     const newBlog = new Blog ({
-        title: req.body.title,
-        tags: req.body.tags,//TODO: be modified later
-        body: req.body.body,
-        picture: req.body.picture,
-        author: req.body.user,
+        title,
+       // tags,//TODO: be modified later
+        body,
+        picture,
+        //author: req.user,
     })
     newBlog.save()
     .then(data =>{
-        res.json({newblog: data})
+        res.json({newblog: data});
+        console.log("blog uploading to database.")
     })//if everything success, send response to json with data
     .catch(error =>{
-        res.json(error)
+        res.json(error);
+        console.log(error);
     })//if has error, catch it and send it as json file also
 });
 
