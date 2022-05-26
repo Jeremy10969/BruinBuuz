@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import { AlertTitle } from '@mui/material';
 
+
 const Create = () => {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [picture, setPicture] = useState("");  // default, no pic
     const [url, setUrl] = useState("");
     const [but, setBut] = useState(0);
-    
+    const [fname, setFname] = useState("");
+    const [uploadedFiles, setFiles] = useState([]);
+
     const navigate = useNavigate();
 
 
@@ -111,11 +114,17 @@ const Create = () => {
                 <div className="btn">
                     <span>Upload Image</span>
                     <input type="file" 
-                    onChange={(e) => setPicture(e.target.files[0])}
+                    onChange={(e) => {{setPicture(e.target.files[0])}; 
+                    {{setFiles(e.target.files)}};
+                    {if (e.target.files.length>1){setFname(e.target.files.length+ " files") }
+                        else {setFname(e.target.files[0].name)}}       
+                }}
+                     multiple
                     />
                 </div>
                 <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text" />
+                    <input className="file-path validate" type="text"
+                    value={fname}/>
                 </div>
             </div>
             <button className="submit-post"
