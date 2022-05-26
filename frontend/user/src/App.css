@@ -18,6 +18,51 @@ a:hover{
   color:white !important;
 }
 
+.logout{
+  background-color: steelblue;
+  font-family: 'Shrikhand', cursive;
+  color:#172342 !important;
+  border: 0;
+
+  -webkit-text-size-adjust: 100%;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  line-height: 64px;
+  font-family: 'Shrikhand', cursive;
+  list-style-type: none;
+  box-sizing: inherit;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: #172342 !important;
+  transition: background-color .3s;
+  font-size: 1rem;
+  display: block;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.logout:hover{
+  color:white !important;
+
+  -webkit-text-size-adjust: 100%;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  line-height: 64px;
+  font-family: 'Shrikhand', cursive;
+  list-style-type: none;
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  transition: background-color .3s;
+  font-size: 1rem;
+  display: block;
+  padding: 0 15px;
+  cursor: pointer;
+  color: white !important;
+  background-color: rgba(0,0,0,0.1);
+}
+
 .profile-bar{
     display:"flex";
     justify-content:"space-between";
@@ -27,6 +72,7 @@ a:hover{
 a.profile-bar-button:hover{
     color: steelblue !important
 }
+
 .userinfo{
   font-family: 'Montserrat', sans-serif;
 }

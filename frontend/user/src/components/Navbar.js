@@ -11,7 +11,14 @@ const Navbar = ()=>{
                 <ul id="nav-mobile" className="right">
                     <li><a href="/Create">Create</a></li>
                     <li><a href="/Profile">Profile</a></li>
-                    <li><a href="#">Log Out</a></li>
+                    <li>
+                        <button className="logout" onClick={()=>{
+                            localStorage.clear()
+                            dispatchEvent({type:"CLEAR"})
+                        }}>
+                            Log Out
+                        </button>
+                    </li>
                 </ul>
             </div>
         </nav>
