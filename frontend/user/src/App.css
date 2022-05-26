@@ -124,6 +124,8 @@ img.profile-name {
 
 .post input{
   font-family: 'Montserrat', sans-serif;
+  padding-left: "3rem";
+  padding-top: "2rem" 
 }
 
 .btn{
@@ -135,6 +137,15 @@ img.profile-name {
   background-color: #ffb71c90;
 }
 
+.search-btn{
+  color: #172342;
+  background-color: steelblue;
+  border: 0;
+}
+.search-btn:hover{
+  color: white;
+
+}
 .submit-post{
   background-color: #ffb71cd6;
   color:#172342;
@@ -151,4 +162,10 @@ img.profile-name {
 
 .submit-post:hover{
   background-color: #ffb71c90;
+}
+
+.search-bar{
+
+  margin-left: 150px;
+  border:"1px";
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Icon from '@mui/material/Icon';
 const Navbar = ()=>{
     return(
         <nav>
@@ -8,7 +8,15 @@ const Navbar = ()=>{
                     Bruin Buuz
                 </a>
                
-                <ul id="nav-mobile" className="right">
+                <ul className="right">
+
+                    <li >
+                        <a href="/Search">
+                            <Icon className="material-icons" fontSize='1rem' >search</Icon>
+                        </a>
+
+
+                    </li>  
                     <li><a href="/Create">Create</a></li>
                     <li><a href="/Profile">Profile</a></li>
                     <li>

@@ -4,9 +4,6 @@ const Blog = require('../models/blogmodels');//import schema in blogmodels.js
 const requireLogin = require('../middleware/requireLogin');
 //add requireLogin to create-blog my-posts
 
-
-
-
 router.post('/Create',requireLogin, (req, res) => {
     const {title, body, picture} = req.body;
     console.log(title, body, picture);
@@ -34,7 +31,23 @@ router.post('/Create',requireLogin, (req, res) => {
     });//if has error, catch it and send it as json file also
 });
 
-router.get('/all-blog', requireLogin, (req, res) => {
+router.get('/search/:content', requireLogin, (req, res) => {
+    //TODO: More search types // not sure require login or not
+    const searchType = req.query.searchType;
+    const content = req.params.content;
+    console.log("Search content:" + content);
+    console.log("Search Type: "+ searchType);
+    Blog.find({title:content})
+        .then(result => {
+           res.json(result);
+        })
+        .catch(error => { 
+            res.json(error);
+            console.log(error);
+        });
+});
+
+router.get('/all-blog',requireLogin,  (req, res) => {
     Blog.find().populate("author", "_id name").sort({ createdAt:-1 })
         .then(result => {
            res.json(result);
@@ -46,9 +59,7 @@ router.get('/all-blog', requireLogin, (req, res) => {
         });
 });
 
-
-
-router.get('/my-posts',requireLogin, (req, res) => {
+router.get('/my-posts', requireLogin, (req, res) => {
     const id = req.user._id;
     Blog.find({author: id})
     .populate("author", "_id name")

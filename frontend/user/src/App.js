@@ -5,6 +5,7 @@ import Profile from './components/Profile'
 import Create from './components/Create'
 import User from './components/User'
 import Following from './components/Following'
+import Search from './components/Search'
 import reducer from './components/userReducer'
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -23,6 +24,7 @@ function App() {
 
         </Route>
         <Route path="Create" element={<Create />} />
+        <Route path="Search" element={<Search/>}  />
 
       </Routes>
     </Router>

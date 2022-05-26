@@ -102,7 +102,7 @@ const Create = () => {
 
     return (
         <div className="post input"
-            style={{ paddingLeft: "3rem", paddingTop: "2rem" }}>
+            >
             <input
                 type="text" placeholder="Title"
                 value={title}
