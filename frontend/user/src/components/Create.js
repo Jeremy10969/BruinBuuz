@@ -1,50 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import { AlertTitle } from '@mui/material';
+
 
 const Create = () => {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [picture, setPicture] = useState("");  // default, no pic
     const [url, setUrl] = useState("");
-    
+    const [but, setBut] = useState(0);
+    const [fname, setFname] = useState("");
+    const [uploadedFiles, setFiles] = useState([]);
+
     const navigate = useNavigate();
 
 
-
-    const postDetails = async () => {
-        const formData = new FormData();
-        formData.append("file", picture);
-        formData.append("upload_preset", "bruinbuuz");
-        formData.append("cloud_name", "dxhk2spfw");
-
-
-        if (picture) {
-
-                // image is asset type, upload is delivery type
-            await fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(res => {
-                setUrl(res.secure_url);
-                console.log('Success:', res);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-        }
-        else {
-            setUrl(picture);
-            console.log("you clicked without pic")
-        }
-        
-        
-
-        await fetch("http://localhost:4000/Create", {
+    useEffect(() => {
+        // it must have a url present, so initialization will not render
+        if (url) {
+            console.log(title, body, url, but);
+            fetch("http://localhost:4000/Create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -54,10 +30,10 @@ const Create = () => {
                 body,
                 picture:url
             })
-        }).then (res => res.json())
-        .then (data => {
+            }).then (res => res.json())
+            .then (data => {
             
-            if (data.error) {
+                if (data.error) {
                 
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
@@ -65,19 +41,58 @@ const Create = () => {
                 </Alert>
                 console.log("Problem...")
                 return;
-            }
-            else {
+                }
+                else {
                 console.log("Sucess!!");
                 <Alert severity="success">
                     <AlertTitle>Success</AlertTitle>
                         Succesfully Created A Buuz Post! — <strong>check it out!</strong>
                 </Alert>
                 navigate('/');
-            }
-        }).catch(err => {
+                }
+            }).catch(err => {
             console.log(err)
-        })
+            })
 
+        }
+        
+    }, [but])
+
+
+
+    const postDetails = () => {
+        const formData = new FormData();
+        formData.append("file", picture);
+        formData.append("upload_preset", "bruinbuuz");
+        formData.append("cloud_name", "dxhk2spfw");
+
+        
+        if (picture) {
+
+                // image is asset type, upload is delivery type
+            
+            fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(res => {
+                setUrl(res.url);
+                setBut(but + 1);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+
+        }
+        else {
+
+            console.log("You are not uploading pic.");
+            setUrl("no pic");
+            setBut(but + 1);
+        }
+        
         
         
     }
@@ -99,15 +114,21 @@ const Create = () => {
                 <div className="btn">
                     <span>Upload Image</span>
                     <input type="file" 
-                    onChange={(e) => setPicture(e.target.files[0])}
+                    onChange={(e) => {{setPicture(e.target.files[0])}; 
+                    {{setFiles(e.target.files)}};
+                    {if (e.target.files.length>1){setFname(e.target.files.length+ " files") }
+                        else {setFname(e.target.files[0].name)}}       
+                }}
+                     multiple
                     />
                 </div>
                 <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text" />
+                    <input className="file-path validate" type="text"
+                    value={fname}/>
                 </div>
             </div>
             <button className="submit-post"
-            onClick = {() => postDetails()}
+            onClick = {postDetails}
             >
                 Post it!
             </button>

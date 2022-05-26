@@ -7,16 +7,8 @@ const Blog = require('../models/blogmodels');//import schema in blogmodels.js
 router.get('/test',(req,res)=>{res.send("success!")})
 router.get('/all', (req,res)=>{res.send("get all blogs")})
 
-router.get('/', (req, res) => {
-    const blogs = [
-      {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-      {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-      {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-    ];
-    res.render('home', { title: 'Home', blogs });
-});
 
-<<<<<<< HEAD
+
 router.post('/Create', (req, res) => {
     const {title, body, picture} = req.body;
     console.log(title, body, picture);
@@ -32,13 +24,6 @@ router.post('/Create', (req, res) => {
         body,
         picture,
         //author: req.user,
-=======
-router.post('/post-blog', (request,response)=> {
-    const toBePostBlog = new Blog ({
-        title:request.body.title,
-        tags:request.body.tags,//TODO: be modified later
-        bodyGraph:request.body.bodyGraph
->>>>>>> 5e115c38427dd1f0fab9897bfe0715df866a894e
     })
     newBlog.save()
     .then(data =>{
@@ -48,16 +33,19 @@ router.post('/post-blog', (request,response)=> {
     .catch(error =>{
         res.json(error);
         console.log(error);
-    })//if has error, catch it and send it as json file also
+    });//if has error, catch it and send it as json file also
 });
 
 router.get('/all-blog', (req, res) => {
     Blog.find().populate("author", "_id name").sort({ createdAt:-1 })
         .then(result => {
-           // res.render('home', {blogs: result, title: 'All blogs'}); using ejs
-           res.json({posts});
+           res.json(result);
+           console.log("getting all blogs.")
         })
-        .catch(err => { console.log(err); });
+        .catch(error => { 
+            res.json(error);
+            console.log(error);
+        });
 });
 //change body to bodyGraph
 
