@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogmodels');//import schema in blogmodels.js
-// const requireLogin = require('../middleware/requireLogin');
-// later add requireLogin to create-blog my-posts
-
-router.get('/test',(req,res)=>{res.send("success!")})
-router.get('/all', (req,res)=>{res.send("get all blogs")})
+const requireLogin = require('../middleware/requireLogin');
+//add requireLogin to create-blog my-posts
 
 
 
-router.post('/Create', (req, res) => {
+
+router.post('/Create',requireLogin, (req, res) => {
     const {title, body, picture} = req.body;
     console.log(title, body, picture);
     
@@ -23,7 +21,7 @@ router.post('/Create', (req, res) => {
        // tags,//TODO: be modified later
         body,
         picture,
-        //author: req.user,
+        author: req.user,
     })
     newBlog.save()
     .then(data =>{
@@ -36,7 +34,7 @@ router.post('/Create', (req, res) => {
     });//if has error, catch it and send it as json file also
 });
 
-router.get('/all-blog', (req, res) => {
+router.get('/all-blog', requireLogin, (req, res) => {
     Blog.find().populate("author", "_id name").sort({ createdAt:-1 })
         .then(result => {
            res.json(result);
@@ -47,10 +45,10 @@ router.get('/all-blog', (req, res) => {
             console.log(error);
         });
 });
-//change body to bodyGraph
 
 
-router.get('/my-posts', (req, res) => {
+
+router.get('/my-posts',requireLogin, (req, res) => {
     const id = req.user._id;
     Blog.find({author: id})
     .populate("author", "_id name")
@@ -61,7 +59,7 @@ router.get('/my-posts', (req, res) => {
 });
 
 // display one post in detail
-router.get('/:id', (req, res) => {
+router.get('/:id',requireLogin, (req, res) => {
     const id = req.params.id;
     Blog.findById(id)
       .then(result => {
