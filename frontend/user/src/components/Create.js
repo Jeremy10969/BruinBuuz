@@ -22,6 +22,7 @@ const Create = () => {
         // it must have a url present, so initialization will not render
         if (url) {
             console.log(title, body, url, but);
+            setShowMessage(false);
             fetch("http://localhost:4000/Create", {
                 method: "POST",
                 headers: {
@@ -50,7 +51,7 @@ const Create = () => {
                         navigate('/');
                     }
                 }).catch(err => {
-                    console.log(err)
+                    console.log(err);
                 })
 
         }
@@ -141,18 +142,10 @@ const Create = () => {
                 </button>
 
                 {showMessage ? <MuiAlert type={uploadSuccess ? 'success' : 'error'}
-                    content={uploadSuccess ? "Post successfully posted!" : "Error! Post not uploaded."} /> : ''}
+                    content={uploadSuccess ? "Post successfully posted!" : "Must have a title and some content / Post not successfully uploaded."} /> : ''}
 
 
             </div>
-
-
-
-
-
-
-
-
 
         </div>
     )
