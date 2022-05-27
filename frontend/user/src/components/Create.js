@@ -102,14 +102,13 @@ const Create = () => {
     }
 
     return (
-        <div className="post input"
-            >
+        <div className="post-input">
             <input
                 type="text" placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <input style={{ height: "300px", width: "800px", }}
+            <input style={{ height: "300px"}}
                 type="text" placeholder="Thoughts?"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
