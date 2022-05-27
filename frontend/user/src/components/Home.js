@@ -11,11 +11,12 @@ const Home = ()=>{
     useEffect(() => {
         
         fetch("http://localhost:4000/all-blog"
-            // ,{ headers: {
-            //     "Authorization": "Bearer " + localStorage.getItem("jwt")
-            // }
+             ,{ headers: {
+                "Content-Type": "application/json",
+                 "Authorization": "Bearer " + localStorage.getItem("jwt")
+             }
 
-            // }
+             }
             )
         .then(res => {
             if (!res.ok) {
