@@ -126,13 +126,30 @@ img.profile-name {
   font-family: 'Montserrat', sans-serif;
 }
 
-.post input{
+.post-input{
   font-family: 'Montserrat', sans-serif;
-  padding-left: "3rem";
-  padding-top: "2rem" 
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: inherit;
+  margin: 1rem auto 0;
+  width: 40rem;
+  background-color:#fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
 }
 
 .btn{
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0.5em;
+  border:white;
   background-color: #ffb71cd6;
   color:#172342
 }
@@ -146,10 +163,12 @@ img.profile-name {
   background-color: steelblue;
   border: 0;
 }
+
 .search-btn:hover{
   color: white;
 
 }
+
 .submit-post{
   background-color: #ffb71cd6;
   color:#172342;
@@ -168,9 +187,47 @@ img.profile-name {
   background-color: #ffb71c90;
 }
 
+.search-page{
+  background: url(../Pictures/campus.jpeg) no-repeat fixed;
+  background-size: cover;
+  position:relative;
+  min-height:100%;
+  height:725px;
+  padding-top:1px;
+}
+
 .search-bar{
-  margin-left: 150px;
-  border:"1px";
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-family: ProximaNova,"Proxima Nova",Verdana,sans-serif;
+  box-sizing: inherit;
+  margin: 1rem auto 0;
+  width: 34rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
+}
+
+.search-bar button{
+  min-width:8em;
+  max-height:2em;
+  margin-top:0.5em;
+  border-radius: 24px;
+  border-color: #fff;
+  background-color:#FFB81C;
+  border: none;
+}
+
+.search-bar button:hover{
+  background-color: #ffb71cd6;
 }
 
 .authpage{

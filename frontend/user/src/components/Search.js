@@ -33,11 +33,10 @@ const Search = () => {
     } , [but])
     
     return (
-    <div>
-        <div className='search-bar'>
-            
-            <button onClick={()=>{setBut(but+1)}}></button>
-            <input placeholder='Search?' onChange={(e)=>{setContent(e.target.value)}}/>
+    <div className="search-page">
+        <div className='search-bar' style={{display:"flex"}}>
+            <input placeholder='Search' onChange={(e)=>{setContent(e.target.value)}}/>
+            <button onClick={()=>{setBut(but+1)}}>Apply Filter</button>
         </div>
         <div >  
             { result && <BlogList blogs={result} /> }
