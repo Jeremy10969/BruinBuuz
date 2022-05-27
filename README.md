@@ -24,11 +24,11 @@ Welcome to Bruin Buuz!
 
 ## Contributors
 
-[Xiaoxian Shen] (https://github.com/hercysn) (xhshen@g.ucla.edu) <br />
-[Ruijie Xia] (https://github.com/Evelyn406) (evelynxia@g.ucla.edu) <br />
-[Jiarui Yu] (https://github.com/jiaruiyu18) (aloebruin18@g.ucla.edu) <br />
-[Xinyuan Zhu] (https://github.com/Jeremy10969) (jeremy903162@g.ucla.edu) <br />
-[Yanjianan Zhu] (https://github.com/jordanzhuy) (jordanzhuyan@g.ucla.edu) <br />
+[Xiaoxian Shen](https://github.com/hercysn) (xhshen@g.ucla.edu) <br />
+[Ruijie Xia](https://github.com/Evelyn406) (evelynxia@g.ucla.edu) <br />
+[Jiarui Yu](https://github.com/jiaruiyu18) (aloebruin18@g.ucla.edu) <br />
+[Xinyuan Zhu](https://github.com/Jeremy10969) (jeremy903162@g.ucla.edu) <br />
+[Yanjianan Zhu](https://github.com/jordanzhuy) (jordanzhuyan@g.ucla.edu) <br />
 
 ## Learn More
 
