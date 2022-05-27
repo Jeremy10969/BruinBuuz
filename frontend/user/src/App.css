@@ -357,6 +357,14 @@ img.profile-name {
   color: #555 !important;
 }
 
+.authpage a{
+  color:#8237ff !important;
+}
+
+.authpage a:hover{
+  color:black !important;
+}
+
 .box h6{
   -webkit-text-size-adjust: 100%;
   font-size: 100%;
@@ -366,7 +374,6 @@ img.profile-name {
   box-sizing: inherit;
   background-color: transparent;
   line-height: inherit;
-  color: #8237ff;
   text-decoration: none;
   cursor: pointer;
 }
