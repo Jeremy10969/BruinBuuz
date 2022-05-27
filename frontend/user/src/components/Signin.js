@@ -28,20 +28,24 @@ const Signin =() => {
 
     return (
       
-        <div class="card">
-            <h2>BruinBuuz Signin</h2>
-            <input type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}/>
-            <input type="text"
-            placeholder="password"
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)}/>
-            <button onClick={()=>PostData()}>Login</button>
-            <h5>
-                <Link to="/signup">No account yet?</Link>
-            </h5>
+        <div class="authpage">
+            <h1>Bruin Buuz</h1>
+            <div className="box">
+                <legend>Sign In</legend>
+                <input type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}/>
+                <input type="text"
+                placeholder="Password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}/>
+                <button className="signinup" onClick={()=>PostData()}>Sign In</button>
+                <h5><span>or</span></h5>
+                <h6>
+                    <Link to="/signup">No account yet?<br/>Sign up here!</Link>
+                </h6>
+            </div>
         </div>
        
     )

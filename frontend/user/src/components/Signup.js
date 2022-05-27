@@ -29,28 +29,32 @@ const PostData = ()=>{
 
     return (
       
-        <div class="card">
-            <h2>BruinBuuz Signup</h2>
-            <input type="text"
-            placeholder="First and last name"
-            value={fullName}
-            onChange={(e)=>setFullName(e.target.value)}/>
-            <input type="text"
-            placeholder="User name"
-            value={username}
-            onChange={(e)=>setUsername(e.target.value)}/>
-            <input type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}/>
-            <input type="text"
-            placeholder="password"
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)}/>
-            <button onClick={()=>PostData()}>Signup</button>
-            <h5>
-                <Link to="/signin">Already have account?</Link>
-            </h5>
+        <div class="authpage">
+            <h1>Bruin Buuz</h1>
+            <div className="box">
+                <legend>Sign Up</legend>
+                <input type="text"
+                placeholder="First and last name"
+                value={fullName}
+                onChange={(e)=>setFullName(e.target.value)}/>
+                <input type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e)=>setUsername(e.target.value)}/>
+                <input type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}/>
+                <input type="text"
+                placeholder="Password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}/>
+                <button className="signinup" onClick={()=>PostData()}>Sign Up</button>
+                <h5><span>or</span></h5>
+                <h6>
+                    <Link to="/signin">Already have an account?<br/>Sign in here!</Link>
+                </h6>
+            </div>
         </div>
        
     )

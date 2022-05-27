@@ -15,18 +15,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="Profile" element={<Profile />}>
+        <Route path="/" element={<><Navbar /><Home /></>} />
+        <Route path="Profile" element={<><Navbar /><Profile /></>}>
           <Route index element={<User />} />
           <Route path="Followers" />
           <Route path="Following" element={<Following />} />
-
-
         </Route>
-        <Route path="Create" element={<Create />} />
-        <Route path="Search" element={<Search/>}  />
+        <Route path="Create" element={<><Navbar /><Create /></>} />
+        <Route path="Search" element={<><Navbar /><Search /></>}  />
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
