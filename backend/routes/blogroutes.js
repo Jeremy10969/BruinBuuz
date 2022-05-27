@@ -31,7 +31,7 @@ router.post('/Create',requireLogin, (req, res) => {
     });//if has error, catch it and send it as json file also
 });
 
-router.get('/search/:content', requireLogin, (req, res) => {
+router.get('/search/:content',requireLogin, (req, res) => {
     //TODO: More search types // not sure require login or not
     const searchType = req.query.searchType;
     const content = req.params.content;
