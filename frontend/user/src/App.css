@@ -328,6 +328,14 @@ img.profile-name {
   color: #555 !important;
 }
 
+.authpage a{
+  color:#8237ff !important;
+}
+
+.authpage a:hover{
+  color:black !important;
+}
+
 .box h6{
   -webkit-text-size-adjust: 100%;
   font-size: 100%;
@@ -339,14 +347,6 @@ img.profile-name {
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
-}
-
-.authpage a{
-  color:#8237ff !important;
-}
-
-.authpage a:hover{
-  color:black !important;
 }
 
 .signinup{
