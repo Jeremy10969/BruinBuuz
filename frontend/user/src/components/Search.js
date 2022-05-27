@@ -15,7 +15,11 @@ const Search = () => {
             console.log(searchType + "abc");
             let url = "http://localhost:4000/search/" + content + "?searchType=" + searchType;
             encodeURI(url);
-            fetch(url, {method: "GET"})
+            fetch(url, {method: "GET", headers: {
+                "Content-Type": "application/json",
+                 "Authorization": "Bearer " + localStorage.getItem("jwt")
+             }}
+            )
             .then(res => {
                 if (!res.ok) {
                     throw Error('could not fetch the data.');
