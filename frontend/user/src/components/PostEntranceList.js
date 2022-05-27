@@ -1,4 +1,10 @@
-const PostEntranceList = (post) => {
+
+import PostEntrance from "./PostEntrance";
+
+const PostEntranceList = ({posts}) => {
+    return (
+        <div className="gallery"> {posts.map(PostEntrance)}</div>
+    );
 
 
 }

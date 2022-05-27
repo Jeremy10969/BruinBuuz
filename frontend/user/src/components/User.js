@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import BlogList from './BlogList'
-
+import PostEntranceList from './PostEntranceList'
 const User = () => {
     const [myPosts, setMyPosts] = useState([]);
 
@@ -39,11 +39,10 @@ const User = () => {
 
         <div>
             <h4>My Posts</h4>
-            <div className="gallery" style={{}}>
-               
-            { myPosts &&  <BlogList blogs={myPosts} /> }
            
-            </div>
+               
+            { myPosts &&  <PostEntranceList posts={myPosts} /> }
+           
         </div>
 
     )
