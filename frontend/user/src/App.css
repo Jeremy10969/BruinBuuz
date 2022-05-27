@@ -337,9 +337,16 @@ img.profile-name {
   box-sizing: inherit;
   background-color: transparent;
   line-height: inherit;
-  color: #8237ff;
   text-decoration: none;
   cursor: pointer;
+}
+
+.authpage a{
+  color:#8237ff !important;
+}
+
+.authpage a:hover{
+  color:black !important;
 }
 
 .signinup{
