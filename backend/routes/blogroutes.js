@@ -62,9 +62,9 @@ router.get('/all-blog',requireLogin,  (req, res) => {
 router.get('/my-posts', requireLogin, (req, res) => {
     const id = req.user._id;
     Blog.find({author: id})
-    .populate("author", "_id name")
+    .populate("author", "_id name").sort({ createdAt:-1 })
     .then(myposts => {
-        res.json({myposts});
+        res.json(myposts);
     })
     .catch(err => {  console.log(err); });
 });
