@@ -37,21 +37,25 @@ const IndividualBlog = () => {
             { isPending && <div> Loading... </div> }
             { data && 
             <article>
-                <h2>Blog details - { id }</h2>
-                <h2>{data.title}</h2>
-                <p>Written by </p>
-                <div>{ data.body} </div>
-                {data.picture !== '' && data.picture !== 'no pic' &&
-                        <div className="feed-image">
-                        <img style={{width:"100%", height:"70%", objectFit:"cover"}} 
-                        src={data.picture} />
-                        </div>
-                        }
-                <div className="feed-content"  >
                 <h6>Tag TB Implemented</h6>
+                <h2>Blog details - { id }</h2>
+                <div className="gap"> </div>
+                <div className="blog-content">
+                    <h3>{data.title}</h3>
+                    <p>Written by </p>
+                    {data.picture !== '' && data.picture !== 'no pic' &&
+                            <div className="feed-image">
+                            <img style={{width:"70%", height:"50%", objectFit:"cover"}} 
+                            src={data.picture} />
+                            </div>
+                            }
+                    <div className="blog-text">{data.body} </div>
+                </div>
+                <div className="interaction">
                     <i className="material-icons">favorite_border</i>
                     <input type="text" placeholder="Add your comment" />
                 </div>
+                <div className="gap"> </div>
 
             </article>
             

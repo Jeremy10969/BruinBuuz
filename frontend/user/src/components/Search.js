@@ -38,7 +38,7 @@ const Search = () => {
             <input placeholder='Search' onChange={(e)=>{setContent(e.target.value)}}/>
             <button onClick={()=>{setBut(but+1)}}>Apply Filter</button>
         </div>
-        <div >  
+        <div className="search-result">  
             { result && <BlogList blogs={result} /> }
         </div>
         
