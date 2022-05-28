@@ -61,11 +61,14 @@ router.get('/my-posts', (req, res) => {
 });
 
 // display one post in detail
-router.get('/:id', (req, res) => {
+router.get('/blogs/:id', (req, res) => {
     const id = req.params.id;
+    console.log(id);
+
     Blog.findById(id)
       .then(result => {
-        res.render('details', { blog: result, title: 'Blog Details' });
+          console.log(result)
+        res.json(result);
       })
       .catch(err => {
         console.log(err);
