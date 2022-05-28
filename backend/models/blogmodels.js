@@ -22,7 +22,7 @@ const blogTemplate = new mongoose.Schema({
     author:{
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
-        required: false,   // need to change
+        required: true,   // need to change
     },
     date:{
         type: Date,

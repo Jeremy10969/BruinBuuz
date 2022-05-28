@@ -12,9 +12,10 @@ module.exports = (req,res,next)=>{
     jwt.verify(token,JWT_SECRET,(err,payload)=>{
         if(err){return res.status(401).json({error:"need to log in",why:err})}
         const {_id} = payload
-        User.findById(_id).then(userdata => {req.user =userdata})
-        next()
+        User.findById(_id).then(userdata => {req.user =userdata
+            next()})
+        //next has to be inside to insure above find has result
     })
-   
+    
 
 }

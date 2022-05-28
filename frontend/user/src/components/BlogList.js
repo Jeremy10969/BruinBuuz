@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 const BlogList = ({ blogs }) => {
@@ -23,6 +24,13 @@ const BlogList = ({ blogs }) => {
                 </div>
                 </div>
             ))}
+=======
+import Blog from './BlogFormat'
+const BlogList = ({ blogs }) => {
+    return (
+        <div className="blog-list">
+            {blogs.map(Blog)}
+>>>>>>> 67ee44536baa633e97d7d7217badd44a249d94ed
 
         </div>
     );
