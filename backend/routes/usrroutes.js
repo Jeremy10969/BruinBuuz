@@ -48,6 +48,28 @@ router.get('/protected',requireLogin,(req,res)=>{
    res.send("Look at protected")
 })
 
+router.put('/followtag/:tagname', requireLogin, (req,res)=>{
+   const tagname = req.params.tagname;
+  
+   
+   User.findByIdAndUpdate(req.user._id, {$addToSet:{tags:tagname}},{new:true})
+   .then(doc=>{
+      if (doc)
+      {console.log("successfully add tag to array");}
+      else {console.log("unsuccess")}
+   });
+  
+   let url = "http://localhost:4000/addtag/" + tagname;
+   fetch(url,{
+      method: "POST",
+      headers:{"Content-Type":"application/json"}
+   })
+
+})
+
+
+
+
 
 //export the router
 module.exports = router

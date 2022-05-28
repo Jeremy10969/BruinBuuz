@@ -1,7 +1,3 @@
-GET http://localhost:4000/app/signin
+PUT http://localhost:4000/followtag/Aloe
 Content-Type: application/json
-
-{
-    "email":"@126!",
-    "password":"1234"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjkyNzQxNWQ0ZWRhOWZhZGQzMzRkY2YiLCJpYXQiOjE2NTM3NjUxOTF9.Ekb5xFcSe4a2a9wI3HCd3mrk8XTpA4qsgEYuRGbd3DY

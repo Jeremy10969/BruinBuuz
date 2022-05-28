@@ -21,6 +21,11 @@ const signUpTemplate = new mongoose.Schema({
       type:Date,
       default:Date.now//this will now be displayed in frontend later
   },
+  tags:{
+      type: Array,
+      default:[String],
+      required:true,
+  },
   followers:[{
     type: String
 }],

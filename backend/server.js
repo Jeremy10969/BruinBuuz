@@ -6,6 +6,7 @@ const dotenv = require('dotenv')//import dotenv to pass in url safely
 //mongodb+srv://Aloe:<password>@cluster0.pttxx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const usrUrls = require('./routes/usrroutes')// import usrroutes.js
 const blogUrls = require('./routes/blogroutes')//import blogroutes.js
+const tagUrls = require('./routes/tagroutes')
 const cors = require('cors')//import cors
 const PORT=4000
 
@@ -29,6 +30,7 @@ app.use('/', usrUrls)//first argument is base path, second argument will be appe
 // eg in routers.js if exist router.get('/signin', ...)
 //then the total url will be www.mywebsite.com/app/signin
 app.use('/', blogUrls)
+app.use('/', tagUrls)
 
 app.listen(PORT, () => console.log("server is up and running on", PORT))//listen on port 4000
 //react app by default run on port 3000
