@@ -10,7 +10,12 @@ const IndividualBlog = () => {
 
     useEffect(() => {
         console.log(id);
-        fetch("http://localhost:4000/blogs/" +id)
+        fetch("http://localhost:4000/blogs/" +id, { 
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }}
+       )
         .then(res => {
             if (!res.ok) {
                 throw Error('could not fetch the data.');

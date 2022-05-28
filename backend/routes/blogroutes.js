@@ -71,7 +71,7 @@ router.get('/my-posts', requireLogin, (req, res) => {
 });
 
 // display one post in detail
-router.get('/blogs/:id', (req, res) => {
+router.get('/blogs/:id', requireLogin, (req, res) => {
     const id = req.params.id;
     console.log(id);
 
@@ -85,4 +85,17 @@ router.get('/blogs/:id', (req, res) => {
       });
 });
 
+router.get('/users/:id', requireLogin, (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    User.findById(id)
+      .then(result => {
+          console.log(result)
+        res.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+})
 module.exports = router;
