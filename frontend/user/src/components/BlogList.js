@@ -6,9 +6,9 @@ const BlogList = ({ blogs }) => {
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
 
-                    <Link to={`/blogs/${blog._id}`}>
+                    <a href={"/blogs/"+blog._id}>
                     <h5>{ blog.title }</h5>
-                    </Link>
+                    </a>
                     <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a></p>
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">
