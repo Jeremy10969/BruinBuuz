@@ -9,12 +9,10 @@ const PostEntrance = (post) => {
                     <a href={"http://localhost:3000/blogs/" + post._id}>
                         <div key={post._id} className="gallery-post-grid">
 
-                            <h5>{post.title}</h5>
-                            <p>Written by {post.author.username}</p>
+                            <h5>{post.title?.length > 15 ? post.title.substr(0, 15)+'...' : post.title}</h5>
                             <div>
-
                                 <h6>Tag TB Implemented</h6>
-                                <p>{post.body}</p>
+                                <p>{ post.body?.length > 20 ? post.body.substr(0, 20)+'...' : post.body  }</p>
 
                             </div>
                         </div>
@@ -29,11 +27,10 @@ const PostEntrance = (post) => {
                         <div className="hidden-elements" key={post._id}>
 
                             <h5>{post.title}</h5>
-                            <p>Written by {post.author.username}</p>
                             <div>
 
                                 <h6>Tag TB Implemented</h6>
-                                <p>{post.body}</p>
+                                <p>{ post.body?.length > 20 ? post.body.substr(0, 20)+'...' : post.body  }</p>
                             </div>
 
                         </div>
