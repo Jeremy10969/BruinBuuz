@@ -23,11 +23,14 @@ const blogTemplate = new mongoose.Schema({
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
         required: true,   // need to change
+        autopopulate: { select: 'username' }
     },
     date:{
         type: Date,
         default: Date.now
     }
+
 }, {  timestamps: true  });
 
+blogTemplate.plugin(require('mongoose-autopopulate'));
 module.exports = mongoose.model('Blogtable', blogTemplate);

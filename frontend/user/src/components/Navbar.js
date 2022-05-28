@@ -18,7 +18,7 @@ const Navbar = ()=>{
 
                     </li>  
                     <li><a href="/Create">Create</a></li>
-                    <li><a href="/Profile">Profile</a></li>
+                    <li><a href="/myprofile">Profile</a></li>
                     <li>
                         <button className="logout" onClick={()=>{
                             localStorage.clear()

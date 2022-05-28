@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import BlogList from './BlogList'
 import PostEntranceList from './PostEntranceList'
-const User = () => {
+const MyBlogs = () => {
     const [myPosts, setMyPosts] = useState([]);
 
 
     useEffect(() => {
         
-        fetch("http://localhost:4000/my-posts"
+        fetch("http://localhost:4000/myblogs"
              ,{ 
                 method: "GET",
                 headers: {
@@ -34,18 +34,12 @@ const User = () => {
         })
     }, [])
     return (
-        
-       
-
         <div>
             <h4>My Posts</h4>
-           
-               
-            { myPosts &&  <PostEntranceList posts={myPosts} /> }
-           
+           { myPosts &&  <PostEntranceList posts={myPosts} /> }          
         </div>
 
     )
 }
 
-export default User;
+export default MyBlogs;

@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const IndividualBlog = () => {
-    const { id } = useParams();
+    const { blogid } = useParams();
 
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log(id);
-        fetch("http://localhost:4000/blogs/" +id, { 
+        console.log(blogid);
+        fetch("http://localhost:4000/blogs/" +blogid, { 
             headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -34,7 +34,7 @@ const IndividualBlog = () => {
             setIsPending(false);
             setError(err.message);
         })
-    }, [id]) // do it at mounting
+    }, [blogid])
 
     return (
         <div className="individual-blog">
@@ -43,11 +43,11 @@ const IndividualBlog = () => {
             { data && 
             <article>
                 <h6>Tag TB Implemented</h6>
-                <h2>Blog details - { id }</h2>
+                <h2>Blog details - { blogid }</h2>
                 <div className="gap"> </div>
                 <div className="blog-content">
                     <h3>{data.title}</h3>
-                    <p>Written by </p>
+                    <p>Written by <a href={"/users/"+data.author.username}>{data.author.username}</a></p>
                     {data.picture !== '' && data.picture !== 'no pic' &&
                             <div className="feed-image">
                             <img style={{width:"70%", height:"50%", objectFit:"cover"}} 

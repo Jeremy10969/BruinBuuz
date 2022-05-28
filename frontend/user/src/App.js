@@ -1,13 +1,14 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import Profile from './components/Profile'
+import MyProfile from './components/MyProfile'
 import Create from './components/Create'
-import User from './components/User'
+import MyBlogs from './components/MyBlogs'
 import Following from './components/Following'
 import Search from './components/Search'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
+import UserPage from './components/UserPage'
 import reducer from './components/userReducer'
 
 import "./App.css"
@@ -19,9 +20,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<><Navbar /><Home /></>} />
-        <Route path="/blogs/:id" element={<><Navbar /><IndividualBlog /></>} />
-        <Route path="Profile" element={<><Navbar /><Profile /></>}>
-          <Route index element={<User />} />
+        <Route path="/blogs/:blogid" element={<><Navbar /><IndividualBlog /></>} />
+        <Route path="/users/:username" element={<><Navbar /><UserPage /></>}></Route>
+        <Route path="myprofile" element={<><Navbar /><MyProfile /></>}>
+          <Route index element={<MyBlogs />} />
           <Route path="Followers" />
           <Route path="Following" element={<Following />} />
           

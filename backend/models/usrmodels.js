@@ -20,7 +20,13 @@ const signUpTemplate = new mongoose.Schema({
   date:{//date will be recorded each time a new usr sign up
       type:Date,
       default:Date.now//this will now be displayed in frontend later
-  }
+  },
+  followers:[{
+    type: String
+}],
+  following:[{
+    type: String
+}]
 })
 
 //export the schema

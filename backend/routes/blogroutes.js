@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogmodels');//import schema in blogmodels.js
 const requireLogin = require('../middleware/requireLogin');
+const User = require('../models/usrmodels');
 const { json } = require('express');
 //add requireLogin to create-blog my-posts
 
@@ -33,12 +34,14 @@ router.post('/Create',requireLogin, (req, res) => {
 });
 
 router.get('/search/:content',requireLogin, (req, res) => {
-    //TODO: More search types // not sure require login or not
+    //TODO: More search types
     const searchType = req.query.searchType;
     const content = req.params.content;
     console.log("Search content:" + content);
     console.log("Search Type: "+ searchType);
     Blog.find({title:content})
+
+    .sort({ createdAt:-1 })
         .then(result => {
            res.json(result);
         })
@@ -49,7 +52,8 @@ router.get('/search/:content',requireLogin, (req, res) => {
 });
 
 router.get('/all-blog',requireLogin,  (req, res) => {
-    Blog.find().populate("author", "_id name").sort({ createdAt:-1 })
+    Blog.find()
+    .sort({ createdAt:-1 })
         .then(result => {
            res.json(result);
            console.log("getting all blogs.")
@@ -60,10 +64,11 @@ router.get('/all-blog',requireLogin,  (req, res) => {
         });
 });
 
-router.get('/my-posts', requireLogin, (req, res) => {
+router.get('/myblogs', requireLogin, (req, res) => {
+
     const id = req.user._id;
     Blog.find({author: id})
-    .populate("author", "_id name").sort({ createdAt:-1 })
+    .sort({ createdAt:-1 })
     .then(myposts => {
         res.json(myposts);
     })
@@ -71,11 +76,13 @@ router.get('/my-posts', requireLogin, (req, res) => {
 });
 
 // display one post in detail
-router.get('/blogs/:id', requireLogin, (req, res) => {
-    const id = req.params.id;
+router.get('/blogs/:blogid', requireLogin, (req, res) => {
+    const id = req.params.blogid;
     console.log(id);
 
     Blog.findById(id)
+
+    .sort({ createdAt:-1 })
       .then(result => {
           console.log(result)
         res.json(result);
@@ -85,13 +92,22 @@ router.get('/blogs/:id', requireLogin, (req, res) => {
       });
 });
 
-router.get('/users/:id', requireLogin, (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-
-    User.findById(id)
+router.get('/myprofile', requireLogin, (req, res) => {
+    // get req.user's info
+    const userid = req.user._id;
+    User.findById(userid)
       .then(result => {
-          console.log(result)
+        res.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+})
+
+router.get('/users/:username', requireLogin, (req, res) => {
+    const username = req.params.username;
+    User.find({username: username})
+      .then(result => {
         res.json(result);
       })
       .catch(err => {
