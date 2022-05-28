@@ -7,9 +7,9 @@ const blogTemplate = new mongoose.Schema({
         required: true,
     },
     tags:{
-        type: String,
-        required: false,
-        default: "no tag",
+        type: Array,
+        default:[],
+        required:false
     },
     body:{
         type: String,

@@ -13,11 +13,13 @@ First, clone this repository with the command:
 Start the backend server with the commands:
 
 ### `cd bruin-buuz/backend`
-### `npm run start`
+### `npm install`
+### `npm start`
 
 Start a new Terminal and run the following commands:
 
 ### `cd bruin-buuz/frontend/user`
+### `npm install`
 ### `npm start`
 
 Welcome to Bruin Buuz!
