@@ -71,7 +71,6 @@ router.get('/my-posts', requireLogin, (req, res) => {
 });
 
 // display one post in detail
-<<<<<<< HEAD
 router.get('/blogs/:id', (req, res) => {
     const id = req.params.id;
     console.log(id);
@@ -79,13 +78,6 @@ router.get('/blogs/:id', (req, res) => {
     Blog.findById(id)
       .then(result => {
           console.log(result)
-=======
-router.get('/blog/:blogid',requireLogin, (req, res) => {
-    const blogid = req.params.blogid;
-    console.log("blogid:" + blogid);
-    Blog.findById(blogid)
-      .then(result => {
->>>>>>> 67ee44536baa633e97d7d7217badd44a249d94ed
         res.json(result);
       })
       .catch(err => {
