@@ -8,6 +8,7 @@
   padding-right:0.5em;
   position:fixed;
   width:100% !important;
+  z-index:999;
 }
 
 .nav-topbar a{
