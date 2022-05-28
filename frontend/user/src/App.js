@@ -9,7 +9,7 @@ import Search from './components/Search'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
 import reducer from './components/userReducer'
-import BlogPage from './components/BlogPage'
+
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import IndividualBlog from './components/IndividualBlog'
@@ -18,9 +18,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs/:id" element={<IndividualBlog />} />
-        <Route path="Profile" element={<Profile />}>
+        <Route path="/" element={<><Navbar /><Home /></>} />
+        <Route path="/blogs/:id" element={<><Navbar /><IndividualBlog /></>} />
+        <Route path="Profile" element={<><Navbar /><Profile /></>}>
           <Route index element={<User />} />
           <Route path="Followers" />
           <Route path="Following" element={<Following />} />

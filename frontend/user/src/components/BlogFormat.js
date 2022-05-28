@@ -1,6 +1,6 @@
-const Blog = (blog) => {
+const Blog = ({blog}) => {
     return (
-        <div className="feed"  key={blog._id}>
+        <div className="feed"  link={blog._id}>
         <h5>{ blog.title }</h5>
         <p>Written by ...</p>
             {blog.picture !== '' && blog.picture !== 'no pic' &&

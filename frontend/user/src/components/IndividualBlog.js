@@ -18,13 +18,12 @@ const IndividualBlog = () => {
             
             return res.json();
         })
-        .then(data => {
-            console.log(data);
-            setIsPending(false);
-            setData(data);
-            setError(null);
-
-        })
+        .then(
+            data => {
+                console.log(data);
+                setIsPending(false);
+                setData(data);
+                setError(null); })
         .catch(err => {
             console.log(err.message);
             setIsPending(false);
