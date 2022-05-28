@@ -1,4 +1,4 @@
-import Blog from './Blog'
+import Blog from './BlogFormat'
 const BlogList = ({ blogs }) => {
     return (
         <div className="blog-list">

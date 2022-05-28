@@ -1,5 +1,6 @@
-const Blog = (blog) => (
-    <div className="feed"  key={blog._id}>
+const Blog = (blog) => {
+    return (
+        <div className="feed"  key={blog._id}>
         <h5>{ blog.title }</h5>
         <p>Written by ...</p>
             {blog.picture !== '' && blog.picture !== 'no pic' &&
@@ -15,6 +16,10 @@ const Blog = (blog) => (
         <input type="text" placeholder="Add your comment" />
     </div>
     </div>
-)
+    )
+    
+}
+    
+
 
 export default Blog

@@ -9,6 +9,7 @@ import Search from './components/Search'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
 import reducer from './components/userReducer'
+import BlogPage from './components/BlogPage'
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="Search" element={<><Navbar /><Search /></>}  />
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="blog/:blogid" element={<BlogPage/>} />
       </Routes>
     </Router>
   );

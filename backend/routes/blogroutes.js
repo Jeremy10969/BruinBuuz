@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogmodels');//import schema in blogmodels.js
 const requireLogin = require('../middleware/requireLogin');
+const { json } = require('express');
 //add requireLogin to create-blog my-posts
 
 router.post('/Create',requireLogin, (req, res) => {
@@ -70,11 +71,12 @@ router.get('/my-posts', requireLogin, (req, res) => {
 });
 
 // display one post in detail
-router.get('/:id',requireLogin, (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
+router.get('/blog/:blogid',requireLogin, (req, res) => {
+    const blogid = req.params.blogid;
+    console.log("blogid:" + blogid);
+    Blog.findById(blogid)
       .then(result => {
-        res.render('details', { blog: result, title: 'Blog Details' });
+        res.json(result);
       })
       .catch(err => {
         console.log(err);
