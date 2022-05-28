@@ -18,9 +18,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs/:id" element={<IndividualBlog />} />
-        <Route path="Profile" element={<Profile />}>
+        <Route path="/" element={<><Navbar /><Home /></>} />
+        <Route path="/blogs/:id" element={<><Navbar /><IndividualBlog /></>} />
+        <Route path="Profile" element={<><Navbar /><Profile /></>}>
           <Route index element={<User />} />
           <Route path="Followers" />
           <Route path="Following" element={<Following />} />
