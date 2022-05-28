@@ -9,7 +9,7 @@ const BlogList = ({ blogs }) => {
                     <Link to={`/blogs/${blog._id}`}>
                     <h5>{ blog.title }</h5>
                     </Link>
-                    <p>Written by ...</p>
+                    <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a></p>
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">
                         <img style={{width:"100%", height:"70%", objectFit:"cover"}} 
