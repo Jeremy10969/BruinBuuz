@@ -4,8 +4,8 @@
   background-color: steelblue;
   font-family: 'Shrikhand', cursive;
   font-size:3rem;
-  padding-left:1em;
-  padding-right:1em;
+  padding-left:0.5em;
+  padding-right:0.5em;
   position:fixed;
   width:100% !important;
 }
@@ -19,7 +19,7 @@
 }
 
 .material-icons{
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .logout{
@@ -220,8 +220,7 @@ img.profile-name {
   background: url(../Pictures/campus.jpeg) no-repeat fixed;
   background-size: cover;
   position:relative;
-  min-height:100%;
-  height:725px;
+  min-height:725px;
   padding-top:1px;
 }
 
@@ -403,4 +402,118 @@ img.profile-name {
   border: 1px solid #0d4d7f;
   color: #fff;
   outline: 0;
+}
+
+.search-result{
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #172342;
+  -webkit-font-smoothing: antialiased;
+  font-family: ProximaNova,"Proxima Nova",Verdana,sans-serif;
+  box-sizing: inherit;
+  margin: 1rem auto 0;
+  width: 34rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
+}
+
+.search-result:empty{
+  background:transparent;
+}
+
+.blog-list a{
+  color:#172342;
+}
+
+.blog-list a:hover{
+  color:#347bad !important;
+}
+
+.individual-blog{
+  background: url(../Pictures/sky-background.webp) no-repeat fixed;
+  width:100%;
+  min-height:730px;
+  background-size: cover;
+}
+
+.individual-blog h2{
+  display:none;
+}
+
+.individual-blog h3{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.individual-blog h6{
+  background-color: #FFB81C;
+  margin-top: 0%;
+  width: 100% !important;
+  padding-top:0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1.2em;
+  font-family: 'Gochi Hand', cursive;;
+  position:fixed;
+}
+
+.blog-content{
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #172342;
+  box-sizing: inherit;
+  width: 50rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
+}
+
+.blog-text{
+  margin-top:1.5em;
+  text-align:justify !important;
+  text-indent: 50px;
+}
+
+.interaction{
+  display:flex;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #172342;
+  box-sizing: inherit;
+  width: 60rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 50rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
+  justify-content: space-around;
+}
+
+.interaction i{
+  padding-right:0.5em;
+  padding-top: 0.5em;
+}
+
+.gap{
+  background: transparent;
+  padding-bottom:5em;
 }
