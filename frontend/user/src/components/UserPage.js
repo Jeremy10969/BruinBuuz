@@ -3,9 +3,36 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom'
 
+
+
 const UserPage = () => {
     const {username} = useParams();
     const [userInfo, setUserInfo] = useState(null);
+    const [btnstate, setbtnstate] = useState(false);
+    const changeFriendStatus=()=>{
+        fetch("http://localhost:4000/changefollowstatus", {
+            method: "POST",
+            headers: {
+                
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                userid: userInfo._id
+            })
+        }
+        )
+    
+    .then(res => {
+        if (!res.ok) {
+            throw Error('could not fetch the data.');
+        }
+        setbtnstate(!btnstate);
+        return res.json();
+    })
+    .catch(err => {
+        console.log(err.message);
+    })}
 
     useEffect( () => {
         
@@ -31,8 +58,9 @@ const UserPage = () => {
         .catch(err => {
             console.log(err.message);
         })}
-        , [])
+        , [btnstate])
 
+    
     return (
         <div>
             {userInfo && <div className="userinfo" style={{ maxWidth: "1000px", margin: "0px auto" }}>
@@ -47,15 +75,15 @@ const UserPage = () => {
                             src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
                     </div>
                     <div style={{ textAlign: "center" }}>
-                        <h4>{userInfo[0].username}</h4> 
+                        <h4>{userInfo.username} <button onClick={changeFriendStatus}></button></h4> 
                         <div className='profile-bar'>
                             <h6><Link to="" className="profile-bar-button">. Posts</Link></h6>
-                            <h6><Link to="Followers" className="profile-bar-button">{userInfo[0].followers.length} Followers</Link></h6>
-                            <h6><Link to="Following" className="profile-bar-button">{userInfo[0].following.length} Following</Link></h6>
+                            <h6><Link to="Followers" className="profile-bar-button">{userInfo.followers.length} Followers</Link></h6>
+                            <h6><Link to="Following" className="profile-bar-button">{userInfo.following.length} Following</Link></h6>
                         </div>
                     </div>
                 </div>
-                <Outlet />
+                <Outlet context={[userInfo, setUserInfo]}/>
             </div>}
 
         </div>

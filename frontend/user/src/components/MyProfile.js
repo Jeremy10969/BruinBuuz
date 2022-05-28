@@ -24,6 +24,7 @@ const MyProfile = () => {
             data => {
                 console.log(data);
                 setUserInfo(data);
+
             })
         .catch(err => {
             console.log(err.message);
@@ -52,7 +53,7 @@ const MyProfile = () => {
                         </div>
                     </div>
                 </div>
-                <Outlet />
+                <Outlet context={[userInfo, setUserInfo]}/>
             </div>}
 
         </div>

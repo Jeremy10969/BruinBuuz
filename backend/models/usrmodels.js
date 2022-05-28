@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')//import mongoose
+const {ObjectId} = mongoose.Schema.Types
 //create a schema with mongoose
 const signUpTemplate = new mongoose.Schema({
   fullName:{
@@ -22,10 +23,10 @@ const signUpTemplate = new mongoose.Schema({
       default:Date.now//this will now be displayed in frontend later
   },
   followers:[{
-    type: String
+    type: ObjectId
 }],
   following:[{
-    type: String
+    type: ObjectId
 }]
 })
 

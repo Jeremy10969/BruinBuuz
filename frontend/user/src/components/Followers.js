@@ -1,11 +1,25 @@
 import React from 'react'
 import { useOutletContext } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-const Following = () => {
+import PostEntrance from './PostEntrance';
+const Followers = () => {
     const [userInfo, setUserInfo] = useOutletContext();
+    const followers = userInfo.followers;
+    const following = userInfo.following;
     return (
     <div>
-        <h4>Following</h4>
+        <h4>Followers</h4>
+
+        {followers&& followers.map(
+            ()=>(
+                <div className="gallery">
+                    <PostEntrance></PostEntrance>
+                </div>
+                
+            )
+        )}
+
+
         <h5>
             <img className="profile-name" src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
             bruin1
@@ -17,19 +31,9 @@ const Following = () => {
 
         </div>
 
-        <h5>
-            <img className="profile-name" src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
-            bruin2
-        </h5>
-
-        <div className="gallery" >
-
-            <img src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
-            <img src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
-        </div>
     </div>
 
     )
 }
 
-export default Following;
+export default Followers;

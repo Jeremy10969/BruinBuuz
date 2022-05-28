@@ -92,10 +92,22 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
       });
 });
 
+router.get('/bloglist/:userid', requireLogin, (req,res)=>{
+  const id = req.params.userid;
+    Blog.find({author: id})
+    .sort({ createdAt:-1 })
+      .then(result => {
+          console.log(result)
+        res.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+})
 router.get('/myprofile', requireLogin, (req, res) => {
     // get req.user's info
     const userid = req.user._id;
-    User.findById(userid)
+    User.findById(userid).populate("followers.user")
       .then(result => {
         res.json(result);
       })
@@ -106,7 +118,7 @@ router.get('/myprofile', requireLogin, (req, res) => {
 
 router.get('/users/:username', requireLogin, (req, res) => {
     const username = req.params.username;
-    User.find({username: username})
+    User.findOne({username: username})
       .then(result => {
         res.json(result);
       })
@@ -114,4 +126,81 @@ router.get('/users/:username', requireLogin, (req, res) => {
         console.log(err);
       });
 })
+
+
+router.post('/changefollowstatus', requireLogin, (req,res)  => {
+  const senderid = req.user._id;
+  const receiverid = req.body.userid;
+  console.log(senderid);
+  console.log(receiverid);
+ let count = 0;
+  User.updateOne(
+    {
+      _id: senderid
+    },
+    [
+      {
+        $set: {
+          following: {
+            $cond: [
+              {
+                $in: [receiverid, "$following"]
+              },
+              {
+                $setDifference: ["$following", [receiverid]]
+              },
+              {
+                $concatArrays: ["$following", [receiverid]]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  ).then(result => {
+    count++;
+    if (count == 2){
+      res.json(result);
+    }
+  }).catch(err => {
+    console.log(err);
+  });
+
+
+  User.updateOne(
+    {
+      _id: receiverid
+    },
+    [
+      {
+        $set: {
+          followers: {
+            $cond: [
+              {
+                $in: [senderid, "$followers"]
+              },
+              {
+                $setDifference: ["$followers", [senderid]]
+              },
+              {
+                $concatArrays: ["$followers", [senderid]]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  ).then(result => {
+    count++;
+    if (count == 2){
+      res.json(result);
+    }
+  }).catch(err => {
+    console.log(err);
+  });
+
+  
+  }
+)
+
 module.exports = router;
