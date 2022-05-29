@@ -105,6 +105,19 @@ router.get('/bloglist/:userid', requireLogin, (req,res)=>{
       });
 })
 
+router.get('/tags/:tag', requireLogin, (req,res)=>{
+    const tag = req.params.tag;
+      Blog.find({tags:{$all: tag}})
+      .sort({ createdAt:-1 })
+        .then(result => {
+            console.log(result)
+          res.json(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  })
+
 router.put('/like', requireLogin, (req, res) => {
     Blog.findByIdAndUpdate(req.body.blogId, {
         $push: {likes: req.user._id}

@@ -11,6 +11,7 @@ import Signin from './components/Signin'
 import Signup from './components/Signup'
 import UserPage from './components/UserPage'
 import UserBlogs from './components/UserBlogs'
+import TagPage from './components/TagPage'
 import reducer from './components/userReducer'
 
 import "./App.css"
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<><Navbar /><Home /></>} />
         <Route path="/blogs/:blogid" element={<><Navbar /><IndividualBlog /></>} />
+        <Route path="/tags/:tag" element={<><Navbar /><TagPage /></>} />
         <Route path="/users/:username" element={<><Navbar /><UserPage /></>}>
           <Route index element={<UserBlogs/>}/>
           <Route path="Followers" element={<Followers />}/>

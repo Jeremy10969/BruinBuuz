@@ -100,7 +100,10 @@ const BlogList = ({ blogs }) => {
                     
                     <p>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
                     <div>
-                    {blog.tags.map(tag => <h6> {tag}</h6>)}
+                    {blog.tags.map(tag => <div className="tag"  key={tag}> 
+                        <Link to={`/tags/${tag}`}><h6> {tag}</h6></Link>
+                        </div>)}
+                        
                         </div>
 
                         <i className="material-icons">favorite_border</i>
@@ -111,7 +114,7 @@ const BlogList = ({ blogs }) => {
                          onClick = {() => {unlikeBlog(blog._id)}}
                         >thumb_down</i>
                     <h6>{blog.likes.length} likes</h6>
-                    
+
                     {
                         blog.comments.map(info => {
                             return(

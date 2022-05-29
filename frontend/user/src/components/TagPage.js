@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import BlogList from './BlogList';
 
-const Home = ()=>{
+const TagPage = ()=>{
+    const { tag } = useParams();
     
     const [blogs, setBlogs] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log("tag", tag)
         
-        fetch("http://localhost:4000/all-blog"
-             ,{ headers: {
+        fetch("http://localhost:4000/tags/"+tag,
+            { headers: {
                 "Content-Type": "application/json",
                  "Authorization": "Bearer " + localStorage.getItem("jwt")
                 }
@@ -35,7 +38,7 @@ const Home = ()=>{
             setIsPending(false);
             setError(err.message);
         })
-    }, []) // do it at mounting
+     }, []) 
 
     return(
         <div className="home">
@@ -43,6 +46,11 @@ const Home = ()=>{
                 <h1>
                     "EXPLORE BRUINS!!!!!"
                 </h1>
+            </div>
+            <div className="tag">
+                <h2>
+                    {tag}
+                </h2>
             </div>
             
             { error && <div>{ error }</div> }
@@ -54,4 +62,4 @@ const Home = ()=>{
     )
 }
 
-export default Home
+export default TagPage
