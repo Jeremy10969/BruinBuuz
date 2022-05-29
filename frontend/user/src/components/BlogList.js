@@ -18,7 +18,9 @@ const BlogList = ({ blogs }) => {
                         }
                 <div className="feed-content"  >
                     <i className="material-icons">favorite_border</i>
-                    <h6>Tag TB Implemented</h6>
+                    <div>
+                    {blog.tags.map(tag => <h6> {tag}</h6>)}
+                        </div>
                     <p>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
                     <input type="text" placeholder="Add your comment" />
                 </div>

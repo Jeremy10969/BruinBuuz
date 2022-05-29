@@ -5,6 +5,7 @@ import { Alert, Snackbar } from '@mui/material';
 
 const Create = () => {
     const [title, setTitle] = useState("");
+    const [tags, setTags] = useState([]);
     const [body, setBody] = useState("");
     const [picture, setPicture] = useState("");  // default, no pic
     const [url, setUrl] = useState("");
@@ -21,7 +22,7 @@ const Create = () => {
 
         // it must have a url present, so initialization will not render
         if (url) {
-            console.log(title, body, url, but);
+            console.log(title, body, url, but, tags);
             setShowMessage(false);
             fetch("http://localhost:4000/Create", {
                 method: "POST",
@@ -32,7 +33,8 @@ const Create = () => {
                 body: JSON.stringify({
                     title,
                     body,
-                    picture: url
+                    picture: url,
+                    tags
                 })
             }).then(res => res.json())
                 .then(data => {
@@ -133,6 +135,12 @@ const Create = () => {
                         value={fname} />
                 </div>
             </div>
+
+            <input
+                type="text" placeholder="Add tags, separate by ;"
+                value={tags.join(';')}
+                onChange={(e) => setTags(e.target.value.split(";"))}
+            />
 
             <div>
                 <button className="submit-post"

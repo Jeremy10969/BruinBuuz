@@ -7,8 +7,8 @@ const { json } = require('express');
 //add requireLogin to create-blog my-posts
 
 router.post('/Create',requireLogin, (req, res) => {
-    const {title, body, picture} = req.body;
-    console.log(title, body, picture);
+    const {title, body, picture, tags} = req.body;
+    console.log(title, body, picture, tags);
     
     if (!title || !body) {
         return res.status(422).json({error: "Please add all the fields"})
@@ -17,7 +17,7 @@ router.post('/Create',requireLogin, (req, res) => {
     // req.user.password = undefined; // to hide the passwd
     const newBlog = new Blog ({
         title,
-       // tags,//TODO: be modified later
+        tags,//TODO: be modified later
         body,
         picture,
         author: req.user,
