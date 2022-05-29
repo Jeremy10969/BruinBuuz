@@ -105,6 +105,33 @@ router.get('/bloglist/:userid', requireLogin, (req,res)=>{
       });
 })
 
+router.put('/like', requireLogin, (req, res) => {
+    Blog.findByIdAndUpdate(req.body.blogId, {
+        $push: {likes: req.user._id}
+    }, {
+        new: true
+    }).exec((err, result) => {
+        if(err){
+            return res.status(422).json({error:err})
+        } else {
+            res.json(result)
+        }
+    })
+})
+
+router.put('/unlike', requireLogin, (req, res) => {
+    Blog.findByIdAndUpdate(req.body.blogId, {
+        $pull: {likes: req.user._id}
+    }, {
+        new: true
+    }).exec((err, result) => {
+        if(err){
+            return res.status(422).json({error:err})
+        } else {
+            res.json(result)
+        }
+    })
+})
 
 
 

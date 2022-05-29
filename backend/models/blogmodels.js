@@ -19,6 +19,10 @@ const blogTemplate = new mongoose.Schema({
         type: String,
         default: "no pic",
     },
+    likes:[{
+        type: ObjectId,
+        ref: "usrtable",
+    }],
     author:{
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
