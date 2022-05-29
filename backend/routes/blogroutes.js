@@ -133,7 +133,26 @@ router.put('/unlike', requireLogin, (req, res) => {
     })
 })
 
-
+router.put('/comment', requireLogin, (req, res) => {
+    const comment = {
+        text: req.body.text,
+        author: req.user._id,
+    };
+    Blog.findByIdAndUpdate(req.body.blogId, {
+        $push: {comments: comment}
+    }, {
+        new: true
+    })
+    .populate("comments.author", "_id username")
+    .populate("author", "_id username")
+    .exec((err, result) => {
+        if(err){
+            return res.status(422).json({error:err})
+        } else {
+            res.json(result)
+        }
+    })
+})
 
 
 module.exports = router;
