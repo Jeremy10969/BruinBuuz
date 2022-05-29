@@ -43,12 +43,12 @@ const IndividualBlog = () => {
             { data && 
             <article>
                 <div>
-                {data.tags.map(tag => 
-                <div className="tags-individual-page"  key={tag}> 
-                 <a href={"/tags/"+tag}><h6> <button>#{tag}</button></h6></a>
+                    {data.tags.map(tag => 
+                    <div className="tags-individual-page"  key={tag}> 
+                    <a href={`/tags/${tag}`}>#{tag}</a>
+                    </div>
+                    )}
                 </div>
-                )}
-                        </div>
                 
                 <div className="gap"> </div>
                 <div className="blog-content">

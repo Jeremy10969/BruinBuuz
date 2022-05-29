@@ -573,21 +573,23 @@ img.profile-name {
 }
 
 .tags{
-  display:flex;
+  display:inline-block;
   margin-bottom: 1em;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 
-.tags button{
+.tags a{
   margin-right:7px;
   border:none;
   background-color: #FFB81C;
   border-radius: 25px;
+  padding:0.3em 0.5em;
 }
 
-.tags button:hover{
+.tags a:hover{
   background-color: #ffb71cb9;
+  color:#172342 !important;
 }
 
 .tags-individual-page{
@@ -601,15 +603,45 @@ img.profile-name {
   position:fixed;
 }
 
-.tags-individual-page button{
+.tags-individual-page a{
+  color:#172342;
   margin-right:7px;
   border:none;
   background-color: #FFB81C;
   border-radius: 25px;
   font-family: 'Gochi Hand', cursive;
   font-size: larger;
+  padding:0.3em 0.5em 0.1em;
 }
 
-.tags-individual-page button:hover{
+.tags-individual-page a:hover{
   background-color:orange;
+}
+
+.tag-page{
+  display:flex;
+  background-color: #FFB81C;
+  margin-top: -0.5rem;
+  width: 100% !important;
+  position:fixed;
+  font-family: 'Gochi Hand', cursive;
+  padding-left: 1.5em;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.tag-page button{
+  vertical-align: middle;
+  margin-right: 1.5em;
+  border-radius:25px;
+  height:2em;
+  width:10em;
+  margin-top: 1.7em;
+  border: orange;
+  background-color: orange;
+  font-family: 'Gochi Hand', cursive;
+}
+
+.tag-page button:hover{
+  background-color:darkorange;
 }

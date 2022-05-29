@@ -42,22 +42,19 @@ const TagPage = ()=>{
 
     return(
         <div className="home">
-            <div className="slogan">
-                <h1>
-                    "EXPLORE BRUINS!!!!!"
-                </h1>
-            </div>
-            <div className="tag">
-                <h2>
-                    {tag}
-                </h2>
+            <div className="tag-page">
+                <h4>
+                    Posts under the #{tag} tag:
+                </h4>
+                <button className="tag-follow-button">Follow this tag!</button>
             </div>
             
+            <div style={{paddingTop:"5.5rem"}}>
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
             { blogs && <BlogList blogs={blogs} /> }
             { !isPending && !blogs && <div>"You've reached the end! No posts associated." </div> }
-
+            </div>
         </div>
     )
 }

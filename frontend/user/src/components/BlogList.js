@@ -101,13 +101,12 @@ const BlogList = ({ blogs }) => {
                     <p style={{fontSize:"20px"}}>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
                     
                         {blog.tags.map(tag => <div className="tags" key={tag}>
-                        <Link to={`/tags/${tag}`}><button>#{tag}</button></Link>
+                        <Link to={`/tags/${tag}`}>#{tag}</Link>
                         </div>
                         )}
                       
                     
-                       
-
+                        <div>
                         <i className="material-icons">favorite_border</i>
                     <i className="material-icons"
                         onClick = {() => {likeBlog(blog._id)}}
@@ -134,7 +133,7 @@ const BlogList = ({ blogs }) => {
                     }}>
                         <input type="text" placeholder="Add your comment" />
                     </form>
-                    
+                    </div>
                 </div>
                 </div>
             ))}
