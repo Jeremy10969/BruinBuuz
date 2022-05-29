@@ -75,12 +75,13 @@ const UserPage = () => {
                             src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
                     </div>
                     <div style={{ textAlign: "center" }}>
-                        <h4>{userInfo.username} <button onClick={changeFriendStatus}></button></h4> 
+                        <h4>{userInfo.username}</h4> 
                         <div className='profile-bar'>
-                            <h6><Link to="" className="profile-bar-button">. Posts</Link></h6>
+                            <h6><Link to="" className="profile-bar-button">Posts</Link></h6>
                             <h6><Link to="Followers" className="profile-bar-button">{userInfo.followers.length} Followers</Link></h6>
                             <h6><Link to="Following" className="profile-bar-button">{userInfo.following.length} Following</Link></h6>
                         </div>
+                        <button className="follow-button" onClick={changeFriendStatus}>Follow</button>
                     </div>
                 </div>
                 <Outlet context={[userInfo, setUserInfo]}/>
