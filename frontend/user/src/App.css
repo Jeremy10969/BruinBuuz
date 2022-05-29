@@ -592,15 +592,19 @@ img.profile-name {
   color:#172342 !important;
 }
 
-.tags-individual-page{
-  display:flex;
+.tag-gap{
   background-color: #FFB81C;
   margin-top: 0%;
   width: 100% !important;
-  padding-top:0.5em;
-  padding-bottom: 0.5em;
-  padding-left: 1.2em;
+  padding-top:0.6em;
+  padding-bottom: 0.3em;
+  padding-left: 1em;
   position:fixed;
+  z-index: 999;
+}
+
+.tags-individual-page{
+  display:inline-block;
 }
 
 .tags-individual-page a{
@@ -610,12 +614,13 @@ img.profile-name {
   background-color: #FFB81C;
   border-radius: 25px;
   font-family: 'Gochi Hand', cursive;
-  font-size: larger;
+  font-size:x-large;
   padding:0.3em 0.5em 0.1em;
 }
 
 .tags-individual-page a:hover{
   background-color:orange;
+  color:#172342 !important;
 }
 
 .tag-page{
