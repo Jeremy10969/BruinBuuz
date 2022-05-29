@@ -42,8 +42,8 @@ const IndividualBlog = () => {
             { isPending && <div> Loading... </div> }
             { data && 
             <article>
-                <div>
-                {data.tags.map(tag => <h6> {tag}</h6>)}
+                <div className="tags-individual-page">
+                {data.tags.map(tag => <button>#{tag}</button>)}
                         </div>
                 
                 <div className="gap"> </div>

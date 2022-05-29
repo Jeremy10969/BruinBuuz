@@ -137,7 +137,7 @@ const Create = () => {
             </div>
 
             <input
-                type="text" placeholder="Add tags, separate by ;"
+                type="text" placeholder="Add tags (separate by ;)"
                 value={tags.join(';')}
                 onChange={(e) => setTags(e.target.value.split(";"))}
             />

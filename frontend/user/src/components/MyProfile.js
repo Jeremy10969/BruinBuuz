@@ -46,8 +46,8 @@ const MyProfile = () => {
                     </div>
                     <div style={{ textAlign: "center" }}>
                         <h4>{userInfo.username}</h4>
-                        <div className='profile-bar'>
-                            <h6><Link to="" className="profile-bar-button">. Posts</Link></h6>
+                        <div className='myprofile-bar'>
+                            <h6><Link to="" className="profile-bar-button">My Posts</Link></h6>
                             <h6><Link to="Followers" className="profile-bar-button">{userInfo.followers.length} Followers</Link></h6>
                             <h6><Link to="Following" className="profile-bar-button">{userInfo.following.length} Following</Link></h6>
                         </div>

@@ -98,9 +98,9 @@ const BlogList = ({ blogs }) => {
                 <div className="feed-content"  >
                    
                     
-                    <p>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
-                    <div>
-                    {blog.tags.map(tag => <h6> {tag}</h6>)}
+                    <p style={{fontSize:"20px"}}>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
+                    <div className="tags">
+                    {blog.tags.map(tag => <button>#{tag}</button>)}
                         </div>
 
                         <i className="material-icons">favorite_border</i>
