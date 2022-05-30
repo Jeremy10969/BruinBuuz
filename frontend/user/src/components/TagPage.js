@@ -35,6 +35,29 @@ const TagPage = ()=>{
                 console.log(err.message);
             })
         }
+        else {
+            fetch("http://localhost:4000/unfollowtag/"+tag,
+            { 
+                method: "PUT",
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+                },
+                body: JSON.stringify({
+                    tagname: tag
+                })
+            }
+            ).then(res => {
+                if (!res.ok) {
+                    throw Error('could not fetch the data.');
+                }
+                setbtnstate(!btnstate);
+                return res.json();
+            }).then(data => console.log(data))
+            .catch(err => {
+                console.log(err.message);
+            })
+        }
             
     }
 
