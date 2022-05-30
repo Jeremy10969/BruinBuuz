@@ -8,6 +8,35 @@ const TagPage = ()=>{
     const [blogs, setBlogs] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
+    const [btnstate, setbtnstate] = useState(false);
+
+    const followTag = () => {
+        console.log("Trying to follow the tag.")
+        if (!btnstate) {
+            fetch("http://localhost:4000/followtag/"+tag,
+            { 
+                method: "PUT",
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+                },
+                body: JSON.stringify({
+                    tagname: tag
+                })
+            }
+            ).then(res => {
+                if (!res.ok) {
+                    throw Error('could not fetch the data.');
+                }
+                setbtnstate(!btnstate);
+                return res.json();
+            }).then(data => console.log(data))
+            .catch(err => {
+                console.log(err.message);
+            })
+        }
+            
+    }
 
     useEffect(() => {
         console.log("tag", tag)
@@ -46,7 +75,9 @@ const TagPage = ()=>{
                 <h4>
                     Posts under the #{tag} tag:
                 </h4>
-                <button className="tag-follow-button">Follow this tag!</button>
+                <button className="tag-follow-button"
+                onClick={followTag}
+                >Follow this tag!</button>
             </div>
             
             <div style={{paddingTop:"5.5rem"}}>
