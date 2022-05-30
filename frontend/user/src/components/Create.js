@@ -51,7 +51,7 @@ const Create = () => {
                         setShowMessage(true);
                         console.log("Sucess!!");
 
-                        navigate('/');
+                        navigate('/Home');
                     }
                 }).catch(err => {
                     console.log(err);
