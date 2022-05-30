@@ -24,7 +24,7 @@ const Signin =() => {
                 localStorage.setItem("jwt",data.token);
                 localStorage.setItem("user",JSON.stringify(data.user))
                 console.log(data);
-                navigate('/');}})}
+                navigate('/Home');}})}
 
     return (
       

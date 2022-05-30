@@ -1,5 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat&family=Shrikhand&display=swap');
 
+.welcome-page{
+  background: url(../Pictures/welcome.jpg) no-repeat fixed;
+  position:relative;
+  margin:0%;
+}
+
+.welcome-left{
+  font-family: 'Montserrat', sans-serif;
+  background-color: steelblue;
+  width:50%;
+  padding-top:2rem;
+  padding-bottom:11.7rem;
+}
+
+.welcome-left h3{
+  padding-left:5rem;
+  color:white;
+}
+
+.welcome-left h1{
+  font-family: 'Shrikhand', cursive;
+  color:#172342;
+  text-align: center;
+}
+
+.description{
+  padding-left: 5rem;
+  margin-top: 5rem;
+  max-width: 630px;
+  text-align:justify;
+  color:#ccc;
+}
+
+.description h4{
+  color:white;
+  text-align: center;
+  font-size:40px;
+  font-family: "Alliance No.1",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-weight:bolder;
+}
+
+.selection{
+  padding-top:8rem;
+}
+
+.welcome-page a{
+  text-align: justify;
+  font-size:25px;
+  margin-left:8.5rem;
+  margin-right:2rem;
+  border:none;
+  background-color: #FFB81C;
+  border-radius: 25px;
+  padding: 3rem 2rem;
+  color:#172342;
+  font-weight:bolder;
+}
+
+.welcome-page a:hover{
+  background-color: #ffb71cb0;
+}
+
 .nav-topbar{
   background-color: steelblue;
   font-family: 'Shrikhand', cursive;

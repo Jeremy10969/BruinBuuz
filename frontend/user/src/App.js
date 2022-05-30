@@ -1,4 +1,5 @@
 import React from 'react'
+import Welcome from './components/Welcome'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import MyProfile from './components/MyProfile'
@@ -22,7 +23,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Navbar /><Home /></>} />
+        <Route path="/" element={<Welcome />} />
+        <Route path="Home" element={<><Navbar /><Home /></>} />
         <Route path="/blogs/:blogid" element={<><Navbar /><IndividualBlog /></>} />
         <Route path="/tags/:tag" element={<><Navbar /><TagPage /></>} />
         <Route path="/users/:username" element={<><Navbar /><UserPage /></>}>
