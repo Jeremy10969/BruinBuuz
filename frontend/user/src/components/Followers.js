@@ -47,20 +47,12 @@ const Followers = () => {
                 (obj, index)=>{
                     return(
                         <div>
-                            {console.log(userInfo._id)}
+
  
                             <h5>
                                 <img className="profile-name" src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
                                 {
-                                    
-                                    userInfo._id != obj.user._id? 
                                     <a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>
-                                    :
-                                    <a className="profile-username" href={"/myprofile"}>{obj.user.username}</a>
-
-
-
-
                                 }
                                 
                                 
