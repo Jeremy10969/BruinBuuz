@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect, useState, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom'
-
+import MuiAlert from './MuiAlert';
 
 
 const UserPage = () => {
@@ -12,6 +12,8 @@ const UserPage = () => {
     
     const [btnstate, setbtnstate] = useState(false);
     const [followingState, setFollowingState] = useState(false);
+    const [alert, setAlert] = useState(false);
+
     const getFriendStatus=()=>{
         fetch("http://localhost:4000/getfollowstatus", {
             method: "POST",
@@ -39,7 +41,7 @@ const UserPage = () => {
         )
     }
     const changeFriendStatus=()=>{
-        document.getElementById('followbtn').classList.toggle("follow-button-clicked");
+        setAlert(false);
 
         fetch("http://localhost:4000/changefollowstatus", {
             method: "POST",
@@ -58,9 +60,21 @@ const UserPage = () => {
         if (!res.ok) {
             throw Error('could not fetch the data.');
         }
-        setbtnstate(!btnstate);
+        
+        
         return res.json();
     })
+    .then(res => {
+        console.log(res.requeststatus)
+        if (res.requeststatus){
+            setbtnstate(!btnstate);
+        }
+        else{
+            setAlert(true);
+        }
+    }
+
+    )
     .catch(err => {
         console.log(err.message);
     })}
@@ -87,7 +101,7 @@ const UserPage = () => {
                 setUserInfo(data);
             })
             .then(
-                res => {userInfo&&getFriendStatus();})
+                res => {userInfo && getFriendStatus()})
         .catch(err => {
             console.log(err.message);
         });
@@ -121,14 +135,17 @@ const UserPage = () => {
                         </div>
 
                        {followingState?
-                    <button className="following-button" id= "followbtn" onClick={changeFriendStatus}>Unfollow</button>
+                    <button className="following-button"  onClick={changeFriendStatus}>Unfollow</button>
                     :
-                    <button className="follow-button" id= "followbtn" onClick={changeFriendStatus}>Follow</button>
+                    <button className="follow-button"  onClick={changeFriendStatus}>Follow</button>
                        }
                                   
                     </div>
                 </div>
+                {alert?<MuiAlert type="error" content="Cannot follow yourself"/>:''}
+                
                 <Outlet context={[userInfo, setUserInfo]}/>
+
             </div>}
 
         </div>

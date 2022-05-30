@@ -109,6 +109,9 @@ router.post('/changefollowstatus', requireLogin, (req, res) => {
    const senderid = req.user._id;
    const receiverid = req.body.userid;
    let count = 0;
+   if(senderid == receiverid){
+      res.json({requeststatus: false});
+   }
    User.updateOne(
       {
          _id: senderid
@@ -135,7 +138,7 @@ router.post('/changefollowstatus', requireLogin, (req, res) => {
    ).then(result => {
       count++;
       if (count == 2) {
-         res.json(result);
+         res.json({requeststatus: true});
       }
    }).catch(err => {
       console.log(err);
@@ -168,7 +171,7 @@ router.post('/changefollowstatus', requireLogin, (req, res) => {
    ).then(result => {
       count++;
       if (count == 2) {
-         res.json(result);
+         res.json({requeststatus:true});
       }
    }).catch(err => {
       console.log(err);
