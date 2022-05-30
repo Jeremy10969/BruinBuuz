@@ -7,6 +7,7 @@ const User = mongoose.model("usrtable")
 const jwt = require('jsonwebtoken')
 JWT_SECRET = "123qweasd"
 const requireLogin = require('../middleware/requireLogin')
+const { route } = require('./blogroutes')
 
 //handle post request from user on /signup page
 router.post('/signup', (request, response) => {
@@ -69,7 +70,7 @@ router.put('/followtag/:tagname', requireLogin, (req, res) => {
 router.get('/myprofile', requireLogin, (req, res) => {
    // get req.user's info
    const userid = req.user._id;
-   User.findById(userid).populate("followers.user")
+   User.findById(userid).populate("followers following")
      .then(result => {
        res.json(result);
      })
@@ -80,7 +81,7 @@ router.get('/myprofile', requireLogin, (req, res) => {
 
 router.get('/users/:username', requireLogin, (req, res) => {
    const username = req.params.username;
-   User.findOne({username: username})
+   User.findOne({username: username}).populate("followers following")
      .then(result => {
        res.json(result);
      })
@@ -89,12 +90,24 @@ router.get('/users/:username', requireLogin, (req, res) => {
      });
 })
 
-
+router.post('/getfollowstatus', requireLogin, (req,res) => {
+   const selfid = req.user._id;
+   const targetid = req.body.userid;
+   User.findOne({ 
+      $and:[
+         {_id: targetid},
+         {followers: selfid}
+      ]
+   })
+   .then(
+      result => {
+         res.json(result)
+      }
+   )
+}) 
 router.post('/changefollowstatus', requireLogin, (req, res) => {
    const senderid = req.user._id;
    const receiverid = req.body.userid;
-   console.log(senderid);
-   console.log(receiverid);
    let count = 0;
    User.updateOne(
       {
