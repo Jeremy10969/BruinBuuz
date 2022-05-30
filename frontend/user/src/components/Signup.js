@@ -9,6 +9,10 @@ const Signup =() => {
     const [password,setPassword] = useState("")
 
 const PostData = ()=>{
+    if (!fullName || !email || !username || !password)
+    {alert("Please complete all fields")}
+    else
+    {
     console.log("posting data");
     fetch("http://localhost:4000/signup",{
         method:"post",
@@ -21,11 +25,11 @@ const PostData = ()=>{
         })
     }).then(res=>res.json()).then(data => {
         if (data.error)
-        {console.log("sign up error")}//need to be change to alert
+        {alert("email already used")}//need to be change to alert
         else
         {console.log(data);
             navigate('/signin');}})
-}
+}}
 
     return (
       

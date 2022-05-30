@@ -4,7 +4,7 @@ const Navbar = ()=>{
     return(
         <nav>
             <div className="nav-topbar">
-                <a href="/" className="logo">
+                <a href="/Home" className="logo">
                     Bruin Buuz
                 </a>
                
@@ -21,6 +21,7 @@ const Navbar = ()=>{
                     <li><a href="/myprofile">Profile</a></li>
                     <li>
                         <button className="logout" onClick={()=>{
+                            window.location.href="/"
                             localStorage.clear()
                             dispatchEvent({type:"CLEAR"})
                         }}>

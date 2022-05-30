@@ -8,6 +8,9 @@ const Signin =() => {
     const [password,setPassword] = useState("")
 
     const PostData = ()=>{
+        if (!email || !password)
+        {alert("Please complete all fields");}
+        else{
         console.log("posting data");
         fetch("http://localhost:4000/signin",{
             method:"post",
@@ -18,14 +21,14 @@ const Signin =() => {
             })
         }).then(res=>res.json()).then(data => {
             if (data.error)
-            {console.log("sign in error")}//need to be change to alert
+            {alert("invalid password or email")}//need to be change to alert
             else
             {
                 localStorage.setItem("jwt",data.token);
                 localStorage.setItem("user",JSON.stringify(data.user))
                 console.log(data);
-                navigate('/');}})}
-
+                navigate('/Home');}})}
+            }
     return (
       
         <div class="authpage">
