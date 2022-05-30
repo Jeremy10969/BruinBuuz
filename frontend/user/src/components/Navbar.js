@@ -21,6 +21,7 @@ const Navbar = ()=>{
                     <li><a href="/myprofile">Profile</a></li>
                     <li>
                         <button className="logout" onClick={()=>{
+                            window.location.href="/signin"
                             localStorage.clear()
                             dispatchEvent({type:"CLEAR"})
                         }}>
