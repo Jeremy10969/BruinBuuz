@@ -71,11 +71,11 @@ router.put('/followtag/:tagname', requireLogin, (req, res) => {
          else { console.log("unsuccess") }
       });
 
-   let url = "http://localhost:4000/addtag/" + tagname;
-   fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }
-   })
+   //let url = "http://localhost:4000/addtag/" + tagname;
+   //fetch(url, {
+   //   method: "POST",
+   //   headers: { "Content-Type": "application/json" }
+  // })
 
 })
 
