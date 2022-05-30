@@ -48,6 +48,7 @@ const IndividualBlog = () => {
                     <a href={`/tags/${tag}`}>#{tag}</a>
                     </div>
                     )}
+                    <button className="delete">Delete</button>
                 </div>
                 
                 <div className="gap"> </div>

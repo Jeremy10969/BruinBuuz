@@ -736,3 +736,17 @@ a.profile-username:hover{
 .tag-page button:hover{
   background-color:darkorange;
 }
+
+.delete{
+  float:right;
+  margin-right: 2.4em;
+  margin-top: 0.3em;
+  border-color:#ffb71cd6;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.delete:hover{
+  background-color: lightgrey;
+}
