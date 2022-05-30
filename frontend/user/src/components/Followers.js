@@ -1,36 +1,78 @@
 import React from 'react'
 import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import PostEntrance from './PostEntrance';
+import PostEntranceList from './PostEntranceList';
 const Followers = () => {
     const [userInfo, setUserInfo] = useOutletContext();
-    const followers = userInfo.followers;
-    const following = userInfo.following;
+    const [followersBlogList, setFollowersBlogList] = useState([]);
+
+    useEffect(() => {
+        userInfo.followers.map( (followersuser, index) => {
+            fetch("http://localhost:4000/bloglist/" + followersuser._id
+             ,{ 
+                method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+             }
+            )
+        .then(res => {
+            if (!res.ok) {
+                throw Error('could not fetch the data.');
+            }
+            return res.json();
+        })
+        .then(
+            data => {
+            setFollowersBlogList(followersBlogList => [...followersBlogList, {user: followersuser, blogs: data}])
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+        }
+            
+        )
+        
+    }, [])
     return (
+        
     <div>
         <h4>Followers</h4>
+        {
+            followersBlogList.map(
+                (obj, index)=>{
+                    return(
+                        <div>
+                            
+                            <h5>
+                                <img className="profile-name" src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
+                                {<a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>}
+                            </h5>
+                            <PostEntranceList posts={obj.blogs.slice(0,3)}/>
 
-        {followers&& followers.map(
-            ()=>(
-                <div className="gallery">
-                    <PostEntrance></PostEntrance>
-                </div>
-                
+
+                        </div>
+                    )
+                    
+
+
+                    
+                }
             )
-        )}
 
 
-        <h5>
-            <img className="profile-name" src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
-            bruin1
-        </h5>
-        <div className="gallery">
-            <img src="https://static8.depositphotos.com/1377527/943/i/600/depositphotos_9431737-stock-photo-portrait-of-gray-striped-cat.jpg" />
-            <img src="https://navsci.ucla.edu/wp-content/uploads/2020/04/bruin-bound.jpg" />
-            <img src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
+            
+        }
 
-        </div>
+        
+       
 
+       
+
+       
     </div>
 
     )

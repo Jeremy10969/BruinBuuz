@@ -28,10 +28,12 @@ const signUpTemplate = new mongoose.Schema({
       required:true,
   },
   followers:[{
-    type: ObjectId
+    type: ObjectId,
+    ref: "usrtable"
 }],
   following:[{
-    type: ObjectId
+    type: ObjectId,
+    ref: "usrtable"
 }]
 })
 
