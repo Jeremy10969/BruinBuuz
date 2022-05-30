@@ -110,7 +110,7 @@ const Create = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <input style={{ height: "300px"}}
+            <textarea style={{height: "300px"}}
                 type="text" placeholder="Thoughts?"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}

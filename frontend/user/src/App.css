@@ -85,6 +85,11 @@
   vertical-align: middle;
 }
 
+.material-icons:hover{
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
 .logout{
   background-color: steelblue;
   font-family: 'Shrikhand', cursive;
