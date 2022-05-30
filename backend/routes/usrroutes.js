@@ -11,18 +11,29 @@ const { route } = require('./blogroutes')
 
 //handle post request from user on /signup page
 router.post('/signup', (request, response) => {
-   //create an new instance of signuptemplatecopy/schema
-   const signedUpUser = new signUpTemplateCopy({
-      fullName: request.body.fullName,//value from post request content
-      username: request.body.username,//is the value that users enter
-      email: request.body.email,
-      password: request.body.password
-      //no need to pass in date because save by default
+
+   signUpTemplateCopy.exists({email:request.body.email}, function (err,doc){
+      if (err){console.log(err);}
+      else{
+         if (doc==null)
+         {const signedUpUser = new signUpTemplateCopy({
+            fullName: request.body.fullName,//value from post request content
+            username: request.body.username,//is the value that users enter
+            email: request.body.email,
+            password: request.body.password
+            //no need to pass in date because save by default
+         })
+         //save the complete template
+         signedUpUser.save()
+            .then(data => { response.json(data) })//if everything success, send response to json with data
+            .catch(error => { response.json(error) })}
+          else
+          {return response.status(422).json({ error: "email already used" })}  
+      }
    })
-   //save the complete template
-   signedUpUser.save()
-      .then(data => { response.json(data) })//if everything success, send response to json with data
-      .catch(error => { response.json(error) })//if has error, catch it and send it as json file also
+
+   //create an new instance of signuptemplatecopy/schema
+   //if has error, catch it and send it as json file also
 })
 //this one handle the request when usr hit signup，post run
 //(request,response) is a callback function with two argument
@@ -30,7 +41,7 @@ router.post('/signup', (request, response) => {
 router.post('/signin', (req, res) => {
    const { email, password } = req.body
    if (!email || !password)//email or password can not be empty
-   { res.status(422).json({ error: "please add email or password" }) }
+   { return res.status(422).json({ error: "please add email or password" }) }
    User.findOne({ email: email }).then(savedUser => {
       if (!savedUser) { return res.status(422).json({ error: "Invalid Email or password" }) }
       else {
@@ -38,6 +49,7 @@ router.post('/signin', (req, res) => {
             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
             const { _id, username, email } = savedUser;
             res.json({ token: token, user: { _id, username, email } })
+            console.log(token)
          }
          else { return res.status(422).json({ error: "Invalid password" }) }
       }
@@ -59,12 +71,22 @@ router.put('/followtag/:tagname', requireLogin, (req, res) => {
          else { console.log("unsuccess") }
       });
 
-   let url = "http://localhost:4000/addtag/" + tagname;
-   fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }
-   })
+   //let url = "http://localhost:4000/addtag/" + tagname;
+   //fetch(url, {
+   //   method: "POST",
+   //   headers: { "Content-Type": "application/json" }
+  // })
 
+})
+
+router.put('/unfollowtag/:tagname', requireLogin, (req,res)=>{
+   const tagname = req.params.tagname;
+
+   User.findByIdAndUpdate(req.user._id, { $pull: { tags: tagname } })
+   .then(doc => {
+      if (doc) {console.log("successfully delete");}
+      else {console.log("unsuccess delete")}
+   })
 })
 
 router.get('/myprofile', requireLogin, (req, res) => {

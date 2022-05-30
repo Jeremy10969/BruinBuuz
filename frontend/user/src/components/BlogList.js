@@ -107,7 +107,6 @@ const BlogList = ({ blogs }) => {
                       
                     
                         <div>
-                        <i className="material-icons">favorite_border</i>
                     <i className="material-icons"
                         onClick = {() => {likeBlog(blog._id)}}
                         >thumb_up</i>
