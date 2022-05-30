@@ -112,70 +112,73 @@ router.post('/changefollowstatus', requireLogin, (req, res) => {
    if(senderid == receiverid){
       res.json({requeststatus: false});
    }
-   User.updateOne(
-      {
-         _id: senderid
-      },
-      [
+   else{
+      User.updateOne(
          {
-            $set: {
-               following: {
-                  $cond: [
-                     {
-                        $in: [receiverid, "$following"]
-                     },
-                     {
-                        $setDifference: ["$following", [receiverid]]
-                     },
-                     {
-                        $concatArrays: ["$following", [receiverid]]
-                     }
-                  ]
+            _id: senderid
+         },
+         [
+            {
+               $set: {
+                  following: {
+                     $cond: [
+                        {
+                           $in: [receiverid, "$following"]
+                        },
+                        {
+                           $setDifference: ["$following", [receiverid]]
+                        },
+                        {
+                           $concatArrays: ["$following", [receiverid]]
+                        }
+                     ]
+                  }
                }
             }
+         ]
+      ).then(result => {
+         count++;
+         if (count == 2) {
+            res.json({requeststatus: true});
          }
-      ]
-   ).then(result => {
-      count++;
-      if (count == 2) {
-         res.json({requeststatus: true});
-      }
-   }).catch(err => {
-      console.log(err);
-   });
-
-
-   User.updateOne(
-      {
-         _id: receiverid
-      },
-      [
+      }).catch(err => {
+         console.log(err);
+      });
+   
+   
+      User.updateOne(
          {
-            $set: {
-               followers: {
-                  $cond: [
-                     {
-                        $in: [senderid, "$followers"]
-                     },
-                     {
-                        $setDifference: ["$followers", [senderid]]
-                     },
-                     {
-                        $concatArrays: ["$followers", [senderid]]
-                     }
-                  ]
+            _id: receiverid
+         },
+         [
+            {
+               $set: {
+                  followers: {
+                     $cond: [
+                        {
+                           $in: [senderid, "$followers"]
+                        },
+                        {
+                           $setDifference: ["$followers", [senderid]]
+                        },
+                        {
+                           $concatArrays: ["$followers", [senderid]]
+                        }
+                     ]
+                  }
                }
             }
+         ]
+      ).then(result => {
+         count++;
+         if (count == 2) {
+            res.json({requeststatus:true});
          }
-      ]
-   ).then(result => {
-      count++;
-      if (count == 2) {
-         res.json({requeststatus:true});
-      }
-   }).catch(err => {
-      console.log(err);
-   });
+      }).catch(err => {
+         console.log(err);
+      });
+   }
+  
 
 
 }

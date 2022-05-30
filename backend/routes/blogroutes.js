@@ -34,13 +34,10 @@ router.post('/Create',requireLogin, (req, res) => {
 });
 
 router.get('/search/:content',requireLogin, (req, res) => {
-    //TODO: More search types
     const searchType = req.query.searchType;
     const content = req.params.content;
-    console.log("Search content:" + content);
-    console.log("Search Type: "+ searchType);
-    Blog.find({title:content})
-
+    const search = "\\b" + content + "\\b";
+    Blog.find({title : new RegExp(search, 'i' )})
     .sort({ createdAt:-1 })
         .then(result => {
            res.json(result);
