@@ -27,22 +27,21 @@ function App() {
         <Route path="Home" element={<><Navbar /><Home /></>} />
         <Route path="/blogs/:blogid" element={<><Navbar /><IndividualBlog /></>} />
         <Route path="/tags/:tag" element={<><Navbar /><TagPage /></>} />
+
         <Route path="/users/:username" element={<><Navbar /><UserPage /></>}>
           <Route index element={<UserBlogs/>}/>
           <Route path="Followers" element={<Followers />}/>
           <Route path="Following" element={<Following />} />
-
-
         </Route>
+
         <Route path="myprofile" element={<><Navbar /><MyProfile /></>}>
           <Route index element={<MyBlogs />} />
           <Route path="Followers" element={<Followers />}/>
-          <Route path="Following" element={<Following/>} />
-          
-
+          <Route path="Following" element={<Following />} />
         </Route>
+
+        <Route path="Search" element={<><Navbar /><Search /></>} />
         <Route path="Create" element={<><Navbar /><Create /></>} />
-        <Route path="Search" element={<><Navbar /><Search /></>}  />
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>

@@ -35,8 +35,13 @@ const Search = () => {
     return (
     <div className="search-page">
         <div className='search-bar' style={{display:"flex"}}>
-            <input placeholder='Search' onChange={(e)=>{setContent(e.target.value)}}/>
+            <input placeholder='Search by Title' onChange={(e)=>{setContent(e.target.value)}}/>
             <button onClick={()=>{setBut(but+1)}}>Apply Filter</button>
+        </div>
+        <div className='search-options'>
+            <a href="#">Title</a>
+            <a href="#">Tag</a>
+            <a href="#">Date</a>
         </div>
         <div className="search-result">  
             { result && <BlogList blogs={result} /> }
