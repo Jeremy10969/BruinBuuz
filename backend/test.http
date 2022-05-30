@@ -1,3 +1,4 @@
-PUT http://localhost:4000/followtag/Aloe
+PUT http://localhost:4000/unfollowtag/biology
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjkyNzQxNWQ0ZWRhOWZhZGQzMzRkY2YiLCJpYXQiOjE2NTM3NjUxOTF9.Ekb5xFcSe4a2a9wI3HCd3mrk8XTpA4qsgEYuRGbd3DY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjk0ZjlmMTM4ZGY3NWE4NWQwMjU0Y2EiLCJpYXQiOjE2NTM5MzM0NDB9._ptOopAiKmZmSnvZnTn8miwG6zr1rGeZUnO9kJiICZs
+
