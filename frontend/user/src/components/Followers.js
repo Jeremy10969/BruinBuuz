@@ -9,6 +9,7 @@ const Followers = () => {
     const [followersBlogList, setFollowersBlogList] = useState([]);
 
     useEffect(() => {
+        setFollowersBlogList([]);
         userInfo.followers.map( (followersuser, index) => {
             fetch("http://localhost:4000/bloglist/" + followersuser._id
              ,{ 
@@ -36,7 +37,7 @@ const Followers = () => {
             
         )
         
-    }, [])
+    }, [userInfo])
     return (
         
     <div>
