@@ -87,6 +87,9 @@
 
 .material-icons:hover{
   cursor: pointer;
+}
+
+.bloglist-interaction i:hover{
   background-color: lightgrey;
 }
 
@@ -413,7 +416,46 @@ button.search-type{
   border: none;
 }
 .search-bar button:hover{
-  background-color: #ffb71cd6;
+  background-color: #ffb71cc0;
+}
+
+.search-options{
+  display:flex;
+  justify-content: justify;
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: inherit;
+  margin: 1rem auto 0;
+  width: 34rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -1em;
+  padding: 1rem 2.5rem;
+}
+
+.search-options a{
+  margin-right:1.3em;
+  padding: 0.2em 2em;
+  text-align: justify;
+  border:none;
+  background-color: #FFB81C;
+  border-radius: 25px;
+  color:#172342;
+  font-weight:bolder;
+  min-width: 3em;
+}
+
+.search-options a:hover{
+  background-color: #ffb71cc0;
 }
 
 .authpage{

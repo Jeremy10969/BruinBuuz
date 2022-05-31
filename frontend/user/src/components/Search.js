@@ -45,6 +45,7 @@ const Search = () => {
 
             <button className='search-button' onClick={()=>{setBut(but+1)}}>Apply Filter</button>
         </div>
+        
         <div className="search-result">  
             { result && <BlogList blogs={result} /> }
         </div>
