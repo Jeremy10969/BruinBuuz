@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+const moment = require('moment');
 
-const usrnameStr = localStorage.getItem("user")
-const usrname = JSON.parse(usrnameStr)
+const usrnameStr = localStorage.getItem("user");
+const usrname = JSON.parse(usrnameStr);
 
 const BlogList = ({ blogs }) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const likeBlog = (id) => {
         fetch("http://localhost:4000/like", {
             method: "put",
@@ -82,15 +83,38 @@ const BlogList = ({ blogs }) => {
             console.log(error)
         })
     }
+    const deleteBlog = (blogid) => {
+        fetch(`http://localhost:4000/deleteBlog/${blogid}`, {
+            method: "delete",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+        .then(result => {
+            console.log(result)
+            const newData = data.filter(blog => {
+                return blog._id !== result._id
+            })
+            setData(newData)
+        })
+    }
     return (
         <div className="blog-list">
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
-
                     <a href={"/blogs/"+blog._id}>
                     <h5>{ blog.title }</h5>
                     </a>
+                    {blog.author._id == usrname._id 
+                    && <i className="material-icons" style = {{
+                        float: "right"
+                        }}
+                        onClick = {() => deleteBlog(blog._id)}
+                        >delete</i>
+                    }
+                    
                     <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a></p>
+                    <p style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</p>
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">
                         <img style={{width:"100%", height:"70%", objectFit:"cover"}} 

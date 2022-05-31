@@ -189,5 +189,23 @@ router.put('/comment', requireLogin, (req, res) => {
     })
 })
 
+router.delete('/deleteBlog/:blogid', requireLogin, (req, res) => {
+    Blog.findOne({_id: req.params.blogid})
+    .populate("author", "_id")
+    .exec((error, blog) => {
+        if(error || !blog){
+            return res.status(422).json({error: error})
+        }
+        if(blog.author._id.toString() === req.user._id.toString()){
+            blog.remove()
+            .then(result => {
+                res.json(result)
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+    })
+})
+
 
 module.exports = router;
