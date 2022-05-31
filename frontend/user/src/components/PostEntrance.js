@@ -11,8 +11,8 @@ const PostEntrance = (post) => {
 
                             <h5>{post.title?.length > 15 ? post.title.substr(0, 15)+'...' : post.title}</h5>
                             <div>
-                                <h6>Tag TB Implemented</h6>
-                                <p>{ post.body?.length > 20 ? post.body.substr(0, 20)+'...' : post.body  }</p>
+                                <h6>{post.tags.map((tag)=>("#"+tag+" "))}</h6>
+                                <p>{ post.body?.length > 100 ? post.body.substr(0, 100)+'...' : post.body  }</p>
 
                             </div>
                         </div>
@@ -29,8 +29,8 @@ const PostEntrance = (post) => {
                             <h5>{post.title}</h5>
                             <div>
 
-                                <h6>Tag TB Implemented</h6>
-                                <p>{ post.body?.length > 20 ? post.body.substr(0, 20)+'...' : post.body  }</p>
+                                <h6>{post.tags.map((tag)=>(tag+" "))}</h6>
+                                <p>{ post.body?.length > 100 ? post.body.substr(0, 100)+'...' : post.body  }</p>
                             </div>
 
                         </div>

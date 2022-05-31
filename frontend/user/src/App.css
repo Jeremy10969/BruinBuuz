@@ -214,9 +214,11 @@
 }
 
 .gallery-post-grid{
+  word-wrap: normal;
   position:relative;
   align-items: center;
   color: black;
+  margin: 1rem;
 }
 
 .grid-background-color{
@@ -225,6 +227,8 @@
   width:100%;
   height:100%;
   padding-top: 5px;
+  word-wrap: normal;
+  margin: 1rem;
 }
 
 .grid-background-color:hover{
