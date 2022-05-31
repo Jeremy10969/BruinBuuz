@@ -89,8 +89,9 @@
   cursor: pointer;
 }
 
-.bloglist-interaction i:hover{
-  background-color: lightgrey;
+.thumbsup h6{
+  margin-top: 2.5px;
+  margin-left: 0.5em;
 }
 
 .logout{
@@ -302,6 +303,10 @@ a.profile-username:hover{
   height: max-content;
   margin: 26px auto;
   font-family: 'Montserrat', sans-serif;
+}
+
+.feed i:hover{
+  color:steelblue;
 }
 
 .post-input{
@@ -718,6 +723,10 @@ button.search-type{
   z-index: 999;
 }
 
+.tag-gap:empty{
+  display:none;
+}
+
 .tags-individual-page{
   display:inline-block;
 }
@@ -766,16 +775,12 @@ button.search-type{
   background-color:darkorange;
 }
 
-.delete{
+.tag-gap i{
   float:right;
-  margin-right: 2.4em;
-  margin-top: 0.3em;
-  border-color:#ffb71cd6;
-  background-color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
+  margin-top: 0.1em;
+  margin-right: 1.3em;
 }
 
-.delete:hover{
-  background-color: lightgrey;
+.tag-gap i:hover{
+  color:steelblue;
 }

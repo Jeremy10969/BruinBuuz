@@ -134,6 +134,7 @@ const BlogList = ({ blogs }) => {
                       
                     
                         <div className="bloglist-interaction">
+                            <div className="thumbsup" style={{display:"flex"}}>
                         {blog.likes.includes(usrname._id)
                             ? 
                              <i className="material-icons"
@@ -145,7 +146,8 @@ const BlogList = ({ blogs }) => {
                             onClick={()=>{likeBlog(blog._id)}}
                             >favorite_border</i>
                             }
-                    <h6>{blog.likes.length} likes</h6>
+                            <h6>{blog.likes.length} likes</h6>
+                            </div>
 
                     {
                         blog.comments.map(info => {
