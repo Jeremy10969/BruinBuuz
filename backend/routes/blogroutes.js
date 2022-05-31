@@ -86,6 +86,22 @@ router.get('/all-blog',requireLogin,  (req, res) => {
         });
 });
 
+
+router.get('/feed', requireLogin, (req, res) => {
+
+    const tags = req.user.tags;
+    console.log(tags)
+    Blog.find({tags:{$in: tags}})
+    .sort({ createdAt:-1 })
+    .then(feed => {
+        console.log(feed)
+        res.json(feed);
+    })
+    .catch(err => {  console.log(err); });
+});
+
+
+
 router.get('/myblogs', requireLogin, (req, res) => {
 
     const id = req.user._id;
