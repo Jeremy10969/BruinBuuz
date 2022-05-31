@@ -8,8 +8,11 @@ const Home = ()=>{
     const [error, setError] = useState(null);
 
     useEffect(() => {
+
+        const tags = localStorage.getItem("user");
         
-        fetch("http://localhost:4000/all-blog"
+        
+        fetch("http://localhost:4000/feed"
              ,{ headers: {
                 "Content-Type": "application/json",
                  "Authorization": "Bearer " + localStorage.getItem("jwt")
