@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+const moment = require('moment');
+
+const usrnameStr = localStorage.getItem("user");
+const usrname = JSON.parse(usrnameStr);
 
 const IndividualBlog = () => {
     const { blogid } = useParams();
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState('');
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
@@ -36,6 +40,22 @@ const IndividualBlog = () => {
         })
     }, [blogid])
 
+    const deleteBlog = (blogid) => {
+        fetch(`http://localhost:4000/deleteBlog/${blogid}`, {
+            method: "delete",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+        .then(result => {
+            console.log(result)
+            const newData = result.data.filter(data => {
+                return data._id !== result._id
+            })
+            setData(newData)
+        })
+    }
+
     return (
         <div className="individual-blog">
             { error && <div>{ error }</div> }
@@ -48,13 +68,20 @@ const IndividualBlog = () => {
                     <a href={`/tags/${tag}`}>#{tag}</a>
                     </div>
                     )}
-                    <button className="delete">Delete</button>
+                    {data.author._id == usrname._id 
+                    && <i className="material-icons" style = {{
+                        float: "right"
+                        }}
+                        onClick = {() => deleteBlog(data._id)}
+                        >delete</i>
+                    }
                 </div>
-                
                 <div className="gap"> </div>
                 <div className="blog-content">
                     <h3>{data.title}</h3>
                     <p>Written by <a href={"/users/"+data.author.username}>{data.author.username}</a></p>
+                    <p><font size="3">{moment(data.date).format("YYYY-MM-DD HH:mm")}</font></p>
+                    
                     {data.picture !== '' && data.picture !== 'no pic' &&
                             <div className="feed-image">
                             <img style={{width:"70%", height:"50%", objectFit:"cover"}} 
