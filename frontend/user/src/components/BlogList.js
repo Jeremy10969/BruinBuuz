@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import React, { useState } from 'react'
 
+const usrnameStr = localStorage.getItem("user")
+const usrname = JSON.parse(usrnameStr)
+
 const BlogList = ({ blogs }) => {
     const [data, setData] = useState(null);
     const likeBlog = (id) => {
@@ -107,12 +110,17 @@ const BlogList = ({ blogs }) => {
                       
                     
                         <div className="bloglist-interaction">
-                    <i className="material-icons" style={{}}
-                        onClick = {() => {likeBlog(blog._id)}}
-                        >thumb_up</i>
-                    <i className="material-icons"
-                         onClick = {() => {unlikeBlog(blog._id)}}
-                        >thumb_down</i>
+                        {blog.likes.includes(usrname._id)
+                            ? 
+                             <i className="material-icons"
+                                    onClick={()=>{unlikeBlog(blog._id)}}
+                                    style={{color:"red"}}
+                              >favorite</i>
+                            : 
+                            <i className="material-icons"
+                            onClick={()=>{likeBlog(blog._id)}}
+                            >favorite_border</i>
+                            }
                     <h6>{blog.likes.length} likes</h6>
 
                     {
