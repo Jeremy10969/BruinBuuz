@@ -40,7 +40,8 @@ const Search = () => {
                 <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>{searchTypes[searchType]}</button>
 
             
-            <input placeholder={'Search by ' + (searchType==2?searchTypes[searchType]+ " (seperate by space)":searchTypes[searchType])} 
+            <input placeholder={'Search by ' + (searchType==2?searchTypes[searchType]+ " (seperate by space)":
+                                                                searchTypes[searchType])} 
             onChange={(e)=>{setContent(e.target.value)}}/>
 
             <button className='search-button' onClick={()=>{setBut(but+1)}}>Apply Filter</button>
