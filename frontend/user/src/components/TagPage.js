@@ -90,7 +90,7 @@ const TagPage = ()=>{
             setIsPending(false);
             setError(err.message);
         })
-     }, []) 
+     }, [tag]) 
 
     return(
         <div className="home">

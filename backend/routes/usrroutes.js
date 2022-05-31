@@ -16,19 +16,31 @@ router.post('/signup', (request, response) => {
       if (err){console.log(err);}
       else{
          if (doc==null)
-         {const signedUpUser = new signUpTemplateCopy({
-            fullName: request.body.fullName,//value from post request content
-            username: request.body.username,//is the value that users enter
-            email: request.body.email,
-            password: request.body.password
-            //no need to pass in date because save by default
-         })
-         //save the complete template
-         signedUpUser.save()
-            .then(data => { response.json(data) })//if everything success, send response to json with data
-            .catch(error => { response.json(error) })}
+         { 
+            signUpTemplateCopy.exists({username:request.body.username}, function (e,d){
+               if (e){console.log(e)}
+               else {
+                  if (d==null)
+                  {
+                     const signedUpUser = new signUpTemplateCopy({
+                        fullName: request.body.fullName,//value from post request content
+                        username: request.body.username,//is the value that users enter
+                        email: request.body.email,
+                        password: request.body.password})
+                        //no need to pass in date because save by default
+                  
+                        signedUpUser.save()
+                         .then(data => { response.json(data) })//if everything success, send response to json with data
+                           .catch(error => { response.json(error) })
+                  
+                     }
+                     else
+                     {return response.status(422).json({ error: "Username already exists." })}
+               }
+            })
+            }
           else
-          {return response.status(422).json({ error: "email already used" })}  
+          {return response.status(422).json({ error: "Email already exists." })}  
       }
    })
 

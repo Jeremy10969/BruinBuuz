@@ -11,10 +11,9 @@ const Create = () => {
     const [url, setUrl] = useState("");
     const [but, setBut] = useState(0);
     const [fname, setFname] = useState("");
-    const [uploadedFiles, setFiles] = useState([]);
     const [uploadSuccess, setUploadSuccess] = useState([]);
     const [showMessage, setShowMessage] = useState(false);
-
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
 
@@ -23,7 +22,6 @@ const Create = () => {
         // it must have a url present, so initialization will not render
         if (url) {
             console.log(title, body, url, but, tags);
-            setShowMessage(false);
             fetch("http://localhost:4000/Create", {
                 method: "POST",
                 headers: {
@@ -42,6 +40,7 @@ const Create = () => {
                     if (data.error) {
                         setUploadSuccess(false);
                         setShowMessage(true);
+                        setMessage(data.error);
 
                         console.log("Problem...")
                         return;
@@ -49,6 +48,7 @@ const Create = () => {
                     else {
                         setUploadSuccess(true);
                         setShowMessage(true);
+                        setMessage("Successfully uploaded");
                         console.log("Sucess!!");
 
                         navigate('/Home');
@@ -121,13 +121,11 @@ const Create = () => {
                     <input type="file"
                         onChange={(e) => {
                             { setPicture(e.target.files[0]) };
-                            { { setFiles(e.target.files) } };
                             {
                                 if (e.target.files.length > 1) { setFname(e.target.files.length + " files") }
                                 else { setFname(e.target.files[0].name) }
                             }
                         }}
-                        multiple
                     />
                 </div>
                 <div className="file-path-wrapper">
@@ -149,9 +147,11 @@ const Create = () => {
                     Post it!
                 </button>
 
-                {showMessage ? <MuiAlert type={uploadSuccess ? 'success' : 'error'}
-                    content={uploadSuccess ? "Post successfully posted!" : "Must have a title and some content / Post not successfully uploaded."} /> : ''}
-
+                <MuiAlert show={showMessage} 
+                hide={() => {setShowMessage(false)}} 
+                message={message}
+                type={uploadSuccess ? 'success' : 'error'}
+                />
 
             </div>
 
