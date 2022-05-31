@@ -35,12 +35,12 @@ router.post('/signup', (request, response) => {
                   
                      }
                      else
-                     {return response.status(422).json({ error: "username already used" })}
+                     {return response.status(422).json({ error: "Username already exists." })}
                }
             })
             }
           else
-          {return response.status(422).json({ error: "email already used" })}  
+          {return response.status(422).json({ error: "Email already exists." })}  
       }
    })
 

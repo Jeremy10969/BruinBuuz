@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
+import { Alert, Snackbar } from '@mui/material';
+import MuiAlert from './MuiAlert';
 
 const Signup =() => {
     const navigate = useNavigate();
@@ -7,32 +9,37 @@ const Signup =() => {
     const [username,setUsername] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [alert, setAlert] = useState("")
+    const [open, setOpen] = useState(false);
+    const PostData = 
+        ()=>{
+    
+            if (!fullName || !email || !username || !password)
+            {setOpen(true);
+            setAlert("You need to complete all the fields")}
+            else
+            {
+            console.log("posting data");
+            fetch("http://localhost:4000/signup",{
+                method:"post",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({
+                    fullName,
+                    username,
+                    email,
+                    password
+                })
+            }).then(res=>res.json()).then(data => {
+                if (data.error)
+                {setOpen(true);
+                setAlert(data.error)}
+                else
+                {console.log(data);
+                    navigate('/signin');}})
+        }}
+    
 
-const PostData = ()=>{
-    if (!fullName || !email || !username || !password)
-    {alert("Please complete all fields")}
-    else
-    {
-    console.log("posting data");
-    fetch("http://localhost:4000/signup",{
-        method:"post",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-            fullName,
-            username,
-            email,
-            password
-        })
-    }).then(res=>res.json()).then(data => {
-        if (data.error)
-        {alert("email already used")}//need to be change to alert
-        else
-        {console.log(data);
-            navigate('/signin');}})
-}}
-
-    return (
-      
+    return (      
         <div class="authpage">
             <h1>Bruin Buuz</h1>
             <div className="box">
@@ -59,6 +66,10 @@ const PostData = ()=>{
                     <Link to="/signin">Already have an account?<br/>Sign in here!</Link>
                 </h6>
             </div>
+            <MuiAlert show={open} hide={() => {setOpen(false)}} message={alert} type="error"/>
+             
+           
+             
         </div>
        
     )
