@@ -385,16 +385,33 @@ a.profile-username:hover{
   padding: 1rem 2.5rem;
 }
 
-.search-bar button{
-  min-width:8em;
-  max-height:2em;
-  margin-top:0.5em;
+button.search-button{
+  max-height:3em;
+  min-width: 7em;
+  margin-left:1em;
+  margin-right: -1.5em;
   border-radius: 24px;
   border-color: #fff;
   background-color:#FFB81C;
   border: none;
 }
+button.search-type{
+  margin-top: 0.5em;
+  margin-right: 0.8em;
+  min-width:5em;
+  max-height: 2em;
+  margin-left: -1.5em;
 
+
+  
+  
+}
+.search-bar button {
+  border-radius: 24px;
+  border-color: #fff;
+  background-color:#FFB81C;
+  border: none;
+}
 .search-bar button:hover{
   background-color: #ffb71cd6;
 }

@@ -126,6 +126,9 @@ router.post('/getfollowstatus', requireLogin, (req,res) => {
          res.json(result)
       }
    )
+   .catch(err => {
+      console.log(err);
+    });
 }) 
 router.post('/changefollowstatus', requireLogin, (req, res) => {
    const senderid = req.user._id;

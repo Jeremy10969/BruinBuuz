@@ -35,17 +35,42 @@ router.post('/Create',requireLogin, (req, res) => {
 
 router.get('/search/:content',requireLogin, (req, res) => {
     const searchType = req.query.searchType;
+    console.log(searchType);
     const content = req.params.content;
-    const search = "\\b" + content + "\\b";
-    Blog.find({title : new RegExp(search, 'i' )})
-    .sort({ createdAt:-1 })
-        .then(result => {
-           res.json(result);
-        })
-        .catch(error => { 
-            res.json(error);
-            console.log(error);
-        });
+    console.log(content);
+    let conditions = {};
+    
+    User.findOne({username: content})
+    .then(userid => {
+        if(searchType == "author"){
+            conditions['author'] = userid
+        }
+        else if (searchType == "title"){
+            conditions['title'] = new RegExp(('\\b' + content + '\\b'), 'i')
+        }
+        else if (searchType == "tags"){
+            let tags = content.split(" ")
+            conditions['tags'] = {$all:tags}
+        }
+        else if (searchType == "content"){
+            conditions['body'] = new RegExp(('\\b' + content + '\\b'), 'i')
+        }
+    })
+    .then(
+        result=>{
+            Blog.find(conditions)
+            .sort({ createdAt:-1 })
+                .then(result => {
+                   res.json(result);
+                })
+                .catch(error => { 
+                    res.json(error);
+                    console.log(error);
+                });
+        }
+    )
+    
+    
 });
 
 router.get('/all-blog',requireLogin,  (req, res) => {
