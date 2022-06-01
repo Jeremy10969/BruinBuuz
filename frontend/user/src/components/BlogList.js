@@ -59,7 +59,7 @@ const BlogList = ({ blogs, refresh }) => {
         })
     }
     const deleteBlog = (blogid) => {
-        fetch("http://"+window.location.host.split(":")[0]+`:4000/deleteBlog/${blogid}`, {
+        fetch(`http://`+window.location.host.split(":")[0]+`:4000/deleteBlog/${blogid}`, {
             method: "delete",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("jwt")
