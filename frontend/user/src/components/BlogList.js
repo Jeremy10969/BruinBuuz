@@ -88,8 +88,12 @@ const BlogList = ({ blogs, refresh }) => {
                     }
                     </div>
                     
-                    <p>Posted by <img className="profile-name" src={blog.author.picture} /> <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
-                    <div style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</div></p>
+                    <p>Posted by <img className="profile-name" src={blog.author.picture} /> 
+                    <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
+                    <span style = {{float: "right", display:"inline-block"}}>
+                    <p>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</p>
+                        </span>
+                    </p>
                     
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">

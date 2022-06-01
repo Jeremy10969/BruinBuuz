@@ -8,19 +8,19 @@ const MyProfile = () => {
     const [refresh, setRefresh] = useState(0);
     useEffect(
         ()=>{
-            
-            const formData = new FormData();
-            formData.append("file", uploadPic);
-            formData.append("upload_preset", "bruinbuuz");
-            formData.append("cloud_name", "dxhk2spfw");
+            const formData1 = new FormData();
+            formData1.append("file", uploadPic);
+            formData1.append("upload_preset", "bruinbuuz");
+            formData1.append("cloud_name", "dxhk2spfw");
+            const formData2 = new FormData();
+            formData2.append("public_id", "c7wdjdepwihgsqnvcl0e");
+            formData2.append("cloud_name", "dxhk2spfw");
             if (uploadPic) {
                 console.log("called")
-    
                 // image is asset type, upload is delivery type
-    
                 fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
                     method: 'POST',
-                    body: formData
+                    body: formData1
                 })
                     .then(res => res.json())
                     .then(res => {
@@ -41,7 +41,6 @@ const MyProfile = () => {
                                     if (!res.ok) {
                                         throw Error('could not post data.');
                                     }
-                        
                                     return res.json();
                                 }
                             )
