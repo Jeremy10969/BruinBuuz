@@ -69,6 +69,8 @@ const BlogList = ({ blogs, refresh }) => {
             refresh();
         })
     }
+
+    
     return (
         
         <div className="blog-list">
@@ -143,6 +145,7 @@ const BlogList = ({ blogs, refresh }) => {
                     <form onSubmit = {(e) => {
                         e.preventDefault()
                         commentBlog(e.target[0].value, blog._id)
+                        e.target.reset()
                     }}>
                         <input type="text" placeholder="Add your comment" />
                     </form>
