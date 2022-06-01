@@ -19,7 +19,9 @@ const blogTemplate = new mongoose.Schema({
         type: String,
         default: "no pic",
     },
-    likes:[{
+    likes:
+    
+    [{
         type: ObjectId,
         ref: "usrtable",
     }],
@@ -39,6 +41,11 @@ const blogTemplate = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
+    },
+    
+    heat:{
+        type:Number,
+        default: 0
     }
 
 }, {  timestamps: true  });

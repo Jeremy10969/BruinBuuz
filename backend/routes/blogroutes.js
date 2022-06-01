@@ -40,7 +40,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
     console.log(content);
     let conditions = {};
     
-    User.findOne({username: new RegExp(('\\b' + content + '\\b'), 'i')})
+    User.findOne({username: new RegExp((content), 'i')})
     .then(userid => {
         if(searchType == "author"){
             conditions['author'] = userid
@@ -78,8 +78,8 @@ router.get('/search/:content',requireLogin, (req, res) => {
 });
 
 router.get('/all-blog',requireLogin,  (req, res) => {
-    Blog.find().sort({ createdAt:-1 })
-    .populate("comments.author")
+    Blog.find().sort({heat: -1, createdAt: -1})
+    
         .then(result=>{
             res.json(result);
             console.log("getting all blogs.")
@@ -100,7 +100,6 @@ router.get('/feed', requireLogin, (req, res) => {
     .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(feed => {
-        // console.log(feed)
         res.json(feed);
     })
     .catch(err => {  console.log(err); });
@@ -124,9 +123,7 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
     const id = req.params.blogid;
     console.log(id);
 
-    Blog.findById(id)
-
-    .sort({ createdAt:-1 })
+    Blog.findByIdAndUpdate(id, {$inc:{heat: 0.5}})
       .then(result => {
           console.log(result)
         res.json(result);
@@ -164,6 +161,7 @@ router.get('/tags/:tag', requireLogin, (req,res)=>{
 
 router.put('/like', requireLogin, (req, res) => {
     Blog.findByIdAndUpdate(req.body.blogId, {
+        $inc:{heat: 5},
         $push: {likes: req.user._id}
     }, {
         new: true
@@ -178,6 +176,7 @@ router.put('/like', requireLogin, (req, res) => {
 
 router.put('/unlike', requireLogin, (req, res) => {
     Blog.findByIdAndUpdate(req.body.blogId, {
+        $inc:{heat: -5},
         $pull: {likes: req.user._id}
     }, {
         new: true
@@ -192,10 +191,12 @@ router.put('/unlike', requireLogin, (req, res) => {
 
 router.put('/comment', requireLogin, (req, res) => {
     const comment = {
+        
         text: req.body.text,
         author: req.user._id,
     };
     Blog.findByIdAndUpdate(req.body.blogId, {
+        $inc:{heat: 10},
         $push: {comments: comment}
     }, {
         new: true
