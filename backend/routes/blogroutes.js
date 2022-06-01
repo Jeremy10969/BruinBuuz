@@ -81,7 +81,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
 
 router.get('/all-blog',requireLogin,  (req, res) => {
     Blog.find().sort({heat: -1, createdAt: -1})
-    
+        .populate("comments.author")
         .then(result=>{
             res.json(result);
             console.log("getting all blogs.")
