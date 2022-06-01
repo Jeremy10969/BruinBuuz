@@ -144,7 +144,7 @@ const IndividualBlog = () => {
                             return(
                                 <h5 key = {info._id}>
                                     <span style = {{fontWeight: "1000"}}>
-                                        {info.author.username}
+                                    <a href={"/users/"+info.author.username}>{info.author.username}</a>
                                     </span> {info.text}
                                 </h5>
                             )
@@ -171,7 +171,7 @@ const IndividualBlog = () => {
                         commentBlog(e.target[0].value, data._id)
                         e.target.reset()
                     }}>
-                        <input type="text" className="individual-comment" placeholder="Add your comment" />
+                        <input type="text" className="individual-comment" placeholder="Add your comment (hit Enter to publish)" />
                     </form>
                 </div>
                 <div className="gap"> </div>
