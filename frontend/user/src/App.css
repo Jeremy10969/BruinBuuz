@@ -111,6 +111,13 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.comment-section a{
+  color:#172342;
+}
+
+.comment-section a:hover{
+  color:#347bad;
+}
 .thumbsup{
   width:20%;
 }
