@@ -43,7 +43,7 @@ const Following = () => {
     <div>
         <h4>Following</h4>
         {
-            
+            followingBlogList.length!=0?
             followingBlogList.map(
                 (obj, index)=>{
                     return(
@@ -64,8 +64,8 @@ const Following = () => {
                     
                 }
             )
-
-
+            :
+            <h5>No following currently.</h5>
             
         }
 

@@ -46,9 +46,11 @@ const Home = ()=>{
             <div className="slogan">
                 <h1>
                     "EXPLORE BRUINS!!!!!"
+                    {blogs && blogs.length==0?<h1>Posts with the tags you are following will show here.
+                You are not following any tags right now... Go Explore some!</h1>:""}
                 </h1>
             </div>
-
+            
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
             { blogs && <BlogList blogs={blogs} refresh={()=>setRefresh(refresh+1)}/> }

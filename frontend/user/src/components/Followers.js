@@ -43,35 +43,24 @@ const Followers = () => {
     <div>
         <h4>Followers</h4>
         {
-            
+            followersBlogList.length!=0?
             followersBlogList.map(
                 (obj, index)=>{
                     return(
                         <div>
-
- 
                             <h5>
                                 <img className="profile-name" src={obj.user.picture} />
                                 {
                                     <a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>
-                                }
-                                
-                                
+                                }                              
                             </h5>
                             <PostEntranceList posts={obj.blogs.slice(0,3)}/>
-
-
                         </div>
-                    )
-                    
-
-
-                    
+                    )                   
                 }
-            )
-
-
-            
+            )    
+            :
+            <h5>No followers currently.</h5>     
         }
 
         

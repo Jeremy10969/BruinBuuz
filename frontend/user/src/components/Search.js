@@ -49,6 +49,7 @@ const Search = () => {
 
         <div className="search-result">  
         
+            { result && result.length==0?<div className='feed'><h5>Oops, seems like nothing is here... Why not Create some?</h5></div>:""}
             { result && <BlogList blogs={result} /> }
         </div>
         
