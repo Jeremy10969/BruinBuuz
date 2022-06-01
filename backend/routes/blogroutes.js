@@ -112,6 +112,7 @@ router.get('/myblogs', requireLogin, (req, res) => {
 
     const id = req.user._id;
     Blog.find({author: id})
+    .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(myposts => {
         res.json(myposts);
@@ -125,7 +126,7 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
     console.log(id);
 
     Blog.findById(id)
-
+    .populate("comments.author")
     .sort({ createdAt:-1 })
       .then(result => {
           console.log(result)
