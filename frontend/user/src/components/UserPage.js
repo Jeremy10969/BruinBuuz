@@ -41,8 +41,6 @@ const UserPage = () => {
         )
     }
     const changeFriendStatus=()=>{
-        setAlert(false);
-
         fetch("http://localhost:4000/changefollowstatus", {
             method: "POST",
             headers: {             
@@ -142,7 +140,7 @@ const UserPage = () => {
                                   
                     </div>
                 </div>
-                {alert?<MuiAlert type="error" content="Cannot follow yourself"/>:''}
+                {<MuiAlert show={alert} hide={()=>{setAlert(false)}} type="error" message="Cannot follow yourself"/>}
                 
                 <Outlet context={[userInfo, setUserInfo]}/>
 

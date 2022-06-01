@@ -40,7 +40,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
     console.log(content);
     let conditions = {};
     
-    User.findOne({username: content})
+    User.findOne({username: new RegExp(('\\b' + content + '\\b'), 'i')})
     .then(userid => {
         if(searchType == "author"){
             conditions['author'] = userid
@@ -50,7 +50,11 @@ router.get('/search/:content',requireLogin, (req, res) => {
         }
         else if (searchType == "tags"){
             let tags = content.split(" ")
-            conditions['tags'] = {$all:tags}
+            let regex = [];
+            for (let i = 0; i < tags.length; i++) {
+                regex.push(new RegExp(('\\b' + tags[i] + '\\b'), 'i')) ;
+            }
+            conditions['tags'] = {$all:regex}
         }
         else if (searchType == "content"){
             conditions['body'] = new RegExp(('\\b' + content + '\\b'), 'i')

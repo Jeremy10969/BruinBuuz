@@ -113,8 +113,9 @@ const BlogList = ({ blogs }) => {
                         >delete</i>
                     }
                     
-                    <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a></p>
-                    <p style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</p>
+                    <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
+                    <div style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</div></p>
+                    
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">
                         <img style={{width:"100%", height:"70%", objectFit:"cover"}} 
@@ -125,7 +126,7 @@ const BlogList = ({ blogs }) => {
                 <div className="feed-content"  >
                    
                     
-                    <p style={{fontSize:"20px"}}>{ blog.body?.length > 20 ? blog.body.substr(0, 20)+'...' : blog.body  }</p>
+                    <p style={{fontSize:"20px"}}>{ blog.body?.length > 200 ? blog.body.substr(0, 200)+'...' : blog.body  }</p>
                     
                         {blog.tags.map(tag => <div className="tags" key={tag}>
                         <Link to={`/tags/${tag}`}>#{tag}</Link>
@@ -134,6 +135,7 @@ const BlogList = ({ blogs }) => {
                       
                     
                         <div className="bloglist-interaction">
+                            <div className="thumbsup" style={{display:"flex"}}>
                         {blog.likes.includes(usrname._id)
                             ? 
                              <i className="material-icons"
@@ -145,7 +147,8 @@ const BlogList = ({ blogs }) => {
                             onClick={()=>{likeBlog(blog._id)}}
                             >favorite_border</i>
                             }
-                    <h6>{blog.likes.length} likes</h6>
+                            <h6>{blog.likes.length} likes</h6>
+                            </div>
 
                     {
                         blog.comments.map(info => {
