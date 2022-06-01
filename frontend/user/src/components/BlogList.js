@@ -5,7 +5,7 @@ const moment = require('moment');
 const usrnameStr = localStorage.getItem("user");
 const usrname = JSON.parse(usrnameStr);
 
-const BlogList = ({ blogs }) => {
+const BlogList = ({ blogs, refresh }) => {
     const [data, setData] = useState([]);
     const likeBlog = (id) => {
         fetch("http://localhost:4000/like", {
@@ -19,15 +19,7 @@ const BlogList = ({ blogs }) => {
             })
         }).then(res => res.json())
         .then(result => {
-            //console.log(result)
-            const newData = data.map(blog => {
-                if(blog._id == result._id){
-                    return result
-                } else {
-                    return blog
-                }
-            })
-            setData(newData)
+            refresh();
         }).catch(err => {
             console.log(err)
         })
@@ -44,15 +36,7 @@ const BlogList = ({ blogs }) => {
             })
         }).then(res => res.json())
         .then(result => {
-            //console.log(result)
-            const newData = data.map(blog => {
-                if(blog._id == result._id){
-                    return result
-                } else {
-                    return blog
-                }
-            })
-            setData(newData)
+            refresh();
         }).catch(err => {
             console.log(err)
         })
@@ -71,14 +55,7 @@ const BlogList = ({ blogs }) => {
         }).then(res => res.json())
         .then(result => {
             console.log(result)
-            const newData = data.map(blog => {
-                if(blog._id == result._id){
-                    return result
-                } else {
-                    return blog
-                }
-            })
-            setData(newData)
+            refresh();
         }).catch(error => {
             console.log(error)
         })
@@ -91,11 +68,7 @@ const BlogList = ({ blogs }) => {
             }
         }).then(res => res.json())
         .then(result => {
-            console.log(result)
-            const newData = data.filter(blog => {
-                return blog._id !== result._id
-            })
-            setData(newData)
+            refresh();
         })
     }
     return (
@@ -109,7 +82,7 @@ const BlogList = ({ blogs }) => {
                     <h5>{ blog.title }</h5>
                     </a>
                     {blog.author._id == usrname._id 
-                    && <i className="material-icons"
+                    && <i className="material-icons" title="Delete this blog permanently"
                         onClick = {() => deleteBlog(blog._id)}
                         >delete</i>
                     }

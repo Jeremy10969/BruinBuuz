@@ -662,6 +662,14 @@ button.search-type{
   padding: 1rem 2.5rem;
 }
 
+.blog-content a{
+  color:#172342;
+}
+
+.blog-content a:hover{
+  color:#347bad;
+}
+
 .blog-text{
   margin-top:1.5em;
   text-align:justify !important;
