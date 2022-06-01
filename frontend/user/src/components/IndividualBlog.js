@@ -94,6 +94,25 @@ const IndividualBlog = () => {
             console.log(error)
         })
     }
+    const uncommentBlog = (text, blogId) => {
+        fetch("http://"+window.location.host.split(":")[0]+":4000/uncomment", {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                blogId,
+                text
+            })
+        }).then(res => res.json())
+        .then(result => {
+            setRefresh(refresh+1)
+            console.log(result)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
     const deleteBlog = (blogid) => {
         fetch(`http://`+window.location.host.split(":")[0]+`:4000/deleteBlog/${blogid}`, {
             method: "delete",
@@ -150,6 +169,17 @@ const IndividualBlog = () => {
                                     <span style = {{fontWeight: "1000"}}>
                                     <a href={"/users/"+info.author.username}>{info.author.username}</a>
                                     </span> {info.text}
+                                    {info.author._id === usrname._id
+                                    ?
+                                    <i className="material-icons"
+                                    style = {{
+                                        float: "right"
+                                        }}
+                                    onClick={()=>{uncommentBlog(info.text, data._id)}}
+                                    >delete</i>
+                                    :
+                                    null
+                                    }
                                 </h5>
                             )
                         })

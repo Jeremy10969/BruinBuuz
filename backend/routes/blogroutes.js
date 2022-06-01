@@ -219,6 +219,28 @@ router.put('/comment', requireLogin, (req, res) => {
     })
 })
 
+router.put('/uncomment', requireLogin, (req, res) => {
+    const comment = {
+        text: req.body.text,
+        author: req.user._id,
+    };
+    Blog.findByIdAndUpdate(req.body.blogId, {
+        $inc:{heat: 10},
+        $pull: {comments: comment}
+    }, {
+        new: true
+    })
+    .populate("comments.author", "_id username")
+    .populate("author", "_id username")
+    .exec((err, result) => {
+        if(err){
+            return res.status(422).json({error:err})
+        } else {
+            res.json(result)
+        }
+    })
+})
+
 router.delete('/deleteBlog/:blogid', requireLogin, (req, res) => {
     Blog.findOne({_id: req.params.blogid})
     .populate("author", "_id")
