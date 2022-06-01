@@ -46,12 +46,28 @@ const Create = () => {
                         return;
                     }
                     else {
+                        tags.length!=0?tags.map(
+                            (tag)=>{
+                                fetch("http://"+window.location.host.split(":")[0]+":4000/followtag/"+tag,
+                                { 
+                                    method: "PUT",
+                                    headers: {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                                    },
+                                    body: JSON.stringify({
+                                        tagname: tag
+                                    })
+                                })
+                                .then(navigate('/Home'))
+                            }
+                        ):navigate('/Home')
                         setUploadSuccess(true);
                         setShowMessage(true);
                         setMessage("Successfully uploaded");
                         console.log("Sucess!!");
 
-                        navigate('/Home');
+                        
                     }
                 }).catch(err => {
                     console.log(err);
