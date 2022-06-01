@@ -144,7 +144,7 @@ const TagPage = ()=>{
             <div style={{paddingTop:"5.5rem"}}>
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
-            { blogs && <BlogList blogs={blogs} /> }
+            { blogs && <BlogList blogs={blogs} refresh={()=>{setbtnstate(btnstate+1)}}/> }
             { !isPending && !blogs && <div>"You've reached the end! No posts associated." </div> }
             </div>
         </div>

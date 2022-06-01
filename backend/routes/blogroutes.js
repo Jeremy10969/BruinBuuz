@@ -157,6 +157,7 @@ router.get('/tags/:tag', requireLogin, (req,res)=>{
     const tag = req.params.tag;
       Blog.find({tags:{$all: tag}})
       .sort({ createdAt:-1 })
+      .populate("comments.author")
         .then(result => {
             // console.log(result)
           res.json(result);
