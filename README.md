@@ -6,9 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To Set Up
 
-First, clone this repository with the command:
+- First, clone this repository.
+    > run the command below:
 
-### `git clone https://github.com/Jeremy10969/BruinBuuz.git`
+    ```
+    git clone https://github.com/Jeremy10969/BruinBuuz.git`
+    ```
 
 Start the backend server with the commands:
 
