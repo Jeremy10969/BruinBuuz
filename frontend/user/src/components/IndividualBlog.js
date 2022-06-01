@@ -9,7 +9,7 @@ const IndividualBlog = () => {
     const [error, setError] = useState(null);
     const usrnameStr = localStorage.getItem("user");
     const usrname = JSON.parse(usrnameStr);
-
+    const [refresh, setRefresh] = useState(0);
 
     useEffect(() => {
         console.log(blogid);
@@ -37,7 +37,7 @@ const IndividualBlog = () => {
             setIsPending(false);
             setError(err.message);
         })
-    }, [blogid])
+    }, [blogid, refresh])
 
     const likeBlog = (id) => {
         fetch("http://"+window.location.host.split(":")[0]+":4000/like", {
@@ -52,6 +52,7 @@ const IndividualBlog = () => {
         }).then(res => res.json())
         .then(result => {
             console.log(result)
+            setRefresh(refresh+1)
         }).catch(err => {
             console.log(err)
         })
@@ -68,6 +69,7 @@ const IndividualBlog = () => {
             })
         }).then(res => res.json())
         .then(result => {
+            setRefresh(refresh+1)
             console.log(result)
         }).catch(err => {
             console.log(err)
@@ -86,19 +88,21 @@ const IndividualBlog = () => {
             })
         }).then(res => res.json())
         .then(result => {
+            setRefresh(refresh+1)
             console.log(result)
         }).catch(error => {
             console.log(error)
         })
     }
     const deleteBlog = (blogid) => {
-        fetch(`http://"+window.location.host.split(":")[0]+":4000/deleteBlog/${blogid}`, {
+        fetch(`http://`+window.location.host.split(":")[0]+`:4000/deleteBlog/${blogid}`, {
             method: "delete",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("jwt")
             }
         }).then(res => res.json())
         .then(result => {
+            setRefresh(refresh+1)
             console.log(result)
         })
     }
