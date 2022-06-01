@@ -171,7 +171,7 @@ const IndividualBlog = () => {
                         commentBlog(e.target[0].value, data._id)
                         e.target.reset()
                     }}>
-                        <input type="text" className="individual-comment" placeholder="Add your comment" />
+                        <input type="text" className="individual-comment" placeholder="Add your comment (hit Enter to publish)" />
                     </form>
                 </div>
                 <div className="gap"> </div>

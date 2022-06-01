@@ -15,10 +15,12 @@ const BlogList = ({ blogs, refresh }) => {
             body: JSON.stringify({
                 blogId: id
             })
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(result => {
             refresh();
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err)
         })
     }
@@ -32,10 +34,12 @@ const BlogList = ({ blogs, refresh }) => {
             body: JSON.stringify({
                 blogId: id
             })
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(result => {
             refresh();
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err)
         })
     }
@@ -50,11 +54,13 @@ const BlogList = ({ blogs, refresh }) => {
                 blogId,
                 text
             })
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(result => {
             console.log(result)
             refresh();
-        }).catch(error => {
+        })
+        .catch(error => {
             console.log(error)
         })
     }
@@ -147,7 +153,7 @@ const BlogList = ({ blogs, refresh }) => {
                         commentBlog(e.target[0].value, blog._id)
                         e.target.reset()
                     }}>
-                        <input type="text" placeholder="Add your comment" />
+                        <input type="text" placeholder="Add your comment (hit Enter to publish)" />
                     </form>
                     </div>
                 </div>
