@@ -79,7 +79,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
 
 router.get('/all-blog',requireLogin,  (req, res) => {
     Blog.find().sort({ createdAt:-1 })
-
+    .populate("comments.author")
         .then(result=>{
             res.json(result);
             console.log("getting all blogs.")
@@ -97,6 +97,7 @@ router.get('/feed', requireLogin, (req, res) => {
     const tags = req.user.tags;
     console.log(tags)
     Blog.find({tags:{$in: tags}})
+    .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(feed => {
         // console.log(feed)

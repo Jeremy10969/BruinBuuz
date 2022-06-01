@@ -136,7 +136,7 @@ const BlogList = ({ blogs, refresh }) => {
                             return(
                                 <h6 key = {info._id}>
                                     <span style = {{fontWeight: "1000"}}>
-                                        {info.author}
+                                    <a href={"/users/"+info.author.username}>{info.author.username}</a>
                                     </span> {info.text}
                                 </h6>
                             )
