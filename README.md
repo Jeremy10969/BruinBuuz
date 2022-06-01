@@ -10,20 +10,26 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     > run the command below:
 
     ```
-    git clone https://github.com/Jeremy10969/BruinBuuz.git`
+    git clone https://github.com/Jeremy10969/BruinBuuz.git
     ```
 
-Start the backend server with the commands:
+- Start the backend server.
+    > run the commands below:
 
-### `cd BruinBuuz/backend`
-### `npm install`
-### `npm start`
+    ```
+    cd BruinBuuz/backend
+    npm install
+    npm start
+    ```
 
-Start a new Terminal and run the following commands:
+- Open a new Terminal and start the project.
+    > run the commands below:
 
-### `cd BruinBuuz/frontend/user`
-### `npm install`
-### `npm start`
+    ```
+    cd BruinBuuz/frontend/user
+    npm install
+    npm start
+    ```
 
 Welcome to Bruin Buuz!
 
