@@ -863,3 +863,13 @@ button.search-type{
 .profile-pic label:hover{
   color: black;
 }
+
+.follower-list i{
+  color:#555;
+  margin-left: 0.5em;
+  margin-bottom: 0.8em;
+}
+
+.follower-list i:hover{
+  color:red;
+}
