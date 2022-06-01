@@ -47,12 +47,14 @@ const Followers = () => {
             followersBlogList.map(
                 (obj, index)=>{
                     return(
-                        <div>
+                        <div className='follower-list'>
                             <h5>
                                 <img className="profile-name" src={obj.user.picture} />
                                 {
                                     <a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>
-                                }                              
+                                }
+                                <label for="remove-follower"><i className='material-icons'>remove_circle_outline</i></label>
+                                <button id="remove-follower" hidden/>                              
                             </h5>
                             <PostEntranceList posts={obj.blogs.slice(0,3)}/>
                         </div>
