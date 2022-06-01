@@ -115,7 +115,7 @@ const BlogList = ({ blogs }) => {
                     }
                     </div>
                     
-                    <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
+                    <p>Posted by <img className="profile-name" src={blog.author.picture} /> <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
                     <div style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</div></p>
                     
                         {blog.picture !== '' && blog.picture !== 'no pic' &&

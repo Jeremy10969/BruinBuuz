@@ -73,6 +73,23 @@ router.get('/protected', requireLogin, (req, res) => {
    res.send("Look at protected")
 })
 
+
+router.post('/changeprofileimg', requireLogin, (req,res) => {
+   const picture = req.body.picture
+   const userid = req.user._id
+   console.log(userid)
+   User.findByIdAndUpdate(userid, {picture: picture})
+   .then(data =>{
+      res.json({newprofilepic: data});
+      console.log("photo uploaded")
+  })
+  .catch(error =>{
+      res.json(error);
+      console.log(error);
+  });
+}
+) 
+
 router.put('/followtag/:tagname', requireLogin, (req, res) => {
    const tagname = req.params.tagname;
 

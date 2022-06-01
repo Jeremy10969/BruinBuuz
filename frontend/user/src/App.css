@@ -264,12 +264,13 @@ img.profile-name {
   border-radius: 50%;
   height: 2em;
   width: 2em;
-  margin-right: 1rem;
+  margin-right: 0.2em;
   border: 1px solid lightgrey;
   position: relative;
   top: 10px
   
 }
+
 
 a.profile-username{
   color: black;

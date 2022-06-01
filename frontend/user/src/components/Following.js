@@ -50,7 +50,7 @@ const Following = () => {
                         <div>
                             
                             <h5>
-                                <img className="profile-name" src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
+                                <img className="profile-name" src={obj.user.picture} />
                                 {<a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>}
                             </h5>
                             <PostEntranceList posts={obj.blogs.slice(0,3)}/>

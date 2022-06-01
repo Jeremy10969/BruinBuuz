@@ -34,7 +34,7 @@ const blogTemplate = new mongoose.Schema({
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
         required: true,   // need to change
-        autopopulate: { select: 'username' }
+        autopopulate: true
     },
     date:{
         type: Date,

@@ -34,7 +34,11 @@ const signUpTemplate = new mongoose.Schema({
   following:[{
     type: ObjectId,
     ref: "usrtable"
-}]
+}],
+picture:{
+    type: String,
+    default: "https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300",
+},
 })
 
 //export the schema

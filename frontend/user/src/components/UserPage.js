@@ -122,7 +122,7 @@ const UserPage = () => {
                 }}>
                     <div>
                         <img style={{ width: "160px", height: "160px", borderRadius: "80px", objectFit: "cover" }}
-                            src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
+                            src={userInfo.picture} />
                     </div>
                     <div style={{ textAlign: "center" }}>
                         <h4>{userInfo.username}</h4> 

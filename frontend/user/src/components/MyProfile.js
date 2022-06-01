@@ -4,6 +4,65 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-rout
 
 const MyProfile = () => {
     const [userInfo, setUserInfo] = useState();
+    const [uploadPic, setUploadPic] = useState("");
+    const [refresh, setRefresh] = useState(0);
+    useEffect(
+        ()=>{
+            
+            const formData = new FormData();
+            formData.append("file", uploadPic);
+            formData.append("upload_preset", "bruinbuuz");
+            formData.append("cloud_name", "dxhk2spfw");
+            if (uploadPic) {
+                console.log("called")
+    
+                // image is asset type, upload is delivery type
+    
+                fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                            
+                            fetch("http://localhost:4000/changeprofileimg", 
+                            {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                                },
+                                body: JSON.stringify({
+                                    picture: res.url,
+                                })
+                            })
+                            .then(
+                                res=>{
+                                    if (!res.ok) {
+                                        throw Error('could not post data.');
+                                    }
+                        
+                                    return res.json();
+                                }
+                            )
+                            .then(
+                                // success prompt or not'
+                                res=>{
+                                    console.log(res)
+                                    if (res){
+                                        setRefresh(refresh+1);
+                                    }
+                                }
+                               
+                            )
+                            
+                        })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+    ,[uploadPic])
 
     useEffect( () => {
         fetch("http://localhost:4000/myprofile", {
@@ -29,7 +88,7 @@ const MyProfile = () => {
         .catch(err => {
             console.log(err.message);
         })}
-        , [])
+        , [refresh])
 
     return (
         <div>
@@ -41,8 +100,11 @@ const MyProfile = () => {
                     borderBottom: "3px solid black"
                 }}>
                     <div>
-                        <img style={{ width: "160px", height: "160px", borderRadius: "80px", objectFit: "cover" }}
-                            src="https://cdn.dribbble.com/users/559871/screenshots/15470728/media/9e081b71dfe6dec27a37e8c9bfc1af35.png?compress=1&resize=400x300" />
+                        <img className='my-profile-img'style={{ border: "1px solid lightgrey", 
+                        width: "10rem", height: "10rem", borderRadius: "80px", objectFit: "cover" }}
+                            src={userInfo.picture} />
+                        <input type="file" 
+                        onChange={(e) => {{ setUploadPic(e.target.files[0]) };}}/>
                     </div>
                     <div style={{ textAlign: "center" }}>
                         <h4>{userInfo.username}</h4>
