@@ -89,9 +89,39 @@
   cursor: pointer;
 }
 
+.comment-section{
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #172342;
+  box-sizing: inherit;
+  width: 50rem;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 3px;
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem 2.5rem;
+}
+
+.comment-section h5{
+  font-size:medium;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.thumbsup{
+  width:20%;
+}
+
 .thumbsup h6{
   margin-top: 2.5px;
   margin-left: 0.5em;
+}
+
+.thumbsup h5{
+  font-size:smaller;
 }
 
 button.explore-more{
@@ -196,9 +226,11 @@ button.explore-more{
   background-color:lightgrey !important
 
 }
+
 .following-button:hover{
   background-color: darkgrey !important;
 }
+
 .userinfo{
   font-family: 'Montserrat', sans-serif;
 }
@@ -419,9 +451,9 @@ button.search-button{
 }
 
 button.search-type{
-  margin-top: 0.6em;
+  margin-top: 0.3em;
   margin-right: 0.8em;
-  min-width:5em;
+  min-width: 5em;
   max-height: 2em;
   margin-left: -1.5em;
 }
@@ -704,6 +736,10 @@ button.search-type{
   padding-top: 0.5em;
 }
 
+.interaction form{
+  width:100%;
+}
+
 .gap{
   background: transparent;
   padding-bottom:5em;
@@ -816,4 +852,14 @@ button.search-type{
 
 .tag-gap i:hover{
   color:steelblue;
+}
+
+.profile-pic label{
+  color:#555;
+  cursor: pointer;
+  float:right;
+}
+
+.profile-pic label:hover{
+  color: black;
 }

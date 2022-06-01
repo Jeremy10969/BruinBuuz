@@ -36,9 +36,13 @@ const Search = () => {
     return (
     <div className="search-page">
         <div className='search-bar' style={{display:"flex"}}>
-
-                <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>{searchTypes[searchType]}</button>
-                
+            <div>
+            <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>{searchTypes[searchType]}</button>
+            <button className='search-type'
+            style={{width:"6.1em", height:"1.8em", fontSize:"smaller", marginLeft:"-1.8em"}}>
+                MM/DD/YY
+                </button>
+            </div>
             
             <input placeholder={'Search by ' + (searchType==2?searchTypes[searchType]+ " (seperate by space)":
                                                                 searchTypes[searchType])} 

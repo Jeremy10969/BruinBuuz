@@ -98,12 +98,14 @@ const MyProfile = () => {
                     margin: "18px 0px",
                     borderBottom: "3px solid black"
                 }}>
-                    <div>
+                    <div className='profile-pic'>
                         <img className='my-profile-img'style={{ border: "1px solid lightgrey", 
-                        width: "10rem", height: "10rem", borderRadius: "80px", objectFit: "cover" }}
+                        width: "10rem", height: "10rem", borderRadius: "80px", objectFit: "cover", marginBottom:"0.5em"}}
                             src={userInfo.picture} />
-                        <input type="file" 
-                        onChange={(e) => {{ setUploadPic(e.target.files[0]) };}}/>
+                        <label for="upload"><i className='material-icons'
+                        style={{marginTop:"0px", marginLeft:"-23px"}}>add_circle_outline</i></label>
+                        <input type="file" id="upload"
+                        onChange={(e) => {{ setUploadPic(e.target.files[0]) };}} hidden/>
                     </div>
                     <div style={{ textAlign: "center" }}>
                         <h4>{userInfo.username}</h4>

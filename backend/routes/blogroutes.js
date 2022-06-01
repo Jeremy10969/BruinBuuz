@@ -111,6 +111,7 @@ router.get('/myblogs', requireLogin, (req, res) => {
 
     const id = req.user._id;
     Blog.find({author: id})
+    .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(myposts => {
         res.json(myposts);
@@ -123,7 +124,13 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
     const id = req.params.blogid;
     console.log(id);
 
+<<<<<<< HEAD
     Blog.findByIdAndUpdate(id, {$inc:{heat: 0.5}})
+=======
+    Blog.findById(id)
+    .populate("comments.author")
+    .sort({ createdAt:-1 })
+>>>>>>> 4f398680f58e6719d08ea38b348a645b8b8808eb
       .then(result => {
           console.log(result)
         res.json(result);
