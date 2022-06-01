@@ -69,7 +69,8 @@ const IndividualBlog = () => {
                     </div>
                     )}
                     {data.author._id == usrname._id 
-                    && <i className="material-icons" style = {{
+                    && <i className="material-icons" title="Delete this blog permanently"
+                    style = {{
                         float: "right"
                         }}
                         onClick = {() => deleteBlog(data._id)}

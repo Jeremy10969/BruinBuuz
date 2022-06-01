@@ -109,7 +109,7 @@ const BlogList = ({ blogs }) => {
                     <h5>{ blog.title }</h5>
                     </a>
                     {blog.author._id == usrname._id 
-                    && <i className="material-icons"
+                    && <i className="material-icons" title="Delete this blog permanently"
                         onClick = {() => deleteBlog(blog._id)}
                         >delete</i>
                     }
