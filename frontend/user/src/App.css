@@ -817,3 +817,13 @@ button.search-type{
 .tag-gap i:hover{
   color:steelblue;
 }
+
+.profile-pic label{
+  color:#555;
+  cursor: pointer;
+  float:right;
+}
+
+.profile-pic label:hover{
+  color: black;
+}
