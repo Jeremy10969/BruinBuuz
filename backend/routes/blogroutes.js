@@ -94,7 +94,7 @@ router.get('/feed', requireLogin, (req, res) => {
     Blog.find({tags:{$in: tags}})
     .sort({ createdAt:-1 })
     .then(feed => {
-        console.log(feed)
+        // console.log(feed)
         res.json(feed);
     })
     .catch(err => {  console.log(err); });
@@ -148,7 +148,7 @@ router.get('/tags/:tag', requireLogin, (req,res)=>{
       Blog.find({tags:{$all: tag}})
       .sort({ createdAt:-1 })
         .then(result => {
-            console.log(result)
+            // console.log(result)
           res.json(result);
         })
         .catch(err => {

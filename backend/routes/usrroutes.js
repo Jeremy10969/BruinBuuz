@@ -78,10 +78,11 @@ router.put('/followtag/:tagname', requireLogin, (req, res) => {
 
 
    User.findByIdAndUpdate(req.user._id, { $addToSet: { tags: tagname } }, { new: true })
-      .then(doc => {
-         if (doc) { console.log("successfully add tag to array"); }
-         else { console.log("unsuccess") }
-      });
+      .then(
+         result => {
+            res.json(result)
+         }
+      );
 
    //let url = "http://localhost:4000/addtag/" + tagname;
    //fetch(url, {
@@ -95,9 +96,8 @@ router.put('/unfollowtag/:tagname', requireLogin, (req,res)=>{
    const tagname = req.params.tagname;
 
    User.findByIdAndUpdate(req.user._id, { $pull: { tags: tagname } })
-   .then(doc => {
-      if (doc) {console.log("successfully delete");}
-      else {console.log("unsuccess delete")}
+   .then(result => {
+      res.json(result)
    })
 })
 
@@ -123,6 +123,29 @@ router.get('/users/:username', requireLogin, (req, res) => {
        console.log(err);
      });
 })
+
+
+router.post('/tagfollowstatus', requireLogin, (req,res) => {
+   const selfid = req.user._id;
+   const tag = req.body.tag
+   
+   User.findOne({
+      $and:[
+         {_id: selfid},
+         {tags: tag}
+      ]
+   })
+   .then(
+      result => {
+         console.log(result)
+         res.json(result)
+      }
+   )
+   .catch(err => {
+      console.log(err);
+    });
+}) 
+
 
 router.post('/getfollowstatus', requireLogin, (req,res) => {
    const selfid = req.user._id;

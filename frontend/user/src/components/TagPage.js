@@ -8,11 +8,42 @@ const TagPage = ()=>{
     const [blogs, setBlogs] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
+    const [followingState, setFollowingState] = useState(false);
     const [btnstate, setbtnstate] = useState(false);
 
+    const getFollowStatus=()=>{
+        fetch("http://localhost:4000/tagfollowstatus", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                tag: tag
+            })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw Error('could not fetch the data.');
+            }
+            return(res.json());
+            
+        })
+        .then(
+            result => {
+    
+                setFollowingState(result?true:false);
+                {console.log(followingState)}
+            }
+           
+        )
+    }
+
     const followTag = () => {
-        console.log("Trying to follow the tag.")
-        if (!btnstate) {
+    
+        
+        if (!followingState) {
+            console.log("Trying to follow the tag.")
             fetch("http://localhost:4000/followtag/"+tag,
             { 
                 method: "PUT",
@@ -28,6 +59,7 @@ const TagPage = ()=>{
                 if (!res.ok) {
                     throw Error('could not fetch the data.');
                 }
+                console.log(res)
                 setbtnstate(!btnstate);
                 return res.json();
             }).then(data => console.log(data))
@@ -36,6 +68,7 @@ const TagPage = ()=>{
             })
         }
         else {
+            console.log("Trying to unfollow the tag.")
             fetch("http://localhost:4000/unfollowtag/"+tag,
             { 
                 method: "PUT",
@@ -64,6 +97,7 @@ const TagPage = ()=>{
     useEffect(() => {
         console.log("tag", tag)
         
+
         fetch("http://localhost:4000/tags/"+tag,
             { headers: {
                 "Content-Type": "application/json",
@@ -80,6 +114,7 @@ const TagPage = ()=>{
         })
         .then(data => {
             console.log(data);
+            getFollowStatus();
             setIsPending(false);
             setBlogs(data);
             setError(null);
@@ -90,7 +125,7 @@ const TagPage = ()=>{
             setIsPending(false);
             setError(err.message);
         })
-     }, [tag]) 
+     }, [tag, btnstate]) 
 
     return(
         <div className="home">
@@ -100,7 +135,10 @@ const TagPage = ()=>{
                 </h4>
                 <button className="tag-follow-button"
                 onClick={followTag}
-                >Follow this tag!</button>
+                >
+                {followingState? "Unfollow this tag!" : "Follow this tag!"}
+                    
+                   </button>
             </div>
             
             <div style={{paddingTop:"5.5rem"}}>
