@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 const moment = require('moment');
 
-const usrnameStr = localStorage.getItem("user");
-const usrname = JSON.parse(usrnameStr);
-
 const BlogList = ({ blogs, refresh }) => {
+    const usrnameStr = localStorage.getItem("user");
+    const usrname = JSON.parse(usrnameStr);
     const likeBlog = (id) => {
         fetch("http://"+window.location.host.split(":")[0]+":4000/like", {
             method: "put",
