@@ -11,8 +11,9 @@ const Signin =() => {
         if (!email || !password)
         {alert("Please complete all fields");}
         else{
+            console.log("http://"+window.location.host.split(":")[0]+":4000/signin");    
         console.log("posting data");
-        fetch("http://localhost:4000/signin",{
+        fetch("http://"+window.location.host.split(":")[0]+":4000/signin",{
             method:"post",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({

@@ -20,7 +20,7 @@ const Signup =() => {
             else
             {
             console.log("posting data");
-            fetch("http://localhost:4000/signup",{
+            fetch("http://"+window.location.host.split(":")[0]+":4000/signup",{
                 method:"post",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({

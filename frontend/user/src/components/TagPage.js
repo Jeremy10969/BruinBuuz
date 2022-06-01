@@ -12,7 +12,7 @@ const TagPage = ()=>{
     const [btnstate, setbtnstate] = useState(false);
 
     const getFollowStatus=()=>{
-        fetch("http://localhost:4000/tagfollowstatus", {
+        fetch("http://"+window.location.host.split(":")[0]+":4000/tagfollowstatus", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const TagPage = ()=>{
         
         if (!followingState) {
             console.log("Trying to follow the tag.")
-            fetch("http://localhost:4000/followtag/"+tag,
+            fetch("http://"+window.location.host.split(":")[0]+":4000/followtag/"+tag,
             { 
                 method: "PUT",
                 headers: {
@@ -69,7 +69,7 @@ const TagPage = ()=>{
         }
         else {
             console.log("Trying to unfollow the tag.")
-            fetch("http://localhost:4000/unfollowtag/"+tag,
+            fetch("http://"+window.location.host.split(":")[0]+":4000/unfollowtag/"+tag,
             { 
                 method: "PUT",
                 headers: {
@@ -98,7 +98,7 @@ const TagPage = ()=>{
         console.log("tag", tag)
         
 
-        fetch("http://localhost:4000/tags/"+tag,
+        fetch("http://"+window.location.host.split(":")[0]+":4000/tags/"+tag,
             { headers: {
                 "Content-Type": "application/json",
                  "Authorization": "Bearer " + localStorage.getItem("jwt")

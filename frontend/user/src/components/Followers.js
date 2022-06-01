@@ -11,7 +11,7 @@ const Followers = () => {
     useEffect(() => {
         setFollowersBlogList([]);
         userInfo.followers.map( (followersuser, index) => {
-            fetch("http://localhost:4000/bloglist/" + followersuser._id
+            fetch("http://"+window.location.host.split(":")[0]+":4000/bloglist/" + followersuser._id
              ,{ 
                 method: "GET",
                 headers: {

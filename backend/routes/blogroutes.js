@@ -78,19 +78,20 @@ router.get('/search/:content',requireLogin, (req, res) => {
 });
 
 router.get('/all-blog',requireLogin,  (req, res) => {
-    Blog.find()
-    .sort({ createdAt:-1 })
-        .then(result => {
-           res.json(result);
-           console.log("getting all blogs.")
+    Blog.find().sort({ createdAt:-1 })
+
+        .then(result=>{
+            res.json(result);
+            console.log("getting all blogs.")
         })
+          
+
         .catch(error => { 
             res.json(error);
             console.log(error);
         });
-});
 
-
+    })
 router.get('/feed', requireLogin, (req, res) => {
 
     const tags = req.user.tags;

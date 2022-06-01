@@ -94,6 +94,9 @@
   margin-left: 0.5em;
 }
 
+button.explore-more{
+  margin: auto;
+}
 .logout{
   background-color: steelblue;
   font-family: 'Shrikhand', cursive;

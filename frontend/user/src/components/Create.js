@@ -22,7 +22,7 @@ const Create = () => {
         // it must have a url present, so initialization will not render
         if (url) {
             console.log(title, body, url, but, tags);
-            fetch("http://localhost:4000/Create", {
+            fetch("http://"+window.location.host.split(":")[0]+":4000/Create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

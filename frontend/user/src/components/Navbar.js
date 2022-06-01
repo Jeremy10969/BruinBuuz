@@ -9,14 +9,12 @@ const Navbar = ()=>{
                 </a>
                
                 <ul className="right">
-
-                    <li >
+                    <li>
                         <a href="/Search">
                             <Icon className="material-icons" fontSize='1rem' >search</Icon>
                         </a>
-
-
-                    </li>  
+                    </li> 
+                    <li><a href="/Explore">Explore</a></li>
                     <li><a href="/Create">Create</a></li>
                     <li><a href="/myprofile">Profile</a></li>
                     <li>

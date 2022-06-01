@@ -9,7 +9,7 @@ const UserBlogs = () => {
 
     useEffect(() => {
         
-        fetch("http://localhost:4000/bloglist/"+userInfo._id
+        fetch("http://"+window.location.host.split(":")[0]+":4000/bloglist/"+userInfo._id
              ,{ 
                 method: "GET",
                 headers: {

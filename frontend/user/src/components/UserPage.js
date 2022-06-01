@@ -15,7 +15,7 @@ const UserPage = () => {
     const [alert, setAlert] = useState(false);
 
     const getFriendStatus=()=>{
-        fetch("http://localhost:4000/getfollowstatus", {
+        fetch("http://"+window.location.host.split(":")[0]+":4000/getfollowstatus", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const UserPage = () => {
         )
     }
     const changeFriendStatus=()=>{
-        fetch("http://localhost:4000/changefollowstatus", {
+        fetch("http://"+window.location.host.split(":")[0]+":4000/changefollowstatus", {
             method: "POST",
             headers: {             
                 "Content-Type": "application/json",
@@ -80,7 +80,8 @@ const UserPage = () => {
 
 
     useEffect( () => {
-        fetch("http://localhost:4000/users/" + username, {
+        
+        fetch("http://"+window.location.host.split(":")[0]+":4000/users/" + username, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

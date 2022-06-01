@@ -6,7 +6,7 @@ const PostEntrance = (post) => {
         <div>
             {post.picture == "no pic" ?
                 <div className="grid-background-color">
-                    <a href={"http://localhost:3000/blogs/" + post._id}>
+                    <a href={"http://"+window.location.host.split(":")[0] + ":3000/blogs/" + post._id}>
                         <div key={post._id} className="gallery-post-grid">
 
                             <h5>{post.title?.length > 15 ? post.title.substr(0, 15)+'...' : post.title}</h5>
@@ -19,7 +19,7 @@ const PostEntrance = (post) => {
                     </a>
                 </div>
                 :
-                <a href={"http://localhost:3000/blogs/" + post._id} >
+                <a href={"http://"+window.location.host.split(":")[0] + ":3000/blogs/" + post._id} >
                     <div className="gallery-post-grid">
                         <div className="cover-image">
                             <img style={{ width: "100%", height: "100%", objectFit: "cover" }} src={post.picture} />

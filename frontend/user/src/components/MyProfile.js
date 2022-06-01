@@ -25,7 +25,7 @@ const MyProfile = () => {
                     .then(res => res.json())
                     .then(res => {
                             
-                            fetch("http://localhost:4000/changeprofileimg", 
+                            fetch("http://"+window.location.host.split(":")[0]+":4000/changeprofileimg", 
                             {
                                 method: "POST",
                                 headers: {
@@ -64,7 +64,7 @@ const MyProfile = () => {
     ,[uploadPic])
 
     useEffect( () => {
-        fetch("http://localhost:4000/myprofile", {
+        fetch("http://"+window.location.host.split(":")[0]+":4000/myprofile", {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

@@ -11,7 +11,7 @@ const Following = () => {
     useEffect(() => {
         console.log(userInfo.following);
         userInfo.following.map( (followinguser, index) => {
-            fetch("http://localhost:4000/bloglist/" + followinguser._id
+            fetch("http://"+window.location.host.split(":")[0]+":4000/bloglist/" + followinguser._id
              ,{ 
                 method: "GET",
                 headers: {

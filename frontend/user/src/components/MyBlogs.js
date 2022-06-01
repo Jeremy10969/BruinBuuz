@@ -8,7 +8,7 @@ const MyBlogs = () => {
 
     useEffect(() => {
         
-        fetch("http://localhost:4000/myblogs"
+        fetch("http://"+window.location.host.split(":")[0]+":4000/myblogs"
              ,{ 
                 method: "GET",
                 headers: {

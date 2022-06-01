@@ -11,7 +11,7 @@ const Search = () => {
 
         ()=>{
         if (content){
-            let url = "http://localhost:4000/search/" + content + "?searchType=" + searchTypes[searchType];
+            let url = "http://"+window.location.host.split(":")[0]+":4000/search/" + content + "?searchType=" + searchTypes[searchType];
             encodeURI(url);
             fetch(url, 
                 {method: "GET", headers: {
@@ -38,7 +38,7 @@ const Search = () => {
         <div className='search-bar' style={{display:"flex"}}>
 
                 <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>{searchTypes[searchType]}</button>
-
+                
             
             <input placeholder={'Search by ' + (searchType==2?searchTypes[searchType]+ " (seperate by space)":
                                                                 searchTypes[searchType])} 
@@ -46,8 +46,9 @@ const Search = () => {
 
             <button className='search-button' onClick={()=>{setBut(but+1)}}>Apply Filter</button>
         </div>
-        
+
         <div className="search-result">  
+        
             { result && <BlogList blogs={result} /> }
         </div>
         
