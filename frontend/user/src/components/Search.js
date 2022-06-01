@@ -7,11 +7,14 @@ const Search = () => {
     const [result, setResult] = useState(null);
     const [searchType, setSearchType] = useState(0);
     const searchTypes = ["title", "author", "tags", "content"]
+    const [filter, setFilter] = useState(0);
+    const filterTypes = ["latest", "earliest"];
     useEffect( 
 
         ()=>{
         if (content){
-            let url = "http://"+window.location.host.split(":")[0]+":4000/search/" + content + "?searchType=" + searchTypes[searchType];
+            let url = "http://"+window.location.host.split(":")[0]+":4000/search/" + content + "?searchType=" + searchTypes[searchType]
+            + " " + filterTypes[filter];
             encodeURI(url);
             fetch(url, 
                 {method: "GET", headers: {
@@ -37,10 +40,11 @@ const Search = () => {
     <div className="search-page">
         <div className='search-bar' style={{display:"flex"}}>
             <div>
-            <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>{searchTypes[searchType]}</button>
-            <button className='search-type'
+            <button className='search-type' onClick={()=>{setSearchType(searchType==searchTypes.length-1?0:searchType+1)}}>
+                {searchTypes[searchType]}</button>
+            <button className='search-type' onClick={()=>{setFilter(filter==1?0:1)}}
             style={{width:"6.1em", height:"1.8em", fontSize:"smaller", marginLeft:"-1.8em"}}>
-                MM/DD/YY
+                {filterTypes[filter]}
                 </button>
             </div>
             

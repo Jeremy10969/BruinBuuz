@@ -34,7 +34,9 @@ router.post('/Create',requireLogin, (req, res) => {
 });
 
 router.get('/search/:content',requireLogin, (req, res) => {
-    const searchType = req.query.searchType;
+    const searchFilters = req.query.searchType;
+    const searchType = searchFilters.split(" ")[0];
+    const filterType = searchFilters.split(" ")[1]
     console.log(searchType);
     const content = req.params.content;
     console.log(content);
@@ -63,7 +65,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
     .then(
         result=>{
             Blog.find(conditions)
-            .sort({ createdAt:-1 })
+            .sort(filterType=="latest"?{ createdAt:-1 }:{createdAt:1})
                 .then(result => {
                    res.json(result);
                 })
@@ -124,13 +126,10 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
     const id = req.params.blogid;
     console.log(id);
 
-<<<<<<< HEAD
     Blog.findByIdAndUpdate(id, {$inc:{heat: 0.5}})
-=======
-    Blog.findById(id)
+
     .populate("comments.author")
     .sort({ createdAt:-1 })
->>>>>>> 4f398680f58e6719d08ea38b348a645b8b8808eb
       .then(result => {
           console.log(result)
         res.json(result);
