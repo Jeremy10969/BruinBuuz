@@ -6,7 +6,6 @@ const usrnameStr = localStorage.getItem("user");
 const usrname = JSON.parse(usrnameStr);
 
 const BlogList = ({ blogs, refresh }) => {
-    const [data, setData] = useState([]);
     const likeBlog = (id) => {
         fetch("http://"+window.location.host.split(":")[0]+":4000/like", {
             method: "put",
@@ -61,7 +60,7 @@ const BlogList = ({ blogs, refresh }) => {
         })
     }
     const deleteBlog = (blogid) => {
-        fetch(`http://"+window.location.host.split(":")[0]+":4000/deleteBlog/${blogid}`, {
+        fetch("http://"+window.location.host.split(":")[0]+`:4000/deleteBlog/${blogid}`, {
             method: "delete",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("jwt")
@@ -72,7 +71,9 @@ const BlogList = ({ blogs, refresh }) => {
         })
     }
     return (
+        
         <div className="blog-list">
+            {console.log(blogs)}
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
                     <div className="title-trash" style={{
