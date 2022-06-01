@@ -133,12 +133,12 @@ const TagPage = ()=>{
                 <h4>
                     Posts under the #{tag} tag:
                 </h4>
-                <button className="tag-follow-button"
-                onClick={followTag}
-                >
-                {followingState? "Unfollow this tag!" : "Follow this tag!"}
-                    
-                   </button>
+
+                {followingState?
+                <button className='tag-unfollow' onClick={followTag}>"Unfollow this tag!"</button>
+                :
+                <button className='tag-follow' onClick={followTag}>"Follow this tag!"</button>
+                }
             </div>
             
             <div style={{paddingTop:"5.5rem"}}>

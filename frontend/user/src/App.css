@@ -309,6 +309,11 @@ a.profile-username:hover{
   color:steelblue;
 }
 
+.title-trash i{
+  margin-top:0.7em;
+  float: right;
+}
+
 .post-input{
   font-family: 'Montserrat', sans-serif;
   text-align: left;
@@ -759,20 +764,36 @@ button.search-type{
   z-index: 999;
 }
 
-.tag-page button{
+.tag-follow{
   vertical-align: middle;
   margin-right: 1.5em;
   border-radius:25px;
   height:2em;
   width:10em;
-  margin-top: 1.7em;
+  margin-top: 1.5em;
   border: orange;
-  background-color: orange;
+  background-color: orange !important;
   font-family: 'Gochi Hand', cursive;
 }
 
-.tag-page button:hover{
-  background-color:darkorange;
+.tag-follow:hover{
+  background-color:darkorange !important;
+}
+
+.tag-unfollow{
+  vertical-align: middle;
+  margin-right: 1.5em;
+  border-radius:25px;
+  height:2em;
+  width:10em;
+  margin-top: 1.5em;
+  border: orange;
+  background-color: lightgrey !important;
+  font-family: 'Gochi Hand', cursive;
+}
+
+.tag-unfollow:hover{
+  background-color:grey !important;
 }
 
 .tag-gap i{

@@ -102,16 +102,18 @@ const BlogList = ({ blogs }) => {
         <div className="blog-list">
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
+                    <div className="title-trash" style={{
+                        display:"flex",
+                        justifyContent:"space-between"}}>
                     <a href={"/blogs/"+blog._id}>
                     <h5>{ blog.title }</h5>
                     </a>
                     {blog.author._id == usrname._id 
-                    && <i className="material-icons" style = {{
-                        float: "right"
-                        }}
+                    && <i className="material-icons"
                         onClick = {() => deleteBlog(blog._id)}
                         >delete</i>
                     }
+                    </div>
                     
                     <p>Posted by <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
                     <div style = {{float: "right"}}>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</div></p>
@@ -126,7 +128,7 @@ const BlogList = ({ blogs }) => {
                 <div className="feed-content"  >
                    
                     
-                    <p style={{fontSize:"20px"}}>{ blog.body?.length > 200 ? blog.body.substr(0, 200)+'...' : blog.body  }</p>
+                    <p style={{fontSize:"20px", textAlign:"justify"}}>{ blog.body?.length > 200 ? blog.body.substr(0, 200)+'...' : blog.body  }</p>
                     
                         {blog.tags.map(tag => <div className="tags" key={tag}>
                         <Link to={`/tags/${tag}`}>#{tag}</Link>
