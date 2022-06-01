@@ -9,7 +9,7 @@ const PostEntrance = (post) => {
                     <a href={"http://"+window.location.host.split(":")[0] + ":3000/blogs/" + post._id}>
                         <div key={post._id} className="gallery-post-grid">
 
-                            <h5>{post.title?.length > 15 ? post.title.substr(0, 15)+'...' : post.title}</h5>
+                            <h5>{post.title?.length > 30 ? post.title.substr(0, 30)+'...' : post.title}</h5>
                             <div>
                                 <h6>{post.tags.map((tag)=>("#"+tag+" "))}</h6>
                                 <p>{ post.body?.length > 100 ? post.body.substr(0, 100)+'...' : post.body  }</p>
@@ -26,7 +26,7 @@ const PostEntrance = (post) => {
                         </div>
                         <div className="hidden-elements" key={post._id}>
 
-                            <h5>{post.title}</h5>
+                        <h5>{post.title?.length > 30 ? post.title.substr(0, 30)+'...' : post.title}</h5>
                             <div>
 
                                 <h6>{post.tags.map((tag)=>(tag+" "))}</h6>

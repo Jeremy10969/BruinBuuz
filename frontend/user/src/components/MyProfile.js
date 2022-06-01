@@ -13,10 +13,9 @@ const MyProfile = () => {
             formData1.append("upload_preset", "bruinbuuz");
             formData1.append("cloud_name", "dxhk2spfw");
             const formData2 = new FormData();
-            formData2.append("public_id", "c7wdjdepwihgsqnvcl0e");
-            formData2.append("cloud_name", "dxhk2spfw");
             if (uploadPic) {
                 console.log("called")
+            
                 // image is asset type, upload is delivery type
                 fetch('https://api.cloudinary.com/v1_1/dxhk2spfw/image/upload', {
                     method: 'POST',

@@ -66,6 +66,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
         result=>{
             Blog.find(conditions)
             .sort(filterType=="latest"?{ createdAt:-1 }:{createdAt:1})
+            .populate("comments.author")
                 .then(result => {
                    res.json(result);
                 })
