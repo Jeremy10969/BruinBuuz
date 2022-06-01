@@ -144,7 +144,7 @@ const IndividualBlog = () => {
                             return(
                                 <h5 key = {info._id}>
                                     <span style = {{fontWeight: "1000"}}>
-                                        {info.author.username}
+                                    <a href={"/users/"+info.author.username}>{info.author.username}</a>
                                     </span> {info.text}
                                 </h5>
                             )
