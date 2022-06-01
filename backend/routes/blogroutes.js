@@ -66,7 +66,6 @@ router.get('/search/:content',requireLogin, (req, res) => {
         result=>{
             Blog.find(conditions)
             .sort(filterType=="latest"?{ createdAt:-1 }:{createdAt:1})
-            .populate("comments.author")
                 .then(result => {
                    res.json(result);
                 })
@@ -82,7 +81,6 @@ router.get('/search/:content',requireLogin, (req, res) => {
 
 router.get('/all-blog',requireLogin,  (req, res) => {
     Blog.find().sort({heat: -1, createdAt: -1})
-        .populate("comments.author")
         .then(result=>{
             res.json(result);
             console.log("getting all blogs.")
@@ -100,7 +98,6 @@ router.get('/feed', requireLogin, (req, res) => {
     const tags = req.user.tags;
     console.log(tags)
     Blog.find({tags:{$in: tags}})
-    .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(feed => {
         res.json(feed);
@@ -114,7 +111,6 @@ router.get('/myblogs', requireLogin, (req, res) => {
 
     const id = req.user._id;
     Blog.find({author: id})
-    .populate("comments.author")
     .sort({ createdAt:-1 })
     .then(myposts => {
         res.json(myposts);
@@ -128,8 +124,6 @@ router.get('/blogs/:blogid', requireLogin, (req, res) => {
     console.log(id);
 
     Blog.findByIdAndUpdate(id, {$inc:{heat: 0.5}})
-
-    .populate("comments.author")
     .sort({ createdAt:-1 })
       .then(result => {
           console.log(result)
@@ -157,7 +151,6 @@ router.get('/tags/:tag', requireLogin, (req,res)=>{
     const tag = req.params.tag;
       Blog.find({tags:{$all: tag}})
       .sort({ createdAt:-1 })
-      .populate("comments.author")
         .then(result => {
             // console.log(result)
           res.json(result);
@@ -209,8 +202,6 @@ router.put('/comment', requireLogin, (req, res) => {
     }, {
         new: true
     })
-    .populate("comments.author", "_id username")
-    .populate("author", "_id username")
     .exec((err, result) => {
         if(err){
             return res.status(422).json({error:err})
@@ -231,8 +222,6 @@ router.put('/uncomment', requireLogin, (req, res) => {
     }, {
         new: true
     })
-    .populate("comments.author", "_id username")
-    .populate("author", "_id username")
     .exec((err, result) => {
         if(err){
             return res.status(422).json({error:err})
