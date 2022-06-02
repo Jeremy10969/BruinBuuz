@@ -37,7 +37,7 @@ const Following = () => {
             
         )
         
-    }, [])
+    }, [userInfo])
     return (
         
     <div>
