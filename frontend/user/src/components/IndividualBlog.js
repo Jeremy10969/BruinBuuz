@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const moment = require('moment');
 
 const IndividualBlog = () => {
@@ -10,6 +11,7 @@ const IndividualBlog = () => {
     const usrnameStr = localStorage.getItem("user");
     const usrname = JSON.parse(usrnameStr);
     const [refresh, setRefresh] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(blogid);
@@ -121,8 +123,10 @@ const IndividualBlog = () => {
             }
         }).then(res => res.json())
         .then(result => {
-            setRefresh(refresh+1)
+            
             console.log(result)
+            navigate('/Home')
+            setRefresh(refresh+1)
         })
     }
 
