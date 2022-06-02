@@ -37,7 +37,7 @@ const UserBlogs = () => {
     return (
         <div>
             <h4>Posts</h4>
-            {userBlogs&&userBlogs.lengt==0?<h5>No following currently.</h5>:""}   
+            {userBlogs&&userBlogs.length==0?<h5>No posts currently.</h5>:""}   
            { userBlogs &&  <PostEntranceList posts={userBlogs} /> }          
         </div>
 

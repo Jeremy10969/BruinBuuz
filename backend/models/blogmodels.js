@@ -30,6 +30,7 @@ const blogTemplate = new mongoose.Schema({
         author: {
             type: ObjectId,
             ref: "usrtable",
+            autopopulate: true
         },
     }],
     author:{

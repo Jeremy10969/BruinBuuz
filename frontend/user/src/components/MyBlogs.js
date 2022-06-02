@@ -34,9 +34,10 @@ const MyBlogs = () => {
         })
     }, [])
     return (
-        <div>
-            <h4>My Posts</h4>
-           { myPosts &&  <PostEntranceList posts={myPosts} /> }          
+        <div> 
+           <h4>My Posts</h4>
+            {myPosts&&myPosts.length==0?<h5>No posts currently.</h5>:""}   
+           { myPosts &&  <PostEntranceList posts={myPosts} /> }    
         </div>
 
     )
