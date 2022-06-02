@@ -46,8 +46,10 @@ const Home = ()=>{
             <div className="slogan">
                 <h1>
                     "EXPLORE BRUINS!!!!!"
+                    <div className='if-empty'>
                     {blogs && blogs.length==0?<h2>Posts with the tags you are following will show here.
                 You are not following any tags right now... Go Explore some!</h2>:""}
+                    </div>
                 </h1>
             </div>
             
