@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import React from 'react';
+import { useState } from "react";
 const moment = require('moment');
 
 const BlogList = ({ blogs, refresh }) => {
+    const [allblogs,setAllblogs] = useState(blogs)
     const usrnameStr = localStorage.getItem("user");
     const usrname = JSON.parse(usrnameStr);
     const likeBlog = (id) => {
@@ -101,7 +103,6 @@ const BlogList = ({ blogs, refresh }) => {
     return (
         
         <div className="blog-list">
-            
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
                     <div className="title-trash" style={{

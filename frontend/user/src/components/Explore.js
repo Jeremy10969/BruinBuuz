@@ -46,7 +46,7 @@ const Explore = ()=>{
                 You are not following any tags right now... Go Explore some!</h2>:""}
                 </h1>
             </div>
-            
+
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
             { blogs && <BlogList blogs={blogs} refresh={()=>setRefresh(refresh+1)}/> }

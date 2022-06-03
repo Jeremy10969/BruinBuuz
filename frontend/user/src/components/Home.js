@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import BlogList from './BlogList';
-//import IndividualBlog from './IndividualBlog';
 
 const Home = ()=>{
     
@@ -61,13 +60,14 @@ const Home = ()=>{
                 <h1>
                     "EXPLORE BRUINS!!!!!"
                     <div className='if-empty'>
-                    {blogs && blogs.length===0?<h2>Posts with the tags you are following will show here.
+                    {blogs &&myinfo&& blogs.length===0?<h2>Hello, {myinfo.fullName}, posts with the tags you are following will show here.
                 You are not following any tags right now... Go Explore some!</h2>:""}
                     </div>
                 </h1>
 
             </div>
-            <div style={{'marginTop':'20px', 'marginLeft':'40px'}}>
+            <div style={{'marginTop':'20px', 'marginLeft':'40px', 'fontFamily':'Montserrat' }}>
+                <span style={{'marginRight': "1rem", 'fontSize': '1.2rem'}}>tags you are following:</span>
                 {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
                     <Link to={`/tags/${tag}`}>#{tag}</Link>
                 </div>
