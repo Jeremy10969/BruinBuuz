@@ -44,7 +44,7 @@ Welcome to Bruin Buuz!
 ## Reference
 
 For backend structure: <br />
-https://www.youtube.com/watch?v=SQqSMDIzhaE
+https://www.youtube.com/watch?v=SQqSMDIzhaE <br />
 https://www.youtube.com/watch?v=xVeE737QPy4
 
 For frontend design: <br />
