@@ -28,7 +28,7 @@
 .description{
   padding-left: 5rem;
   margin-top: 5rem;
-  max-width: 630px;
+  width: 90%;
   text-align:justify;
   color:#ccc;
 }
@@ -43,13 +43,16 @@
 
 .selection{
   padding-top:8rem;
+  width:90%;
+  display:inline-block;
 }
 
 .welcome-page a{
+  white-space: nowrap;
   text-align: justify;
   font-size:25px;
-  margin-left:8.5rem;
-  margin-right:2rem;
+  margin-left:20%;
+  margin-right:5%;
   border:none;
   background-color: #FFB81C;
   border-radius: 25px;
@@ -879,4 +882,10 @@ button.search-type{
 
 .follower-list i:hover{
   color:red;
+}
+
+.if-empty{
+  padding-top: 10rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
