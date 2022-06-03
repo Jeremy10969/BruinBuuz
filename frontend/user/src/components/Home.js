@@ -66,18 +66,19 @@ const Home = ()=>{
                 </h1>
 
             </div>
-            <div style={{'marginTop':'20px', 'marginLeft':'40px', 'fontFamily':'Montserrat' }}>
-                <span style={{'marginRight': "1rem", 'fontSize': '1.2rem'}}>tags you are following:</span>
-                {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
-                    <Link to={`/tags/${tag}`}>#{tag}</Link>
-                </div>
-                )}
-            </div>
+            
 
 
             
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
+            {blogs && myinfo && <div style={{'marginTop':'20px', 'marginLeft':'40px', 'fontFamily':'Montserrat' }}>
+                <span style={{'marginRight': "1rem", 'fontSize': '1.2rem'}}>tags you are following:</span>
+                {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
+                    <Link to={`/tags/${tag}`}>#{tag}</Link>
+                </div>
+                )}
+            </div>}
             { blogs && <BlogList blogs={blogs} refresh={()=>setRefresh(refresh+1)}/> }
             
             { !isPending && !blogs && <div>"You've reached the end! No posts associated." </div> }
