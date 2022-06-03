@@ -10,8 +10,8 @@ router.post('/Create',requireLogin, (req, res) => {
     const {title, body, picture, tags} = req.body;
     console.log(title, body, picture, tags);
     
-    if (!title || !body) {
-        return res.status(422).json({error: "Please add all the fields"})
+    if (!title || !body || tags.length==0) {
+        return res.status(422).json({error: "Please add all the required fields"})
     }
 
     // req.user.password = undefined; // to hide the passwd
@@ -42,7 +42,7 @@ router.get('/search/:content',requireLogin, (req, res) => {
     console.log(content);
     let conditions = {};
     
-    User.findOne({username: new RegExp((content), 'i')})
+    User.find({username: new RegExp(content, 'i')},{"password":0})
     .then(userid => {
         if(searchType == "author"){
             conditions['author'] = userid

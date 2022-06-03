@@ -1,13 +1,33 @@
 import React from 'react'
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import PostEntrance from './PostEntrance';
 import PostEntranceList from './PostEntranceList';
+import { useLocation } from "react-router-dom";
 const Followers = () => {
+    const usrnameStr = localStorage.getItem("user");
     const [userInfo, setUserInfo] = useOutletContext();
+    const navigate = useNavigate();
     const [followersBlogList, setFollowersBlogList] = useState([]);
-
+    const [removeFollower, setRemoveFollower] = useState(null);
+    const location = useLocation();
+    useEffect(() => {
+        if (removeFollower){
+            fetch("http://"+window.location.host.split(":")[0]+":4000/removefollower/" + removeFollower,
+            {
+                method:"PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                    }
+            })
+            .then(
+                res => {res.json();
+                    window.location.reload(false);
+                }
+            )
+        }
+        
+    }, [removeFollower])
     useEffect(() => {
         setFollowersBlogList([]);
         userInfo.followers.map( (followersuser, index) => {
@@ -38,8 +58,8 @@ const Followers = () => {
         )
         
     }, [userInfo])
-    return (
-        
+
+    return ( 
     <div>
         <h4>Followers</h4>
         {
@@ -53,8 +73,9 @@ const Followers = () => {
                                 {
                                     <a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>
                                 }
-                                <label for="remove-follower"><i className='material-icons'>remove_circle_outline</i></label>
-                                <button id="remove-follower" hidden/>                              
+                                {location.pathname.substring(0,5)=='/user'?"":<label for="remove-follower"><i className='material-icons'>remove_circle_outline</i></label>}
+                            
+                                <button id="remove-follower" onClick={()=>{setRemoveFollower(obj.user._id)}} hidden/>                           
                             </h5>
                             <PostEntranceList posts={obj.blogs.slice(0,3)}/>
                         </div>

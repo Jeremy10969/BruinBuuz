@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import BlogList from './BlogList';
 //import IndividualBlog from './IndividualBlog';
 
@@ -8,10 +9,23 @@ const Home = ()=>{
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
     const [refresh, setRefresh] = useState(0);
+    const [myinfo, setMyinfo] = useState(null);
     useEffect(() => {
 
-        const tags = localStorage.getItem("user");
-        
+        fetch("http://"+window.location.host.split(":")[0]+":4000/userinfo/myself",
+        {
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                 "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        })
+        .then(res => res.json())
+        .then(info => {setMyinfo(info)})
+        .catch(err => {
+            console.log(err.message);
+            setError(err.message);
+        })
         
         fetch("http://"+window.location.host.split(":")[0]+":4000/feed"
              ,{ headers: {
@@ -39,7 +53,7 @@ const Home = ()=>{
             setIsPending(false);
             setError(err.message);
         })
-    }, [refresh]) // do it at mounting
+    }, [refresh])
 
     return(
         <div className="home">
@@ -51,7 +65,16 @@ const Home = ()=>{
                 You are not following any tags right now... Go Explore some!</h2>:""}
                     </div>
                 </h1>
+
             </div>
+            <div style={{'marginTop':'20px', 'marginLeft':'40px'}}>
+                {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
+                    <Link to={`/tags/${tag}`}>#{tag}</Link>
+                </div>
+                )}
+            </div>
+
+
             
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }

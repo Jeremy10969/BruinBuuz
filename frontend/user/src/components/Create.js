@@ -46,7 +46,7 @@ const Create = () => {
                         return;
                     }
                     else {
-                        tags.length!=0?tags.map(
+                        tags.map(
                             (tag)=>{
                                 fetch("http://"+window.location.host.split(":")[0]+":4000/followtag/"+tag,
                                 { 
@@ -63,7 +63,7 @@ const Create = () => {
                                     navigate("/Home");
                                   }, 1000))
                             }
-                        ):navigate('/Home')
+                        )
                         setUploadSuccess(true);
                         setShowMessage(true);
                         setMessage("Successfully uploaded");
@@ -153,7 +153,7 @@ const Create = () => {
             </div>
 
             <input
-                type="text" placeholder="Add tags (separate by ;)"
+                type="text" placeholder="Add tags (separate by ;) and follow them. At least add one!"
                 value={tags.join(';')}
                 onChange={(e) => setTags(e.target.value.split(";"))}
             />

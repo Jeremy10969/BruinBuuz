@@ -37,7 +37,7 @@ const blogTemplate = new mongoose.Schema({
         type: ObjectId,
         ref: "usrtable",  // might need to change depends on Aloe
         required: true,   // need to change
-        autopopulate: true
+        autopopulate: {select:'username picture followers following tags'}
     },
     date:{
         type: Date,

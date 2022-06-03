@@ -78,7 +78,7 @@ router.post('/changeprofileimg', requireLogin, (req,res) => {
    const picture = req.body.picture
    const userid = req.user._id
    console.log(userid)
-   User.findByIdAndUpdate(userid, {picture: picture})
+   User.findByIdAndUpdate(userid, {picture: picture},{"password":0})
    .then(data =>{
       res.json({newprofilepic: data});
       console.log("photo uploaded")
@@ -112,7 +112,7 @@ router.put('/followtag/:tagname', requireLogin, (req, res) => {
 router.put('/unfollowtag/:tagname', requireLogin, (req,res)=>{
    const tagname = req.params.tagname;
 
-   User.findByIdAndUpdate(req.user._id, { $pull: { tags: tagname } })
+   User.findByIdAndUpdate(req.user._id, { $pull: { tags: tagname } },{"password":0})
    .then(result => {
       res.json(result)
    })
@@ -121,7 +121,7 @@ router.put('/unfollowtag/:tagname', requireLogin, (req,res)=>{
 router.get('/myprofile', requireLogin, (req, res) => {
    // get req.user's info
    const userid = req.user._id;
-   User.findById(userid).populate("followers following")
+   User.findById(userid,{"password":0}).populate("followers following")
      .then(result => {
        res.json(result);
      })
@@ -132,7 +132,7 @@ router.get('/myprofile', requireLogin, (req, res) => {
 
 router.get('/users/:username', requireLogin, (req, res) => {
    const username = req.params.username;
-   User.findOne({username: username}).populate("followers following")
+   User.findOne({username: username},{"password":0}).populate("followers following")
      .then(result => {
        res.json(result);
      })
@@ -141,6 +141,16 @@ router.get('/users/:username', requireLogin, (req, res) => {
      });
 })
 
+router.get('/userinfo/myself', requireLogin, (req,res) =>{
+   const userid = req.user._id;
+   User.findById(userid,{"password":0})
+   .then(result=>{
+      res.json(result);
+   })
+   .catch(err => {
+      console.log(err);
+   })
+})
 
 router.post('/tagfollowstatus', requireLogin, (req,res) => {
    const selfid = req.user._id;
@@ -151,7 +161,7 @@ router.post('/tagfollowstatus', requireLogin, (req,res) => {
          {_id: selfid},
          {tags: tag}
       ]
-   })
+   },{"password":0})
    .then(
       result => {
          console.log(result)
@@ -163,6 +173,13 @@ router.post('/tagfollowstatus', requireLogin, (req,res) => {
     });
 }) 
 
+router.put('/removefollower/:otherid', requireLogin, (req,res) => {
+   const selfid = req.user._id;
+   const otherid = req.params.otherid;
+   User.findByIdAndUpdate(selfid, { $pull: { followers: otherid } },{"password":0})
+   .then(result=>res.json(result))
+   .catch(err => console.log(err))
+})
 
 router.post('/getfollowstatus', requireLogin, (req,res) => {
    const selfid = req.user._id;
@@ -172,7 +189,7 @@ router.post('/getfollowstatus', requireLogin, (req,res) => {
          {_id: targetid},
          {followers: selfid}
       ]
-   })
+   },{"password":0})
    .then(
       result => {
          res.json(result)
