@@ -41,6 +41,17 @@ Welcome to Bruin Buuz!
 [Xinyuan Zhu](https://github.com/Jeremy10969) (jeremy903162@g.ucla.edu) <br />
 [Yanjianan Zhu](https://github.com/jordanzhuy) (jordanzhuyan@g.ucla.edu) <br />
 
+## Reference
+
+For backend structure: <br />
+https://www.youtube.com/watch?v=SQqSMDIzhaE
+https://www.youtube.com/watch?v=xVeE737QPy4
+
+For frontend design: <br />
+https://mui.com/ <br />
+https://materializecss.com/
+
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
