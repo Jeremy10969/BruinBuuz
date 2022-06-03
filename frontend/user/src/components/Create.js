@@ -59,7 +59,9 @@ const Create = () => {
                                         tagname: tag
                                     })
                                 })
-                                .then(navigate('/Home'))
+                                .then(setTimeout(() => {
+                                    navigate("/Home");
+                                  }, 1000))
                             }
                         ):navigate('/Home')
                         setUploadSuccess(true);
