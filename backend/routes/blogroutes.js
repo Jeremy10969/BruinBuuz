@@ -8,7 +8,7 @@ const { json } = require('express');
 
 router.post('/Create',requireLogin, (req, res) => {
     const {title, body, picture, tags} = req.body;
-    console.log(title, body, picture, tags);
+    //console.log(title, body, picture, tags);
     
     if (!title || !body || tags.length==0) {
         return res.status(422).json({error: "Please add all the required fields"})
@@ -37,9 +37,9 @@ router.get('/search/:content',requireLogin, (req, res) => {
     const searchFilters = req.query.searchType;
     const searchType = searchFilters.split(" ")[0];
     const filterType = searchFilters.split(" ")[1]
-    console.log(searchType);
+    //console.log(searchType);
     const content = req.params.content;
-    console.log(content);
+    //console.log(content);
     let conditions = {};
     
     User.find({username: new RegExp(content, 'i')},{"password":0})
@@ -96,7 +96,7 @@ router.get('/all-blog',requireLogin,  (req, res) => {
 router.get('/feed', requireLogin, (req, res) => {
 
     const tags = req.user.tags;
-    console.log(tags)
+    //console.log(tags)
     Blog.find({tags:{$in: tags}})
     .sort({ createdAt:-1 })
     .then(feed => {
@@ -121,12 +121,12 @@ router.get('/myblogs', requireLogin, (req, res) => {
 // display one post in detail
 router.get('/blogs/:blogid', requireLogin, (req, res) => {
     const id = req.params.blogid;
-    console.log(id);
+    //console.log(id);
 
     Blog.findByIdAndUpdate(id, {$inc:{heat: 0.5}})
     .sort({ createdAt:-1 })
       .then(result => {
-          console.log(result)
+          //console.log(result)
         res.json(result);
       })
       .catch(err => {
@@ -139,7 +139,7 @@ router.get('/bloglist/:userid', requireLogin, (req,res)=>{
     Blog.find({author: id})
     .sort({ createdAt:-1 })
       .then(result => {
-          console.log(result)
+          //console.log(result)
         res.json(result);
       })
       .catch(err => {

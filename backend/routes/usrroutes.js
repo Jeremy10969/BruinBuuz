@@ -61,7 +61,7 @@ router.post('/signin', (req, res) => {
             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
             const { _id, username, email, tags } = savedUser;
             res.json({ token: token, user: { _id, username, email, tags } })
-            console.log(token)
+            // console.log(token)
          }
          else { return res.status(422).json({ error: "Invalid password" }) }
       }
@@ -164,7 +164,7 @@ router.post('/tagfollowstatus', requireLogin, (req,res) => {
    },{"password":0})
    .then(
       result => {
-         console.log(result)
+         // console.log(result)
          res.json(result)
       }
    )
