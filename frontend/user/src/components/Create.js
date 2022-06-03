@@ -158,8 +158,7 @@ const Create = () => {
 
             <div>
                 <button className="submit-post"
-                    onClick={postDetails}
-                >
+                    onClick={postDetails}>
                     Post it!
                 </button>
 
