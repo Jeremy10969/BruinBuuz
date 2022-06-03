@@ -795,25 +795,8 @@ button.search-type{
   display:none;
 }
 
-.home-tag-gap{
-  background-color: gold;
-  width: 100% !important;
-  padding-left: 1em;
-  position:relative;
-  padding-top: 0.45em;
-  height:3em;
-}
-
 .home-tag-gap a{
   color:#172342;
-  margin-right:7px;
-  border:none;
-  background-color: gold;
-  border-radius: 25px;
-  font-family: 'Gochi Hand', cursive;
-  font-size:x-large;
-  font-weight:lighter;
-  padding:0.3em 0.5em 0.1em;
 }
 
 .home-tag-gap:empty{
