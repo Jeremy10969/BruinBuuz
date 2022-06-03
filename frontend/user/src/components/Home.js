@@ -67,7 +67,7 @@ const Home = ()=>{
                 </h1>
 
             </div>
-            <div style={{'marginTop':'20px', 'marginLeft':'40px'}}>
+            <div className="home-tag-gap">
                 {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
                     <Link to={`/tags/${tag}`}>#{tag}</Link>
                 </div>
