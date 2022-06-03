@@ -14,7 +14,7 @@ const IndividualBlog = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(blogid);
+        // console.log(blogid);
         fetch("http://"+window.location.host.split(":")[0]+":4000/blogs/" +blogid, { 
             headers: {
             "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const IndividualBlog = () => {
         })
         .then(
             data => {
-                console.log(data);
+                // console.log(data);
                 setIsPending(false);
                 setData(data);
                 setError(null); })
@@ -53,7 +53,7 @@ const IndividualBlog = () => {
             })
         }).then(res => res.json())
         .then(result => {
-            console.log(result)
+            // console.log(result)
             setRefresh(refresh+1)
         }).catch(err => {
             console.log(err)
@@ -72,7 +72,7 @@ const IndividualBlog = () => {
         }).then(res => res.json())
         .then(result => {
             setRefresh(refresh+1)
-            console.log(result)
+            // console.log(result)
         }).catch(err => {
             console.log(err)
         })
@@ -91,7 +91,7 @@ const IndividualBlog = () => {
         }).then(res => res.json())
         .then(result => {
             setRefresh(refresh+1)
-            console.log(result)
+            // console.log(result)
         }).catch(error => {
             console.log(error)
         })
@@ -110,7 +110,7 @@ const IndividualBlog = () => {
         }).then(res => res.json())
         .then(result => {
             setRefresh(refresh+1)
-            console.log(result)
+            // console.log(result)
         }).catch(error => {
             console.log(error)
         })
@@ -124,7 +124,7 @@ const IndividualBlog = () => {
         }).then(res => res.json())
         .then(result => {
             
-            console.log(result)
+            // console.log(result)
             navigate('/Home')
             setRefresh(refresh+1)
         })
@@ -142,7 +142,7 @@ const IndividualBlog = () => {
                     <a href={`/tags/${tag}`}>#{tag}</a>
                     </div>
                     )}
-                    {data.author._id == usrname._id 
+                    {data.author._id === usrname._id 
                     && <i className="material-icons" title="Delete this blog permanently"
                     style = {{
                         float: "right"
@@ -159,7 +159,7 @@ const IndividualBlog = () => {
                     
                     {data.picture !== '' && data.picture !== 'no pic' &&
                             <div className="feed-image">
-                            < img style={{width:"70%", height:"50%", objectFit:"cover"}} 
+                            < img style={{width:"70%", height:"50%", objectFit:"cover"}} alt="" 
                             src={data.picture} />
                             </div>
                             }

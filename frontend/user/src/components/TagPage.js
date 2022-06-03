@@ -33,7 +33,6 @@ const TagPage = ()=>{
             result => {
     
                 setFollowingState(result?true:false);
-                {console.log(followingState)}
             }
            
         )
@@ -59,7 +58,7 @@ const TagPage = ()=>{
                 if (!res.ok) {
                     throw Error('could not fetch the data.');
                 }
-                console.log(res)
+                // console.log(res)
                 setbtnstate(!btnstate);
                 return res.json();
             }).then(data => console.log(data))
@@ -95,7 +94,7 @@ const TagPage = ()=>{
     }
 
     useEffect(() => {
-        console.log("tag", tag)
+        // console.log("tag", tag)
         
 
         fetch("http://"+window.location.host.split(":")[0]+":4000/tags/"+tag,
@@ -113,7 +112,7 @@ const TagPage = ()=>{
             return res.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             getFollowStatus();
             setIsPending(false);
             setBlogs(data);
@@ -145,7 +144,7 @@ const TagPage = ()=>{
             { error && <div>{ error }</div> }
             { isPending && <div> Loading... </div> }
             { blogs && <BlogList blogs={blogs} refresh={()=>{setbtnstate(btnstate+1)}}/> }
-            { !isPending && !blogs && <div>"You've reached the end! No posts associated." </div> }
+            { !isPending && blogs && blogs.length===0 && <h5>"You've reached the end! No posts associated." </h5> }
             </div>
         </div>
     )

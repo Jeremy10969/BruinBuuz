@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React from 'react';
 const moment = require('moment');
 
 const BlogList = ({ blogs, refresh }) => {
@@ -57,7 +57,7 @@ const BlogList = ({ blogs, refresh }) => {
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
+            // console.log(result)
             refresh();
         })
         .catch(error => {
@@ -78,7 +78,7 @@ const BlogList = ({ blogs, refresh }) => {
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
+            // console.log(result)
             refresh();
         })
         .catch(error => {
@@ -101,7 +101,7 @@ const BlogList = ({ blogs, refresh }) => {
     return (
         
         <div className="blog-list">
-            {console.log(blogs)}
+            
             {blogs.map(blog => (
                 <div className="feed"  key={blog._id}>
                     <div className="title-trash" style={{
@@ -110,14 +110,14 @@ const BlogList = ({ blogs, refresh }) => {
                     <a href={"/blogs/"+blog._id}>
                     <h5>{ blog.title }</h5>
                     </a>
-                    {blog.author._id == usrname._id 
+                    {blog.author._id === usrname._id 
                     && <i className="material-icons" title="Delete this blog permanently"
                         onClick = {() => deleteBlog(blog._id)}
                         >delete</i>
                     }
                     </div>
                     
-                    <p>Posted by <img className="profile-name" src={blog.author.picture} /> 
+                    <p>Posted by <img className="profile-name" src={blog.author.picture} alt=""/> 
                     <a href={"/users/"+blog.author.username}>{blog.author.username}</a>
                     <span style = {{float: "right", display:"inline-block"}}>
                     <p>{moment(blog.date).format("YYYY-MM-DD HH:mm")}</p>
@@ -126,7 +126,7 @@ const BlogList = ({ blogs, refresh }) => {
                     
                         {blog.picture !== '' && blog.picture !== 'no pic' &&
                         <div className="feed-image">
-                        <img style={{width:"100%", height:"70%", objectFit:"cover"}} 
+                        <img style={{width:"100%", height:"70%", objectFit:"cover"}} alt=""
                         src={blog.picture} />
                         </div>
                         }
@@ -136,7 +136,7 @@ const BlogList = ({ blogs, refresh }) => {
                     
                     <p style={{fontSize:"20px", textAlign:"justify"}}>{ blog.body?.length > 200 ? blog.body.substr(0, 200)+'...' : blog.body  }</p>
                     
-                        {blog.tags!="no tag"&&blog.tags.map(tag => <div className="tags" key={tag}>
+                        {blog.tags!=="no tag"&&blog.tags.map(tag => <div className="tags" key={tag}>
                         <Link to={`/tags/${tag}`}>#{tag}</Link>
                         </div>
                         )}

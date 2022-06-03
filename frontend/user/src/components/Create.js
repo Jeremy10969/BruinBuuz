@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MuiAlert from './MuiAlert';
-import { Alert, Snackbar } from '@mui/material';
 
 const Create = () => {
     const [title, setTitle] = useState("");
@@ -21,7 +20,7 @@ const Create = () => {
 
         // it must have a url present, so initialization will not render
         if (url) {
-            console.log(title, body, url, but, tags);
+            // console.log(title, body, url, but, tags);
             fetch("http://"+window.location.host.split(":")[0]+":4000/Create", {
                 method: "POST",
                 headers: {
@@ -112,7 +111,7 @@ const Create = () => {
         }
         else {
 
-            console.log("You are not uploading pic.");
+            // console.log("You are not uploading pic.");
             setUrl("no pic");
             setBut(but + 1);
         }
@@ -138,11 +137,10 @@ const Create = () => {
                     <span>Upload Image</span>
                     <input type="file"
                         onChange={(e) => {
-                            { setPicture(e.target.files[0]) };
-                            {
+                            setPicture(e.target.files[0]);
                                 if (e.target.files.length > 1) { setFname(e.target.files.length + " files") }
                                 else { setFname(e.target.files[0].name) }
-                            }
+                            
                         }}
                     />
                 </div>

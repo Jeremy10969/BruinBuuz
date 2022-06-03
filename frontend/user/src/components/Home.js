@@ -42,7 +42,7 @@ const Home = ()=>{
             return res.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setIsPending(false);
             setBlogs(data);
             setError(null);
@@ -61,7 +61,7 @@ const Home = ()=>{
                 <h1>
                     "EXPLORE BRUINS!!!!!"
                     <div className='if-empty'>
-                    {blogs && blogs.length==0?<h2>Posts with the tags you are following will show here.
+                    {blogs && blogs.length===0?<h2>Posts with the tags you are following will show here.
                 You are not following any tags right now... Go Explore some!</h2>:""}
                     </div>
                 </h1>
