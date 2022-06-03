@@ -66,8 +66,8 @@ const Home = ()=>{
                 </h1>
 
             </div>
-            <div style={{'marginTop':'20px', 'marginLeft':'40px', 'fontFamily':'Montserrat' }}>
-                <span style={{'marginRight': "1rem", 'fontSize': '1.2rem'}}>tags you are following:</span>
+            <div className="home-tag-gap" style={{'marginTop':'20px', 'marginLeft':'40px', 'fontFamily':'Montserrat' }}>
+                <span style={{'marginRight': "1rem", 'fontSize': '1.2rem'}}>Tags you are following:</span>
                 {myinfo && myinfo.tags.map(tag => <div className="tags" key={tag}>
                     <Link to={`/tags/${tag}`}>#{tag}</Link>
                 </div>
