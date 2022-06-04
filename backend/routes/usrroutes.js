@@ -176,8 +176,11 @@ router.post('/tagfollowstatus', requireLogin, (req,res) => {
 router.put('/removefollower/:otherid', requireLogin, (req,res) => {
    const selfid = req.user._id;
    const otherid = req.params.otherid;
-   User.findByIdAndUpdate(selfid, { $pull: { followers: otherid } },{"password":0})
-   .then(result=>res.json(result))
+   User.findByIdAndUpdate(selfid, { $pull: { followers: otherid } })
+   .then(
+      User.findByIdAndUpdate(otherid, { $pull: { following: otherid } })
+      .then(result => res.json({req_status: 'successful'}))
+   )
    .catch(err => console.log(err))
 })
 

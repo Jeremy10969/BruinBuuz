@@ -73,9 +73,13 @@ const Followers = () => {
                                 {
                                     <a className="profile-username" href={"/users/"+obj.user.username}>{obj.user.username}</a>
                                 }
-                                {location.pathname.substring(0,5)=='/user'?"":<label for="remove-follower"><i className='material-icons'>remove_circle_outline</i></label>}
+                                {location.pathname.substring(0,5)=='/user'?"":
+                                <i className='material-icons'
+                                onClick={()=>{setRemoveFollower(obj.user._id)}}> 
+
+                                remove_circle_outline</i>}
                             
-                                <button id="remove-follower" onClick={()=>{setRemoveFollower(obj.user._id)}} hidden/>                           
+                                                      
                             </h5>
                             <PostEntranceList posts={obj.blogs.slice(0,3)}/>
                         </div>
