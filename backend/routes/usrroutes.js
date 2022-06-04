@@ -178,7 +178,7 @@ router.put('/removefollower/:otherid', requireLogin, (req,res) => {
    const otherid = req.params.otherid;
    User.findByIdAndUpdate(selfid, { $pull: { followers: otherid } })
    .then(
-      User.findByIdAndUpdate(otherid, { $pull: { following: otherid } })
+      User.findByIdAndUpdate(otherid, { $pull: { following: selfid } })
       .then(result => res.json({req_status: 'successful'}))
    )
    .catch(err => console.log(err))
